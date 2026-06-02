@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { Minus, Plus } from 'lucide-react';
 
 const faqs = [
   {
@@ -21,27 +21,45 @@ const faqs = [
   }
 ];
 
-function FAQ() {
+function FAQ({ embedded = false }) {
   const [open, setOpen] = useState(0);
 
-  return (
-    <section className="section">
-      <div className="container narrow">
+  const content = (
+    <div className="faq-panel">
+      {!embedded && (
         <div className="section-heading">
           <div className="section-kicker">FAQ</div>
           <h2>Answers before you begin.</h2>
         </div>
-        <div className="faq-list">
-          {faqs.map((faq, index) => (
-            <article className={`faq-item ${open === index ? 'is-open' : ''}`} key={faq.question}>
-              <button type="button" onClick={() => setOpen(open === index ? -1 : index)}>
-                {faq.question}
-                <ChevronDown />
-              </button>
-              <p>{faq.answer}</p>
-            </article>
-          ))}
+      )}
+      {embedded && (
+        <div className="faq-panel-heading">
+          <span className="section-kicker">FAQ</span>
+          <h3>Answers before you begin.</h3>
         </div>
+      )}
+      <div className="faq-list">
+        {faqs.map((faq, index) => (
+          <article className={`faq-item ${open === index ? 'is-open' : ''}`} key={faq.question}>
+            <button type="button" onClick={() => setOpen(open === index ? -1 : index)}>
+              {faq.question}
+              {open === index ? <Minus /> : <Plus />}
+            </button>
+            <p>{faq.answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+
+  if (embedded) {
+    return content;
+  }
+
+  return (
+    <section className="section">
+      <div className="container narrow">
+        {content}
       </div>
     </section>
   );

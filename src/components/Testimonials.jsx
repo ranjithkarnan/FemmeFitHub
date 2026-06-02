@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Quote } from 'lucide-react';
 import { testimonials } from '../data/testimonials.js';
 
 function Testimonials() {
@@ -22,10 +22,11 @@ function Testimonials() {
     <section className="section testimonial-section">
       <div className="container testimonial-wrap">
         <div>
-          <div className="section-kicker">Testimonials</div>
-          <h2>Members come for workouts and stay for the way they feel.</h2>
+          <div className="section-kicker">Member Stories</div>
+          <h2>Honest words from women who chose consistency and found confidence.</h2>
         </div>
         <article className="testimonial-card" aria-live="polite">
+          <div className="video-testimonial"><Play /><span>Video Story Preview</span></div>
           <Quote />
           <p>“{testimonial.quote}”</p>
           <div>

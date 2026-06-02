@@ -1,23 +1,32 @@
 export const plans = [
   {
     name: 'Basic Plan',
-    price: '₹1,999',
-    period: '/ month',
+    badge: 'Starter',
+    description: 'Perfect for beginners starting their fitness journey.',
+    bestFor: 'Best for beginners starting a consistent fitness routine.',
+    shortBestFor: 'Best for beginners',
+    cta: 'Ask for Details',
     featured: false,
-    features: ['Gym floor access', 'Cardio zone', 'Locker access', 'Monthly progress check']
+    features: ['Gym Access', 'Basic Workout Guidance', 'Flexible Timings', 'Community Support']
   },
   {
     name: 'Standard Plan',
-    price: '₹3,499',
-    period: '/ month',
+    badge: 'Recommended',
+    description: 'Balanced coaching, classes, and support for consistent progress.',
+    bestFor: 'Best for women who want guided classes, progress checks, and trainer support.',
+    shortBestFor: 'Best for guided progress',
+    cta: 'Get Recommended Plan',
     featured: true,
-    features: ['Everything in Basic', 'Group classes', 'Nutrition starter guide', 'Bi-weekly progress review']
+    features: ['Everything in Basic', 'Group Classes', 'Monthly Progress Check', 'Fat Loss Guidance', 'Trainer Support']
   },
   {
     name: 'Premium Plan',
-    price: '₹5,999',
-    period: '/ month',
+    badge: 'Elite',
+    description: 'Personalized coaching for women who want focused transformation.',
+    bestFor: 'Best for focused transformation with personal coaching and nutrition guidance.',
+    shortBestFor: 'Best for transformation',
+    cta: 'Book Consultation',
     featured: false,
-    features: ['Everything in Standard', 'Personal training sessions', 'Custom workout plan', 'Priority class booking']
+    features: ['Everything in Standard', 'Personal Training', 'Nutrition Guidance', 'Weekly Progress Tracking', 'Priority Consultation']
   }
 ];

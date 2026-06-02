@@ -1,44 +1,55 @@
 import React from 'react';
-import { Facebook, Instagram, Linkedin, Mail } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Facebook, Instagram, Youtube } from 'lucide-react';
 
 function Footer() {
   return (
-    <footer className="footer">
+    <footer className="site-footer">
       <div className="container footer-grid">
-        <div>
-          <Link className="brand footer-brand" to="/">Femme Fit Hub</Link>
-          <p>Premium women-only fitness coaching for strength, confidence, health, and community.</p>
-          <div className="social-links" aria-label="Social links">
-            <a href="https://instagram.com" aria-label="Instagram"><Instagram /></a>
-            <a href="https://facebook.com" aria-label="Facebook"><Facebook /></a>
-            <a href="https://linkedin.com" aria-label="LinkedIn"><Linkedin /></a>
-            <a href="mailto:hello@femmefithub.com" aria-label="Email"><Mail /></a>
+        <div className="footer-brand">
+          <h2>Femme Fit Hub</h2>
+          <p>A premium women-only fitness studio built for strength, wellness, confidence, and sustainable routines.</p>
+
+          <div className="footer-socials" aria-label="Social links">
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={20} /></a>
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook size={20} /></a>
+            <a href="https://youtube.com" target="_blank" rel="noreferrer" aria-label="YouTube"><Youtube size={21} /></a>
           </div>
         </div>
-        <div>
+
+        <div className="footer-column">
           <h3>Quick Links</h3>
-          <Link to="/about">About</Link>
-          <Link to="/programs">Programs</Link>
-          <Link to="/membership">Membership</Link>
-          <Link to="/schedule">Schedule</Link>
-          <Link to="/contact">Contact</Link>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#programs">Programs</a>
+          <a href="#trainers">Trainers</a>
+          <a href="#membership">Membership</a>
+          <a href="#gallery">Gallery</a>
         </div>
-        <div>
-          <h3>Timings</h3>
-          <p>Monday - Saturday<br />6:00 AM - 9:00 PM</p>
-          <p>Sunday<br />7:00 AM - 12:00 PM</p>
+
+        <div className="footer-column">
+          <h3>Support</h3>
+          <a href="#schedule">Class Schedule</a>
+          <a href="#tips">Fitness Tips</a>
+          <a href="#contact">FAQ</a>
+          <a href="#contact">Contact</a>
+          <a href="#contact">Free Trial</a>
         </div>
-        <div>
-          <h3>Newsletter</h3>
-          <p>Monthly fitness tips, class updates, and member stories.</p>
-          <form className="newsletter" onSubmit={(event) => event.preventDefault()}>
-            <input type="email" aria-label="Email address" placeholder="Email address" required />
-            <button type="submit">Subscribe</button>
-          </form>
+
+        <div className="footer-column footer-contact">
+          <h3>Contact</h3>
+          <p>+91 98765 43210</p>
+          <p>hello@femmefithub.com</p>
+          <p>2nd Floor, Wellness Avenue, Bengaluru</p>
+          <a className="footer-whatsapp" href="https://wa.me/919876543210" target="_blank" rel="noreferrer">
+            WhatsApp Us
+          </a>
         </div>
       </div>
-      <div className="footer-bottom">© 2026 Femme Fit Hub. All rights reserved.</div>
+
+      <div className="footer-bottom">
+        <p>© 2026 Femme Fit Hub. All rights reserved.</p>
+        <p>Digital Experience by <strong>RK Web Solutions</strong></p>
+      </div>
     </footer>
   );
 }
