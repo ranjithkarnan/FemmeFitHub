@@ -37,7 +37,8 @@ const navItems = [
     label: 'Schedule',
     id: 'schedule',
     children: [
-      { label: 'Class Schedule', id: 'schedule' }
+      { label: 'Class Schedule', id: 'schedule' },
+      { label: 'Upcoming Challenges', id: 'challenges' }
     ]
   },
   {
@@ -92,9 +93,18 @@ function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  const handleNavClick = () => {
+  const handleNavClick = (event, id) => {
+    event?.preventDefault();
     setOpen(false);
     setOpenDropdown(null);
+
+    if (id === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
   };
 
   const toggleDropdown = (id) => {
@@ -106,7 +116,7 @@ function Navbar() {
   return (
     <header className="site-header">
       <nav className="navbar container" aria-label="Main navigation">
-        <a className="brand" href="#home" aria-label="Femme Fit Hub home" onClick={handleNavClick}>
+        <a className="brand" href="#home" aria-label="Femme Fit Hub home" onClick={(event) => handleNavClick(event, 'home')}>
           {/* <span className="brand-mark"><Dumbbell size={22} /></span> */}
           <span className="brand-mark">
   <img src={womenLogo} size={25} alt="Femme Fit Hub Logo" />
@@ -155,7 +165,7 @@ function Navbar() {
                     <a
                       href={`#${child.id}`}
                       key={`${item.label}-${child.label}`}
-                      onClick={handleNavClick}
+                      onClick={(event) => handleNavClick(event, child.id)}
                       className={activeSection === child.id ? 'active' : ''}
                       aria-current={activeSection === child.id ? 'page' : undefined}
                     >
@@ -169,14 +179,14 @@ function Navbar() {
                 className={`nav-link ${activeSection === item.id ? 'active' : ''}`.trim()}
                 href={`#${item.id}`}
                 key={item.id}
-                onClick={handleNavClick}
+                onClick={(event) => handleNavClick(event, item.id)}
                 aria-current={activeSection === item.id ? 'page' : undefined}
               >
                 {item.label}
               </a>
             )
           ))}
-          <a className="nav-cta" href="#contact" onClick={handleNavClick}>
+          <a className="nav-cta" href="#contact" onClick={(event) => handleNavClick(event, 'contact')}>
             Join Now
           </a>
         </div>

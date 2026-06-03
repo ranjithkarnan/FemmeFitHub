@@ -6,6 +6,7 @@ import Programs from '../components/Programs.jsx';
 import Trainers from '../components/Trainers.jsx';
 import MembershipPlans from '../components/MembershipPlans.jsx';
 import Schedule from '../components/Schedule.jsx';
+import Challenges from '../components/Challenges.jsx';
 import Contact from '../components/Contact.jsx';
 import CalculatorHub from '../components/CalculatorHub.jsx';
 import Community from '../components/Community.jsx';
@@ -190,6 +191,7 @@ function Home() {
       <section id="schedule" className="landing-anchor">
         <Schedule />
       </section>
+      <Challenges />
       <section id="tips" className="landing-anchor">
         <section className="section tips-community-section">
           <div className="container">

@@ -65,15 +65,19 @@ function PageLoader({ onFinish }) {
   const quote = useMemo(() => getNextQuote(), []);
 
   useEffect(() => {
+    let finishTimer;
     const timer = window.setTimeout(() => {
       setHide(true);
 
-      window.setTimeout(() => {
+      finishTimer = window.setTimeout(() => {
         onFinish?.();
       }, 450);
     }, 2200);
 
-    return () => window.clearTimeout(timer);
+    return () => {
+      window.clearTimeout(timer);
+      window.clearTimeout(finishTimer);
+    };
   }, [onFinish]);
 
   return (

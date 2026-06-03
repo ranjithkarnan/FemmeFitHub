@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Award, Check, Mail, MapPin, Phone, ShieldCheck, Sparkles, Star, Users } from 'lucide-react';
 import FAQ from './FAQ.jsx';
 
@@ -18,10 +18,74 @@ const trustCards = [
   { title: 'Proven Results', icon: Star }
 ];
 
-const studioAddress = 'Door no 2/2, first floor, Sannathi street, Mari Amman Kovil St, Valasaravakkam, Tamil Nadu 600087';
+const studioAddress = 'No 2/2, first floor, Sannathi street, Mari Amman Kovil St, Valasaravakkam, Tamil Nadu 600087';
 const mapLink = 'https://share.google/kSjLapvUefpUvJ45R';
 
 function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    goal: 'Weight Loss Training',
+    message: ''
+  });
+  const [sending, setSending] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!formData.name.trim() || !formData.phone.trim() || !formData.goal.trim()) {
+      window.alert('Please complete all required fields.');
+      return;
+    }
+
+    setSending(true);
+    setSuccess(false);
+
+    const whatsappMessage = `
+New Femme Fit Hub Enquiry
+
+Name:
+${formData.name}
+
+Phone:
+${formData.phone}
+
+Fitness Goal:
+${formData.goal}
+
+Message:
+${formData.message || 'No additional message'}
+
+----------------------------
+Sent from Femme Fit Hub Website
+`;
+
+    const whatsappUrl = `https://wa.me/919884497990?text=${encodeURIComponent(whatsappMessage)}`;
+
+    window.setTimeout(() => {
+      setSending(false);
+      setSuccess(true);
+
+      window.setTimeout(() => {
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        setFormData({
+          name: '',
+          phone: '',
+          goal: 'Weight Loss Training',
+          message: ''
+        });
+      }, 1000);
+    }, 1000);
+  };
+
   return (
     <section className="section consultation-hub">
       <div className="container">
@@ -61,25 +125,25 @@ function Contact() {
               <MapPin />
               <div>
                 <strong>Visit Our Studio</strong>
-                <span>Door no 2/2, first floor, Sannathi street<br />Mari Amman Kovil St, Valasaravakkam<br />Tamil Nadu 600087</span>
+                <span>No 2/2, first floor, Sannathi street<br />Mari Amman Kovil St, Valasaravakkam<br />Tamil Nadu 600087</span>
                 <a href={mapLink} target="_blank" rel="noreferrer">Open in Google Maps</a>
               </div>
             </div>
           </div>
 
           <div className="consultation-form-area">
-            <form className="contact-form consultation-form" onSubmit={(event) => event.preventDefault()}>
+            <form className="contact-form consultation-form" onSubmit={handleSubmit}>
               <label>
                 <span>Full Name</span>
-                <input type="text" name="name" placeholder="Your name" required />
+                <input type="text" name="name" placeholder="Your name" value={formData.name} onChange={handleChange} required />
               </label>
               <label>
                 <span>Phone Number</span>
-                <input type="tel" name="phone" placeholder="+91 8220138783" required />
+                <input type="tel" name="phone" placeholder="+91 8220138783" value={formData.phone} onChange={handleChange} required />
               </label>
               <label>
                 <span>Fitness Goal</span>
-                <select name="goal" defaultValue="Weight Loss Training">
+                <select name="goal" value={formData.goal} onChange={handleChange} required>
                   <option>Weight Loss Training</option>
                   <option>Strength Training</option>
                   <option>Zumba</option>
@@ -90,9 +154,16 @@ function Contact() {
               </label>
               <label>
                 <span>Message</span>
-                <textarea name="message" rows="5" placeholder="Tell us about your goals" />
+                <textarea name="message" rows="5" placeholder="Tell us about your goals" value={formData.message} onChange={handleChange} />
               </label>
-              <button className="btn btn-primary" type="submit">Send Enquiry <Sparkles size={18} /></button>
+              <button className="btn btn-primary" type="submit" disabled={sending}>
+                {sending ? 'Preparing WhatsApp...' : 'Send Enquiry'} {!sending && <Sparkles size={18} />}
+              </button>
+              {success && (
+                <div className="form-success" role="status">
+                  Thank you! Redirecting to WhatsApp...
+                </div>
+              )}
             </form>
 
             <FAQ embedded />
