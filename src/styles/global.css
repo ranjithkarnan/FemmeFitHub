@@ -2019,11 +2019,15 @@ textarea::placeholder {
 .nav-links .nav-link {
   position: relative;
   padding: 10px 0;
+  border: 0;
   border-radius: 0;
   color: #4B3223;
+  background: transparent;
   font-size: 0.95rem;
+  font-family: inherit;
   font-weight: 600;
   letter-spacing: 0;
+  cursor: pointer;
   transition: color 0.3s ease;
 }
 
@@ -2050,6 +2054,91 @@ textarea::placeholder {
 .nav-links .nav-link.active {
   color: #6F4E37;
   font-weight: 700;
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-dropdown-trigger svg {
+  transition: transform 0.25s ease;
+}
+
+.nav-dropdown.active > .nav-dropdown-trigger {
+  color: #6F4E37;
+  font-weight: 700;
+}
+
+.nav-dropdown.active > .nav-dropdown-trigger::after {
+  width: 100%;
+}
+
+.nav-dropdown:hover .nav-dropdown-trigger svg,
+.nav-dropdown:focus-within .nav-dropdown-trigger svg,
+.nav-dropdown.is-open .nav-dropdown-trigger svg {
+  transform: rotate(180deg);
+}
+
+.nav-submenu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  z-index: 80;
+  min-width: 220px;
+  padding: 10px;
+  border: 1px solid rgba(244, 197, 66, 0.2);
+  border-radius: 18px;
+  background: #4b3223;
+  box-shadow:
+    0 24px 55px rgba(43, 29, 19, 0.24),
+    0 0 30px rgba(244, 197, 66, 0.12);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.nav-submenu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -14px;
+  height: 14px;
+}
+
+.nav-dropdown:hover .nav-submenu,
+.nav-dropdown:focus-within .nav-submenu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.nav-submenu a {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 11px 12px;
+  border-radius: 12px;
+  color: rgba(255, 248, 240, 0.82);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.nav-submenu a:hover,
+.nav-submenu a.active {
+  color: #f4c542;
+  background: rgba(244, 197, 66, 0.15);
+  transform: translateX(3px);
 }
 
 .nav-links .nav-cta {

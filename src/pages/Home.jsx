@@ -73,7 +73,7 @@ function Home() {
         <Programs />
       </section>
 
-      <section className="why-section">
+      <section id="why" className="why-section landing-anchor">
         <div className="container">
           <div className="section-header centered">
             <span className="section-kicker">Why Choose Us</span>

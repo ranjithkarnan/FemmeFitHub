@@ -25,7 +25,7 @@ function FAQ({ embedded = false }) {
   const [open, setOpen] = useState(0);
 
   const content = (
-    <div className="faq-panel">
+    <div id={embedded ? 'faq' : undefined} className="faq-panel landing-anchor">
       {!embedded && (
         <div className="section-heading">
           <div className="section-kicker">FAQ</div>

@@ -9,7 +9,7 @@ const events = [
 
 function Community() {
   return (
-    <div className="community-showcase">
+    <div id="community" className="community-showcase landing-anchor">
       <div className="community-panel">
         <div className="community-copy">
           <span className="section-kicker">Community</span>

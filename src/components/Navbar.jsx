@@ -1,18 +1,56 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import womenLogo from "../assets/logo/femme-fit-logo.png";
 
 const navItems = [
   { label: 'Home', id: 'home' },
   { label: 'About', id: 'about' },
-  { label: 'Programs', id: 'programs' },
-  { label: 'Trainers', id: 'trainers' },
+  {
+    label: 'Programs',
+    id: 'programs',
+    children: [
+      { label: 'Programs', id: 'programs' },
+      { label: 'Why Choose Us', id: 'why' }
+    ]
+  },
+  {
+    label: 'Trainers',
+    id: 'trainers',
+    children: [
+      { label: 'Trainers', id: 'trainers' },
+      { label: 'Member Stories', id: 'stories' }
+    ]
+  },
   { label: 'Membership', id: 'membership' },
-  { label: 'Gallery', id: 'gallery' },
-  { label: 'Schedule', id: 'schedule' },
-  { label: 'Contact', id: 'contact' }
+  {
+    label: 'Gallery',
+    id: 'gallery',
+    children: [
+      { label: 'Transformation Gallery', id: 'gallery' },
+      { label: 'Fitness Tips', id: 'tips' },
+      { label: 'Community', id: 'community' }
+    ]
+  },
+  {
+    label: 'Schedule',
+    id: 'schedule',
+    children: [
+      { label: 'Class Schedule', id: 'schedule' }
+    ]
+  },
+  {
+    label: 'Contact',
+    id: 'contact',
+    children: [
+      { label: 'Start Today', id: 'contact' },
+      { label: 'FAQ', id: 'faq' },
+      { label: 'Contact Us', id: 'contact' }
+    ]
+  }
 ];
+
+const navSectionIds = [...new Set(navItems.flatMap((item) => [item.id, ...(item.children || []).map((child) => child.id)]))];
 
 function RoundedM() {
   return (
@@ -25,11 +63,12 @@ function RoundedM() {
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    const sections = navItems
-      .map((item) => document.getElementById(item.id))
+    const sections = navSectionIds
+      .map((id) => document.getElementById(id))
       .filter(Boolean);
 
     const observer = new IntersectionObserver(
@@ -54,7 +93,14 @@ function Navbar() {
 
   const handleNavClick = () => {
     setOpen(false);
+    setOpenDropdown(null);
   };
+
+  const toggleDropdown = (id) => {
+    setOpenDropdown((current) => (current === id ? null : id));
+  };
+
+  const isItemActive = (item) => activeSection === item.id || item.children?.some((child) => child.id === activeSection);
 
   return (
     <header className="site-header">
@@ -88,15 +134,46 @@ function Navbar() {
 
         <div className={`nav-links ${open ? 'is-open' : ''}`}>
           {navItems.map((item) => (
-            <a
-              className={`nav-link ${activeSection === item.id ? 'active' : ''}`.trim()}
-              href={`#${item.id}`}
-              key={item.id}
-              onClick={handleNavClick}
-              aria-current={activeSection === item.id ? 'page' : undefined}
-            >
-              {item.label}
-            </a>
+            item.children ? (
+              <div
+                className={`nav-dropdown ${isItemActive(item) ? 'active' : ''} ${openDropdown === item.id ? 'is-open' : ''}`.trim()}
+                key={item.label}
+              >
+                <button
+                  className="nav-link nav-dropdown-trigger"
+                  type="button"
+                  onClick={() => toggleDropdown(item.id)}
+                  aria-expanded={openDropdown === item.id}
+                  aria-current={isItemActive(item) ? 'page' : undefined}
+                >
+                  {item.label}
+                  <ChevronDown size={15} />
+                </button>
+                <div className="nav-submenu" aria-label={`${item.label} submenu`}>
+                  {item.children.map((child) => (
+                    <a
+                      href={`#${child.id}`}
+                      key={`${item.label}-${child.label}`}
+                      onClick={handleNavClick}
+                      className={activeSection === child.id ? 'active' : ''}
+                      aria-current={activeSection === child.id ? 'page' : undefined}
+                    >
+                      {child.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <a
+                className={`nav-link ${activeSection === item.id ? 'active' : ''}`.trim()}
+                href={`#${item.id}`}
+                key={item.id}
+                onClick={handleNavClick}
+                aria-current={activeSection === item.id ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            )
           ))}
           <a className="nav-cta" href="#contact" onClick={handleNavClick}>
             Join Now
