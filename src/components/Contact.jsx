@@ -49,30 +49,60 @@ function Contact() {
     setSending(true);
     setSuccess(false);
 
+    let recommendedAction = '';
+
+    switch (formData.goal) {
+      case 'Weight Loss Training':
+        recommendedAction = '• Share Fat Loss Program\n• Offer Free Trial Session\n• Schedule Consultation Call';
+        break;
+      case 'Strength Training':
+        recommendedAction = '• Share Strength Program\n• Recommend Personal Training\n• Schedule Consultation Call';
+        break;
+      case 'Yoga':
+        recommendedAction = '• Share Yoga Membership\n• Offer Trial Yoga Session\n• Schedule Consultation Call';
+        break;
+      case 'Postnatal Fitness':
+        recommendedAction = '• Share Postnatal Program\n• Arrange Trainer Consultation\n• Schedule Assessment Call';
+        break;
+      default:
+        recommendedAction = '• Share Membership Plans\n• Offer Free Trial Session\n• Schedule Consultation Call';
+    }
+
     const whatsappMessage = `
-🌸 *NEW FEMME FIT HUB ENQUIRY*
+🏋️‍♀️ FEMME FIT HUB
 
-━━━━━━━━━━━━━━━━━━
+✨ NEW WEBSITE ENQUIRY
 
-👤 *Customer Name*
+━━━━━━━━━━━━━━━━━━━━
+
+👤 CUSTOMER NAME
 ${formData.name}
 
-📞 *Phone Number*
+📞 CONTACT NUMBER
 ${formData.phone}
 
-🎯 *Fitness Goal*
+🎯 FITNESS GOAL
 ${formData.goal}
 
-💬 *Message*
-${formData.message || 'No additional message'}
+💬 CUSTOMER MESSAGE
+${formData.message || 'No additional message provided.'}
 
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━
 
-✅ *Lead Source:* Website Contact Form
-📅 *Status:* New Enquiry
+🏆 RECOMMENDED ACTION
+
+${recommendedAction}
+
+━━━━━━━━━━━━━━━━━━━━
+
+🌐 SOURCE
+Website Contact Form
+
+🟢 STATUS
+New Lead
 `;
 
-    const whatsappUrl = `https://wa.me/918220138783?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappUrl = `https://wa.me/919884497990?text=${encodeURIComponent(whatsappMessage)}`;
 
     window.setTimeout(() => {
       setSending(false);
