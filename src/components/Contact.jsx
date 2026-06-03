@@ -30,6 +30,7 @@ function Contact() {
   });
   const [sending, setSending] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const handleChange = (event) => {
     setFormData({
@@ -47,7 +48,8 @@ function Contact() {
     }
 
     setSending(true);
-    setSuccess(false);
+    setSuccess(true);
+    setShowSuccessPopup(true);
 
     const whatsappMessage = `
 🌸 FITNESS CONSULTATION REQUEST
@@ -74,19 +76,17 @@ Source: Femme Fit Hub Website
     const whatsappUrl = `https://wa.me/918220138783?text=${encodeURIComponent(whatsappMessage)}`;
 
     window.setTimeout(() => {
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      setShowSuccessPopup(false);
       setSending(false);
-      setSuccess(true);
-
-      window.setTimeout(() => {
-        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-        setFormData({
-          name: '',
-          phone: '',
-          goal: 'Weight Loss Training',
-          message: ''
-        });
-      }, 1000);
-    }, 1000);
+      setSuccess(false);
+      setFormData({
+        name: '',
+        phone: '',
+        goal: 'Weight Loss Training',
+        message: ''
+      });
+    }, 2500);
   };
 
   return (
@@ -162,7 +162,7 @@ Source: Femme Fit Hub Website
               <button className="btn btn-primary" type="submit" disabled={sending}>
                 {sending ? 'Preparing WhatsApp...' : 'Send Enquiry'} {!sending && <Sparkles size={18} />}
               </button>
-              {success && (
+              {success && !showSuccessPopup && (
                 <div className="form-success" role="status">
                   Thank you! Redirecting to WhatsApp...
                 </div>
@@ -185,6 +185,31 @@ Source: Femme Fit Hub Website
           </div>
         </div>
       </div>
+      {showSuccessPopup && (
+        <div className="success-modal-overlay" role="dialog" aria-modal="true" aria-label="Enquiry ready">
+          <div className="success-modal">
+            <div className="success-icon">✓</div>
+
+            <h3>Enquiry Ready!</h3>
+
+            <p>You are being redirected to WhatsApp.</p>
+
+            <p className="success-note">
+              Our team typically responds within 15-30 minutes during business hours.
+            </p>
+
+            <div className="success-loader" aria-hidden="true">
+              <span />
+            </div>
+
+            <strong className="success-action">Opening WhatsApp...</strong>
+
+            <small>
+              Thank you for choosing Femme Fit Hub. 💪🌸
+            </small>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
