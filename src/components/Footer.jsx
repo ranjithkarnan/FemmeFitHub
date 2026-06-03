@@ -37,10 +37,10 @@ function Footer() {
 
         <div className="footer-column footer-contact">
           <h3>Contact</h3>
-          <p>+91 98765 43210</p>
+          <p>+91 8220138783</p>
           <p>hello@femmefithub.com</p>
           <p>2nd Floor, Wellness Avenue, Bengaluru</p>
-          <a className="footer-whatsapp" href="https://wa.me/919876543210" target="_blank" rel="noreferrer">
+          <a className="footer-whatsapp" href="https://wa.me/918220138783" target="_blank" rel="noreferrer">
             WhatsApp Us
           </a>
         </div>

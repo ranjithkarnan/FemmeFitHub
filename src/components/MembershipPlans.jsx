@@ -22,7 +22,7 @@ function MembershipPlans() {
             <p>Our team will suggest the best plan for your goal, comfort level, and schedule.</p>
             <div className="membership-help-actions">
               <a href="#contact" className="button primary">Book Free Consultation</a>
-              <a href="https://wa.me/919884497990" target="_blank" rel="noreferrer" className="button secondary">
+              <a href="https://wa.me/918220138783" target="_blank" rel="noreferrer" className="button secondary">
                 WhatsApp Us
               </a>
             </div>

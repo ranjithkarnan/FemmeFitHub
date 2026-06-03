@@ -52,7 +52,7 @@ function BookingPopup() {
 
         <a
           className="button secondary"
-          href="https://wa.me/919884497990"
+          href="https://wa.me/918220138783"
           target="_blank"
           rel="noreferrer"
           onClick={close}

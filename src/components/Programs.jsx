@@ -127,7 +127,7 @@ function Programs({ limit, showIntro = true }) {
             </div>
             <div className="programs-bottom-actions">
               <a className="btn btn-primary" href="#contact">Book Free Consultation</a>
-              <a className="btn btn-soft" href="https://wa.me/919884497990" target="_blank" rel="noreferrer">
+              <a className="btn btn-soft" href="https://wa.me/918220138783" target="_blank" rel="noreferrer">
                 <MessageCircle size={18} /> WhatsApp Us
               </a>
             </div>

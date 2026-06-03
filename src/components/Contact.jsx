@@ -49,7 +49,7 @@ function Contact() {
             </article>
 
             <div className="contact-info">
-              <a href="tel:+919876543210"><Phone size={18} /> +91 98765 43210</a>
+              <a href="tel:+918220138783"><Phone size={18} /> +91 8220138783</a>
               <a href="mailto:hello@femmefithub.com"><Mail size={18} /> hello@femmefithub.com</a>
               <span><MapPin size={18} /> 2nd Floor, Wellness Avenue, Bengaluru</span>
             </div>
@@ -72,7 +72,7 @@ function Contact() {
               </label>
               <label>
                 <span>Phone Number</span>
-                <input type="tel" name="phone" placeholder="+91 98765 43210" required />
+                <input type="tel" name="phone" placeholder="+91 8220138783" required />
               </label>
               <label>
                 <span>Fitness Goal</span>
