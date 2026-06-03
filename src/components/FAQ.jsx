@@ -25,7 +25,12 @@ function FAQ({ embedded = false }) {
   const [open, setOpen] = useState(0);
 
   const content = (
-    <div id={embedded ? 'faq' : undefined} className="faq-panel landing-anchor">
+    <div
+      id={embedded ? 'faq' : undefined}
+      className="faq-panel landing-anchor"
+      itemScope
+      itemType="https://schema.org/FAQPage"
+    >
       {!embedded && (
         <div className="section-heading">
           <div className="section-kicker">FAQ</div>
@@ -39,15 +44,33 @@ function FAQ({ embedded = false }) {
         </div>
       )}
       <div className="faq-list">
-        {faqs.map((faq, index) => (
-          <article className={`faq-item ${open === index ? 'is-open' : ''}`} key={faq.question}>
-            <button type="button" onClick={() => setOpen(open === index ? -1 : index)}>
+        {faqs.map((faq, index) => {
+          const answerId = `faq-answer-${index}`;
+
+          return (
+          <article
+            className={`faq-item ${open === index ? 'is-open' : ''}`}
+            itemScope
+            itemProp="mainEntity"
+            itemType="https://schema.org/Question"
+            key={faq.question}
+          >
+            <button
+              type="button"
+              onClick={() => setOpen(open === index ? -1 : index)}
+              aria-expanded={open === index}
+              aria-controls={answerId}
+              itemProp="name"
+            >
               {faq.question}
               {open === index ? <Minus /> : <Plus />}
             </button>
-            <p>{faq.answer}</p>
+            <div id={answerId} itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+              <p itemProp="text">{faq.answer}</p>
+            </div>
           </article>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

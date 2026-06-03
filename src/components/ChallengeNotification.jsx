@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Clock3, Flame, Trophy, UserRound, X } from 'lucide-react';
+import { getActiveChallenge } from '../utils/challengeStorage';
 
 function ChallengeNotification() {
   const [show, setShow] = useState(false);
+  const [challenge, setChallenge] = useState(() => getActiveChallenge());
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
+      setChallenge(getActiveChallenge());
       setShow(true);
     }, 1000);
 
@@ -41,14 +44,14 @@ function ChallengeNotification() {
       </div>
 
       <div className="challenge-notification-content">
-        <span>This Week's Challenge is Live!</span>
-        <h3>Plank Queen Challenge</h3>
-        <p>Complete your daily plank goal and get featured on our Member Spotlight board.</p>
+        <span>{challenge.type} Challenge is Live!</span>
+        <h3>{challenge.title}</h3>
+        <p>{challenge.description}</p>
 
         <div className="challenge-notification-meta">
-          <small><Clock3 size={14} /> 4 days left</small>
-          <small><Trophy size={14} /> Reward: Member Spotlight</small>
-          <small><UserRound size={14} /> Trainer: Aarohi</small>
+          <small><Clock3 size={14} /> {challenge.daysLeft}</small>
+          <small><Trophy size={14} /> Reward: {challenge.reward}</small>
+          <small><UserRound size={14} /> Trainer: {challenge.trainer}</small>
         </div>
       </div>
 

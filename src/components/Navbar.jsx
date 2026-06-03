@@ -119,7 +119,7 @@ function Navbar() {
         <a className="brand" href="#home" aria-label="Femme Fit Hub home" onClick={(event) => handleNavClick(event, 'home')}>
           {/* <span className="brand-mark"><Dumbbell size={22} /></span> */}
           <span className="brand-mark">
-  <img src={womenLogo} size={25} alt="Femme Fit Hub Logo" />
+  <img src={womenLogo} size={25} alt="Femme Fit Hub women-only fitness studio logo" />
 </span>
           <span className="brand-wordmark">
             <span className="brand-femme" aria-hidden="true">
