@@ -50,25 +50,29 @@ function Contact() {
     setSuccess(false);
 
     const whatsappMessage = `
-New Femme Fit Hub Enquiry
+🌸 *NEW FEMME FIT HUB ENQUIRY*
 
-Name:
+━━━━━━━━━━━━━━━━━━
+
+👤 *Customer Name*
 ${formData.name}
 
-Phone:
+📞 *Phone Number*
 ${formData.phone}
 
-Fitness Goal:
+🎯 *Fitness Goal*
 ${formData.goal}
 
-Message:
+💬 *Message*
 ${formData.message || 'No additional message'}
 
-----------------------------
-Sent from Femme Fit Hub Website
+━━━━━━━━━━━━━━━━━━
+
+✅ *Lead Source:* Website Contact Form
+📅 *Status:* New Enquiry
 `;
 
-    const whatsappUrl = `https://wa.me/919884497990?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappUrl = `https://wa.me/918220138783?text=${encodeURIComponent(whatsappMessage)}`;
 
     window.setTimeout(() => {
       setSending(false);
