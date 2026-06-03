@@ -11,7 +11,8 @@ const navItems = [
     id: 'programs',
     children: [
       { label: 'Programs', id: 'programs' },
-      { label: 'Why Choose Us', id: 'why' }
+      { label: 'Why Choose Us', id: 'why' },
+      { label: 'Fitness Calculator Hub', id: 'calculator' }
     ]
   },
   {

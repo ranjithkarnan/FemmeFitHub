@@ -29,7 +29,7 @@ function CalculatorHub() {
   const update = (key, value) => setProfile((current) => ({ ...current, [key]: Number(value) || value }));
 
   return (
-    <section className="section fitness-hub-section">
+    <section id="calculator" className="section fitness-hub-section landing-anchor">
       <div className="container">
         <div className="section-header centered">
           <span className="section-kicker">Fitness Calculator Hub</span>
