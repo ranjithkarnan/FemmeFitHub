@@ -10,9 +10,9 @@ function Footer() {
           <p>A premium women-only fitness studio built for strength, wellness, confidence, and sustainable routines.</p>
 
           <div className="footer-socials" aria-label="Social links">
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={20} /></a>
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook size={20} /></a>
-            <a href="https://youtube.com" target="_blank" rel="noreferrer" aria-label="YouTube"><Youtube size={21} /></a>
+            <a href="https://www.instagram.com/femme_fithub/" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={20} /></a>
+            <a href="https://www.facebook.com/femme.fithub" target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook size={20} /></a>
+            <a href="https://www.youtube.com/@femmefithub" target="_blank" rel="noreferrer" aria-label="YouTube"><Youtube size={21} /></a>
           </div>
         </div>
 
