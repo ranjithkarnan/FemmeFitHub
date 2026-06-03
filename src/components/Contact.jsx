@@ -49,57 +49,26 @@ function Contact() {
     setSending(true);
     setSuccess(false);
 
-    let recommendedAction = '';
-
-    switch (formData.goal) {
-      case 'Weight Loss Training':
-        recommendedAction = '• Share Fat Loss Program\n• Offer Free Trial Session\n• Schedule Consultation Call';
-        break;
-      case 'Strength Training':
-        recommendedAction = '• Share Strength Program\n• Recommend Personal Training\n• Schedule Consultation Call';
-        break;
-      case 'Yoga':
-        recommendedAction = '• Share Yoga Membership\n• Offer Trial Yoga Session\n• Schedule Consultation Call';
-        break;
-      case 'Postnatal Fitness':
-        recommendedAction = '• Share Postnatal Program\n• Arrange Trainer Consultation\n• Schedule Assessment Call';
-        break;
-      default:
-        recommendedAction = '• Share Membership Plans\n• Offer Free Trial Session\n• Schedule Consultation Call';
-    }
-
     const whatsappMessage = `
-🏋️‍♀️ FEMME FIT HUB
+🌸 FITNESS CONSULTATION REQUEST
 
-✨ NEW WEBSITE ENQUIRY
+A new consultation request has been submitted.
 
-━━━━━━━━━━━━━━━━━━━━
+👤 ${formData.name}
+📞 ${formData.phone}
 
-👤 CUSTOMER NAME
-${formData.name}
+Goal:
+🎯 ${formData.goal}
 
-📞 CONTACT NUMBER
-${formData.phone}
+Customer Message:
+"${formData.message || 'No additional message provided.'}"
 
-🎯 FITNESS GOAL
-${formData.goal}
+Preferred Action:
+✅ Schedule Consultation
+✅ Share Membership Plans
+✅ Free Trial Invitation
 
-💬 CUSTOMER MESSAGE
-${formData.message || 'No additional message provided.'}
-
-━━━━━━━━━━━━━━━━━━━━
-
-🏆 RECOMMENDED ACTION
-
-${recommendedAction}
-
-━━━━━━━━━━━━━━━━━━━━
-
-🌐 SOURCE
-Website Contact Form
-
-🟢 STATUS
-New Lead
+Source: Femme Fit Hub Website
 `;
 
     const whatsappUrl = `https://wa.me/919884497990?text=${encodeURIComponent(whatsappMessage)}`;
