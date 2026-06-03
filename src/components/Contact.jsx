@@ -18,6 +18,9 @@ const trustCards = [
   { title: 'Proven Results', icon: Star }
 ];
 
+const studioAddress = 'Door no 2/2, first floor, Sannathi street, Mari Amman Kovil St, Valasaravakkam, Tamil Nadu 600087';
+const mapLink = 'https://share.google/kSjLapvUefpUvJ45R';
+
 function Contact() {
   return (
     <section className="section consultation-hub">
@@ -51,15 +54,15 @@ function Contact() {
             <div className="contact-info">
               <a href="tel:+918220138783"><Phone size={18} /> +91 8220138783</a>
               <a href="mailto:hello@femmefithub.com"><Mail size={18} /> hello@femmefithub.com</a>
-              <span><MapPin size={18} /> 2nd Floor, Wellness Avenue, Bengaluru</span>
+              <span><MapPin size={18} /> {studioAddress}</span>
             </div>
 
             <div className="map-placeholder premium-map-card" role="img" aria-label="Google Maps placeholder for Femme Fit Hub location">
               <MapPin />
               <div>
                 <strong>Visit Our Studio</strong>
-                <span>2nd Floor, Wellness Avenue<br />Bengaluru</span>
-                <a href="https://maps.google.com/?q=Wellness%20Avenue%20Bengaluru" target="_blank" rel="noreferrer">Open in Google Maps</a>
+                <span>Door no 2/2, first floor, Sannathi street<br />Mari Amman Kovil St, Valasaravakkam<br />Tamil Nadu 600087</span>
+                <a href={mapLink} target="_blank" rel="noreferrer">Open in Google Maps</a>
               </div>
             </div>
           </div>

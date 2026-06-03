@@ -39,7 +39,7 @@ function Footer() {
           <h3>Contact</h3>
           <p>+91 8220138783</p>
           <p>hello@femmefithub.com</p>
-          <p>2nd Floor, Wellness Avenue, Bengaluru</p>
+          <p>Door no 2/2, first floor, Sannathi street, Mari Amman Kovil St, Valasaravakkam, Tamil Nadu 600087</p>
           <a className="footer-whatsapp" href="https://wa.me/918220138783" target="_blank" rel="noreferrer">
             WhatsApp Us
           </a>
