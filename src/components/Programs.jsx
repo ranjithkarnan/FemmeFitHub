@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, Clock3, GaugeCircle, MessageCircle } from 'lucide-react';
 import { programs } from '../data/programs.js';
+import { quickWhatsAppUrl } from '../utils/whatsapp';
 
 const programOrder = [
   {
@@ -127,7 +128,7 @@ function Programs({ limit, showIntro = true }) {
             </div>
             <div className="programs-bottom-actions">
               <a className="btn btn-primary" href="#contact">Book Free Consultation</a>
-              <a className="btn btn-soft" href="https://wa.me/918220138783" target="_blank" rel="noreferrer">
+              <a className="btn btn-soft" href={quickWhatsAppUrl} target="_blank" rel="noreferrer">
                 <MessageCircle size={18} /> WhatsApp Us
               </a>
             </div>

@@ -1,5 +1,6 @@
-import React from 'react';
-import { Facebook, Instagram, Youtube } from 'lucide-react';
+import React from "react";
+import { Facebook, Instagram, Youtube } from "lucide-react";
+import { quickWhatsAppUrl } from "../utils/whatsapp";
 
 function Footer() {
   return (
@@ -7,12 +8,36 @@ function Footer() {
       <div className="container footer-grid">
         <div className="footer-brand">
           <h2>Femme Fit Hub</h2>
-          <p>A premium women-only fitness studio built for strength, wellness, confidence, and sustainable routines.</p>
+          <p>
+            A premium women-only fitness studio built for strength, wellness,
+            confidence, and sustainable routines.
+          </p>
 
           <div className="footer-socials" aria-label="Social links">
-            <a href="https://www.instagram.com/femme_fithub/" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={20} /></a>
-            <a href="https://www.facebook.com/femme.fithub" target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook size={20} /></a>
-            <a href="https://www.youtube.com/@femmefithub" target="_blank" rel="noreferrer" aria-label="YouTube"><Youtube size={21} /></a>
+            <a
+              href="https://www.instagram.com/femme_fithub/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+            >
+              <Instagram size={20} />
+            </a>
+            <a
+              href="https://www.facebook.com/femme.fithub"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Facebook"
+            >
+              <Facebook size={20} />
+            </a>
+            <a
+              href="https://www.youtube.com/@femmefithub"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="YouTube"
+            >
+              <Youtube size={21} />
+            </a>
           </div>
         </div>
 
@@ -39,8 +64,16 @@ function Footer() {
           <h3>Contact</h3>
           <p>+91 8220138783</p>
           <p>hello@femmefithub.com</p>
-          <p>No 2/2, first floor, Sannathi street, Mari Amman Kovil St, Valasaravakkam, Tamil Nadu 600087</p>
-          <a className="footer-whatsapp" href="https://wa.me/918220138783" target="_blank" rel="noreferrer">
+          <p>
+            No 2/2, first floor, Sannathi street, Mari Amman Kovil St,
+            Valasaravakkam, Tamil Nadu 600087
+          </p>
+          <a
+            className="footer-whatsapp"
+            href={quickWhatsAppUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
             WhatsApp Us
           </a>
         </div>
@@ -48,7 +81,19 @@ function Footer() {
 
       <div className="footer-bottom">
         <p>© 2026 Femme Fit Hub. All rights reserved.</p>
-        <p>Digital Experience by <strong>RK Web Solutions</strong></p>
+        <p>
+          Digital Experience by{" "}
+          <strong>
+            {" "}
+            <a
+              href="https://rk-web-solutions.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              RK Web Solutions
+            </a>
+          </strong>
+        </p>
       </div>
     </footer>
   );

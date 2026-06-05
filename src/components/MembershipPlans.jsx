@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { plans } from '../data/plans.js';
+import { quickWhatsAppUrl } from '../utils/whatsapp';
 
 function MembershipPlans() {
   return (
@@ -22,7 +23,7 @@ function MembershipPlans() {
             <p>Our team will suggest the best plan for your goal, comfort level, and schedule.</p>
             <div className="membership-help-actions">
               <a href="#contact" className="button primary">Book Free Consultation</a>
-              <a href="https://wa.me/918220138783" target="_blank" rel="noreferrer" className="button secondary">
+              <a href={quickWhatsAppUrl} target="_blank" rel="noreferrer" className="button secondary">
                 WhatsApp Us
               </a>
             </div>

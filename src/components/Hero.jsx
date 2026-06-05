@@ -1,17 +1,48 @@
-import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, CalendarCheck, Crown, Play, ShieldCheck, Sparkles } from 'lucide-react';
 
 const heroStats = [
-  { value: '500+', label: 'Active Members' },
-  { value: '15+', label: 'Certified Trainers' },
-  { value: '98%', label: 'Satisfaction' },
-  { value: '50+', label: 'Weekly Classes' }
+  { value: 500, suffix: '+', label: 'Members' },
+  { value: 50, suffix: '+', label: 'Classes' },
+  { value: 15, suffix: '+', label: 'Trainers' },
+  { value: 98, suffix: '%', label: 'Satisfaction' }
 ];
+
+function AnimatedCounter({ value, suffix = '', start }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!start) return undefined;
+
+    let frameId;
+    const duration = 1500;
+    const startTime = performance.now();
+
+    const updateCount = (currentTime) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easedProgress = 1 - ((1 - progress) ** 3);
+
+      setCount(Math.round(value * easedProgress));
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(updateCount);
+      }
+    };
+
+    frameId = requestAnimationFrame(updateCount);
+
+    return () => cancelAnimationFrame(frameId);
+  }, [start, value]);
+
+  return <>{count}{suffix}</>;
+}
 
 function Hero() {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 700], [0, 120]);
+  const statsRef = useRef(null);
+  const statsInView = useInView(statsRef, { once: true, amount: 0.35 });
 
   return (
     <section className="hero cinematic-hero">
@@ -65,10 +96,12 @@ function Hero() {
             alt="Women training confidently in a modern fitness studio"
             loading="eager"
           />
-          <div className="hero-stat-cluster" aria-label="Femme Fit Hub studio stats">
+          <div ref={statsRef} className="hero-stat-cluster" aria-label="Femme Fit Hub studio stats">
             {heroStats.map((stat) => (
               <div className="hero-stat" key={stat.label}>
-                <strong>{stat.value}</strong>
+                <strong>
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} start={statsInView} />
+                </strong>
                 <span>{stat.label}</span>
               </div>
             ))}

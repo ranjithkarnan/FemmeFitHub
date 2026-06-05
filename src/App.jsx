@@ -7,6 +7,7 @@ import ScrollToTop from './components/ScrollToTop.jsx';
 import BookingPopup from './components/BookingPopup.jsx';
 import PageLoader from './components/PageLoader.jsx';
 import ChallengeNotification from './components/ChallengeNotification.jsx';
+import ExitPopup from './components/ExitPopup.jsx';
 import Home from './pages/Home.jsx';
 import AdminLogin from './admin/AdminLogin.jsx';
 import AdminDashboard from './admin/AdminDashboard.jsx';
@@ -37,6 +38,7 @@ function PublicSite() {
       <ScrollToTop />
       {!loading && <ChallengeNotification />}
       {!loading && <BookingPopup />}
+      {!loading && <ExitPopup />}
     </>
   );
 }

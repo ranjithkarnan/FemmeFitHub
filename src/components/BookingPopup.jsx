@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { quickWhatsAppUrl } from '../utils/whatsapp';
 
 function BookingPopup() {
   const [show, setShow] = useState(false);
@@ -52,7 +53,7 @@ function BookingPopup() {
 
         <a
           className="button secondary"
-          href="https://wa.me/918220138783"
+          href={quickWhatsAppUrl}
           target="_blank"
           rel="noreferrer"
           onClick={close}

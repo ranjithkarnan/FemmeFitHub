@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Award, BadgeCheck, Instagram, Linkedin, MessageCircle, X, Youtube } from 'lucide-react';
 import { trainers } from '../data/trainers.js';
+import { quickWhatsAppUrl } from '../utils/whatsapp';
 
 const trainerDetails = {
   'Aarohi Mehta': {
@@ -67,7 +68,7 @@ function Trainers() {
           </p>
           <div className="trainer-cta-actions">
             <a className="btn btn-primary" href="#contact">Book Free Consultation</a>
-            <a className="btn btn-soft" href="https://wa.me/918220138783" target="_blank" rel="noreferrer">
+            <a className="btn btn-soft" href={quickWhatsAppUrl} target="_blank" rel="noreferrer">
               <MessageCircle size={18} /> WhatsApp Us
             </a>
           </div>
