@@ -1,43 +1,86 @@
-import React, { useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight, Play, Quote } from 'lucide-react';
-import { testimonials } from '../data/testimonials.js';
+import React from 'react';
+import { Star } from 'lucide-react';
+import { FcGoogle } from 'react-icons/fc';
+import { googleReviews } from '../data/testimonials.js';
+
+const trustStats = ['5 Rating', '79+ Reviews', '500+ Active Members', '98% Satisfaction'];
 
 function Testimonials() {
-  const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActive((index) => (index + 1) % testimonials.length);
-    }, 5000);
-    return () => window.clearInterval(timer);
-  }, []);
-
-  const changeSlide = (direction) => {
-    setActive((index) => (index + direction + testimonials.length) % testimonials.length);
-  };
-
-  const testimonial = testimonials[active];
-
   return (
-    <section className="section testimonial-section">
-      <div className="container testimonial-wrap">
-        <div>
-          <div className="section-kicker">Member Stories</div>
-          <h2>Honest words from women who chose consistency and found confidence.</h2>
+    <section className="section google-reviews-section">
+      <div className="container">
+        <div className="section-header centered">
+          <span className="section-kicker">Google Reviews</span>
+          <h2>Trusted by Women Who Train With Confidence</h2>
+          <p>
+            Real feedback from members who experienced Femme Fit Hub's supportive coaching,
+            clean environment, and women-only fitness community.
+          </p>
         </div>
-        <article className="testimonial-card" aria-live="polite">
-          <div className="video-testimonial"><Play /><span>Video Story Preview</span></div>
-          <Quote />
-          <p>“{testimonial.quote}”</p>
+
+        <div className="google-rating-summary" aria-label="Google review rating summary">
+          <div className="google-rating-score">
+            <FcGoogle size={28} />
+            <strong>5★</strong>
+          </div>
+
           <div>
-            <strong>{testimonial.name}</strong>
-            <span>{testimonial.result}</span>
+            <div className="stars" aria-label="5 star rating">
+              {[...Array(5)].map((_, starIndex) => (
+                <Star fill="currentColor" size={16} key={starIndex} />
+              ))}
+            </div>
+            <span>Based on 79+ Google Reviews</span>
           </div>
-          <div className="slider-controls">
-            <button type="button" aria-label="Previous testimonial" onClick={() => changeSlide(-1)}><ChevronLeft /></button>
-            <button type="button" aria-label="Next testimonial" onClick={() => changeSlide(1)}><ChevronRight /></button>
+        </div>
+
+        <div className="google-reviews-marquee" aria-label="Google reviews carousel">
+          <div className="google-reviews-track">
+            {[...googleReviews, ...googleReviews].map((review, index) => (
+              <article className="google-review-card" key={`${review.name}-${index}`}>
+                <div className="review-card-top">
+                  <div className="review-avatar" aria-hidden="true">
+                    {review.name.charAt(0)}
+                  </div>
+
+                  <div>
+                    <h3>{review.name}</h3>
+                    <span>{review.time}</span>
+                  </div>
+                </div>
+
+                <div className="review-stars" aria-label={`${review.rating} star rating`}>
+                  {[...Array(review.rating)].map((_, starIndex) => (
+                    <Star fill="currentColor" size={16} key={starIndex} />
+                  ))}
+                </div>
+
+                <p>{review.text}</p>
+                {review.text.length > 150 ? (
+                  <button className="review-read-more" type="button">
+                    Read More
+                  </button>
+                ) : null}
+
+                <div className="google-review-footer">
+                  <div className="google-review-badge">
+                    <FcGoogle size={20} />
+                    <span>Verified Review</span>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
-        </article>
+        </div>
+
+        <div className="google-trust-pills" aria-label="Femme Fit Hub review highlights">
+          {trustStats.map((stat) => (
+            <span key={stat}>
+              <Star fill="currentColor" size={15} />
+              {stat}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );
