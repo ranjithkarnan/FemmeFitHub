@@ -7548,3 +7548,54 @@ textarea::placeholder {
 .footer-bottom a:hover {
   color: #f97316;
 }
+
+
+.custom-select {
+  position: relative;
+}
+
+.custom-select select {
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(244, 197, 66, 0.25);
+
+  background: rgba(255,255,255,0.92);
+
+  color: #4b3223;
+  font-size: 15px;
+  font-weight: 600;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.custom-select select:hover {
+  border-color: #f4c542;
+}
+
+.custom-select select:focus {
+  outline: none;
+
+  border-color: #f4c542;
+
+  box-shadow:
+    0 0 0 4px rgba(244,197,66,.15);
+}
+
+.select-arrow {
+  position: absolute;
+
+  top: 50%;
+  right: 18px;
+
+  transform: translateY(-50%);
+
+  color: #6f4e37;
+  pointer-events: none;
+}

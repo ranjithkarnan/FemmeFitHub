@@ -9,7 +9,7 @@ const consultationBenefits = [
   'Flexible Class Scheduling'
 ];
 
-const trustBadges = ['500+ Active Members', '15+ Certified Trainers', '98% Satisfaction', 'Women-Only Environment'];
+const trustBadges = ['200+ Active Members', '15+ Certified Trainers', '99% Satisfaction', 'Women-Only Environment'];
 
 const trustCards = [
   { title: 'Women-Only Space', icon: ShieldCheck },
@@ -144,17 +144,29 @@ Source: Femme Fit Hub Website
                 <span>Phone Number</span>
                 <input type="tel" name="phone" placeholder="+91 8220138783" value={formData.phone} onChange={handleChange} required />
               </label>
-              <label>
-                <span>Fitness Goal</span>
-                <select name="goal" value={formData.goal} onChange={handleChange} required>
-                  <option>Weight Loss Training</option>
-                  <option>Strength Training</option>
-                  <option>Zumba</option>
-                  <option>Yoga</option>
-                  <option>Personal Training</option>
-                  <option>Nutrition Guidance</option>
-                </select>
-              </label>
+<label className="custom-select-wrapper">
+  <span>Fitness Goal</span>
+
+  <div className="custom-select">
+    <select
+      name="goal"
+      value={formData.goal}
+      onChange={handleChange}
+      required
+    >
+      <option>General Fitness</option>
+      <option>Weight Loss Training</option>
+      <option>Weight Gain Training</option>
+      <option>Strength Training</option>
+      <option>Cross Fit</option>
+      <option>Steam</option>
+      <option>Personal Training</option>
+      <option>Nutrition Guidance</option>
+    </select>
+
+    <span className="select-arrow">▼</span>
+  </div>
+</label>
               <label>
                 <span>Message</span>
                 <textarea name="message" rows="5" placeholder="Tell us about your goals" value={formData.message} onChange={handleChange} />
