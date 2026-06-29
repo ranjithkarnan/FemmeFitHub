@@ -1,11 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Dumbbell,
-  Flower2,
-  Handshake,
 } from "lucide-react";
 import Hero from "../components/Hero.jsx";
 import AboutPreview from "../components/AboutPreview.jsx";
@@ -16,9 +11,8 @@ import MembershipPlans from "../components/MembershipPlans.jsx";
 import Schedule from "../components/Schedule.jsx";
 import Challenges from "../components/Challenges.jsx";
 import Contact from "../components/Contact.jsx";
-import CalculatorHub from "../components/CalculatorHub.jsx";
+// import CalculatorHub from "../components/CalculatorHub.jsx";
 import Community from "../components/Community.jsx";
-import Footer from "../components/Footer.jsx";
 import { blogs } from "../data/blogs.js";
 import { galleryImages } from "../data/gallery.js";
 import {
@@ -30,99 +24,21 @@ import {
   Snowflake,
   Zap,
 } from "lucide-react";
+import SEO from "../components/SEO.jsx";
+import WhyChooseUs from "../components/WhyChooseUs.jsx";
+import { useContactModal } from "../context/ContactModalContext.jsx";
 
-const valueCards = [
-  {
-    icon: Handshake,
-    number: "01",
-    title: "Respectful Space",
-    text: "Every class, consultation, and workout is built around comfort, dignity, and encouragement.",
-  },
-  {
-    icon: Dumbbell,
-    number: "02",
-    title: "Smart Training",
-    text: "We use progressive programming, form coaching, and realistic goals for long-term results.",
-  },
-  {
-    icon: Flower2,
-    number: "03",
-    title: "Whole Lifestyle",
-    text: "Fitness here includes strength, nutrition, recovery, schedule support, and community.",
-  },
-];
 
-const whyQuotes = [
-  {
-    text: "Fitness is not about being better than someone else. It's about becoming stronger than you were yesterday.",
-    author: "Femme Fit Hub",
-  },
-  {
-    text: "Strength begins the moment you decide your health deserves time, care, and consistency.",
-    author: "Femme Fit Hub Coaches",
-  },
-  {
-    text: "Every confident woman was once a beginner who chose to keep showing up.",
-    author: "Femme Fit Hub Community",
-  },
-];
 
 function Home() {
-  const [activeQuote, setActiveQuote] = useState(0);
-
-  const changeQuote = (direction) => {
-    setActiveQuote(
-      (index) => (index + direction + whyQuotes.length) % whyQuotes.length,
-    );
-  };
-
-  const quote = whyQuotes[activeQuote];
-
-  const studioHighlights = [
-    {
-      icon: ShieldCheck,
-      title: "Hygienic Environment",
-      text: "Clean, sanitized, and well-maintained workout spaces for safe training.",
-    },
-    {
-      icon: Sparkles,
-      title: "Hi-Tech Equipment",
-      text: "Smart fitness tools and structured workout support for better progress.",
-    },
-    {
-      icon: Dumbbell,
-      title: "Modern Equipment",
-      text: "Updated strength, cardio, and functional training equipment for all levels.",
-    },
-    {
-      icon: UsersRound,
-      title: "Complete Ladies Staff",
-      text: "Women trainers and staff members for comfort, privacy, and support.",
-    },
-    {
-      icon: HeartPulse,
-      title: "Physio Doctors",
-      text: "Guidance for mobility, recovery, posture, and safe exercise routines.",
-    },
-    {
-      icon: Apple,
-      title: "Nutrition Solutions",
-      text: "Personalized nutrition guidance to support weight loss, strength, and wellness.",
-    },
-    {
-      icon: Snowflake,
-      title: "Fully Air Conditioned",
-      text: "Comfortable workout experience with a cool and pleasant studio environment.",
-    },
-    {
-      icon: Zap,
-      title: "Electrical Backup",
-      text: "Reliable power backup for uninterrupted classes and training sessions.",
-    },
-  ];
+  const { openContactModal } = useContactModal();
 
   return (
     <>
+      <SEO
+        title="Femme Fit Hub | Best Ladies Gym in Valasaravakkam, Chennai"
+        description="Join Femme Fit Hub, a premium ladies gym in Valasaravakkam, Chennai. Strength training, weight loss programs, cross fit, nutrition guidance, personal training, and women-only fitness coaching."
+      />
       <section id="home" className="landing-anchor">
         <Hero />
       </section>
@@ -135,91 +51,21 @@ function Home() {
         <Programs />
       </section>
 
-      <section id="why" className="why-section landing-anchor">
+      <WhyChooseUs />
+
+
+      <section className="section local-seo-home-links">
         <div className="container">
           <div className="section-header centered">
-            <span className="section-kicker">Why Choose Us</span>
-            <h2>Everything You Need to Train With Confidence</h2>
-            <p>
-              Comfort, structure, expert coaching, and a supportive women-first
-              environment.
-            </p>
+            <span className="section-kicker">Local Fitness Guides</span>
+            <h2>Explore Femme Fit Hub in Valasaravakkam</h2>
+            <p>Helpful pages for women comparing ladies gyms, weight loss training, women-only fitness spaces, and membership plan options.</p>
           </div>
-
-          <div className="why-grid">
-            {valueCards.map(({ icon: Icon, number, title, text }) => (
-              <article className="why-card" key={title}>
-                <div className="why-icon">
-                  <Icon size={28} />
-                </div>
-                <strong>{number}</strong>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            ))}
-          </div>
-
-          <div className="studio-highlights">
-            <div className="studio-highlights-header">
-              <span className="section-kicker">Studio Highlights</span>
-              <h3>Premium Facilities Built Around Comfort & Care</h3>
-              <p>
-                From hygiene to equipment, every detail is designed to make
-                women feel safe, supported, and motivated.
-              </p>
-            </div>
-
-            <div className="studio-highlights-grid">
-              {studioHighlights.map(({ icon: Icon, title, text }) => (
-                <article className="studio-highlight-card" key={title}>
-                  <div className="studio-highlight-icon">
-                    <Icon size={22} />
-                  </div>
-                  <div>
-                    <h4>{title}</h4>
-                    <p>{text}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-
-          <div className="why-quote-card">
-            <div className="quote-icon">❝</div>
-            <blockquote key={quote.text}>{quote.text}</blockquote>
-            <span className="quote-author">— {quote.author}</span>
-            <div
-              className="quote-controls"
-              aria-label="Motivational quote controls"
-            >
-              <button
-                type="button"
-                onClick={() => changeQuote(-1)}
-                aria-label="Previous quote"
-              >
-                <ChevronLeft size={18} />
-              </button>
-              <span>
-                {activeQuote + 1} / {whyQuotes.length}
-              </span>
-              <button
-                type="button"
-                onClick={() => changeQuote(1)}
-                aria-label="Next quote"
-              >
-                <ChevronRight size={18} />
-              </button>
-            </div>
-          </div>
-
-          <div
-            className="why-trust-strip"
-            aria-label="Femme Fit Hub trust highlights"
-          >
-            <span>Women-Only Environment</span>
-            <span>Certified Coaches</span>
-            <span>Flexible Timings</span>
-            <span>Supportive Community</span>
+          <div className="local-seo-home-grid">
+            <a href="/ladies-gym-valasaravakkam">Ladies Gym in Valasaravakkam <ArrowRight size={16} /></a>
+            <a href="/weight-loss-training-valasaravakkam">Weight Loss Training in Valasaravakkam <ArrowRight size={16} /></a>
+            <a href="/women-only-gym-chennai">Women Only Gym in Chennai <ArrowRight size={16} /></a>
+            <a href="/gym-membership-fees-valasaravakkam">Gym Membership Fees in Valasaravakkam <ArrowRight size={16} /></a>
           </div>
         </div>
       </section>
@@ -250,7 +96,7 @@ function Home() {
               Real studio moments, stronger routines, and visible confidence
               from members building their next chapter.
             </p>
-            <a className="button primary" href="#gallery">
+            <a className="button primary" href="/gallery">
               View Transformations <ArrowRight size={18} />
             </a>
           </div>
@@ -286,7 +132,7 @@ function Home() {
       </div>
 
 
-      <CalculatorHub />
+      {/* <CalculatorHub /> */}
       <section id="schedule" className="landing-anchor">
         <Schedule />
       </section>
@@ -310,9 +156,9 @@ function Home() {
                   </span>
                   <h3>{blog.title}</h3>
                   <p>{blog.excerpt}</p>
-                  <a href="#contact">
+                  <button type="button" onClick={openContactModal}>
                     Ask a coach <ArrowRight size={15} />
-                  </a>
+                  </button>
                 </article>
               ))}
             </div>
@@ -323,7 +169,6 @@ function Home() {
       <section id="contact" className="landing-anchor">
         <Contact />
       </section>
-      <Footer />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMemo, useState } from 'react';
+import { useContactModal } from '../context/ContactModalContext.jsx';
 
 const schedule = [
   { day: 'Monday', type: 'Strength', morning: 'Strength Basics', morningTime: '7:00 AM', evening: 'Zumba Burn', eveningTime: '6:30 PM', trainer: 'Aarohi' },
@@ -13,6 +14,7 @@ const schedule = [
 function Schedule() {
   const [filter, setFilter] = useState('All');
   const filtered = useMemo(() => filter === 'All' ? schedule : schedule.filter((row) => row.type === filter), [filter]);
+  const { openContactModal } = useContactModal();
 
   return (
     <section className="section schedule-section">
@@ -53,7 +55,7 @@ function Schedule() {
 
               <div className="schedule-footer">
                 <span className="trainer-chip">Trainer: {row.trainer}</span>
-                <a href="#contact" className="schedule-book-btn">Book Class</a>
+                <button type="button" onClick={openContactModal} className="schedule-book-btn">Book Class</button>
               </div>
             </article>
           ))}
@@ -62,7 +64,7 @@ function Schedule() {
         <div className="schedule-help-card">
           <h3>Need help choosing your class?</h3>
           <p>Tell us your goal and availability. We'll recommend the right weekly rhythm.</p>
-          <a href="#contact" className="schedule-book-btn">Book Free Consultation</a>
+          <button type="button" onClick={openContactModal} className="schedule-book-btn">Book Free Consultation</button>
         </div>
       </div>
     </section>

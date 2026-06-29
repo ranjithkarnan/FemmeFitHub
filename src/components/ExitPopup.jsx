@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 import { quickWhatsAppUrl } from '../utils/whatsapp';
+import { useContactModal } from '../context/ContactModalContext.jsx';
 
 function ExitPopup() {
   const [show, setShow] = useState(false);
   const [hasShown, setHasShown] = useState(false);
+  const { openContactModal } = useContactModal();
 
   useEffect(() => {
     const handleExitIntent = (event) => {
@@ -27,12 +29,6 @@ function ExitPopup() {
     setShow(false);
   };
 
-  const scrollToContact = (event) => {
-    event.preventDefault();
-    setShow(false);
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
   if (!show) return null;
 
   return (
@@ -51,9 +47,16 @@ function ExitPopup() {
         </p>
 
         <div className="exit-popup-actions">
-          <a className="exit-popup-btn primary" href="#contact" onClick={scrollToContact}>
+          <button
+            className="exit-popup-btn primary"
+            type="button"
+            onClick={() => {
+              closePopup();
+              openContactModal();
+            }}
+          >
             Claim Free Trial
-          </a>
+          </button>
           <a className="exit-popup-btn secondary" href={quickWhatsAppUrl} target="_blank" rel="noreferrer" onClick={closePopup}>
             WhatsApp Us
           </a>

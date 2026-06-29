@@ -11,10 +11,10 @@ function Testimonials() {
       <div className="container">
         <div className="section-header centered">
           <span className="section-kicker">Google Reviews</span>
-          <h2>Trusted by Women Who Train With Confidence</h2>
+          <h2>Loved by Women Across Valasaravakkam</h2>
           <p>
-            Real feedback from members who experienced Femme Fit Hub's supportive coaching,
-            clean environment, and women-only fitness community.
+            See why Femme Fit Hub is rated 5 stars by women looking for a ladies gym in Valasaravakkam
+            with supportive trainers, clean facilities, modern equipment, and personalized fitness guidance.
           </p>
         </div>
 
@@ -72,6 +72,8 @@ function Testimonials() {
             ))}
           </div>
         </div>
+
+        <div className="google-review-action"><a className="btn btn-primary" href="https://www.google.com/search?q=Femme+FitHub+Ladies+Gym+reviews" target="_blank" rel="noreferrer">See All Reviews on Google</a></div>
 
         <div className="google-trust-pills" aria-label="Femme Fit Hub review highlights">
           {trustStats.map((stat) => (

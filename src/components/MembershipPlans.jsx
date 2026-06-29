@@ -2,8 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { plans } from '../data/plans.js';
 import { quickWhatsAppUrl } from '../utils/whatsapp';
+import { useContactModal } from '../context/ContactModalContext.jsx';
 
 function MembershipPlans() {
+  const { openContactModal } = useContactModal();
+
   return (
     <section className="section membership-section">
       <div className="container membership-layout">
@@ -22,7 +25,7 @@ function MembershipPlans() {
             <h3>Book a free consultation</h3>
             <p>Our team will suggest the best plan for your goal, comfort level, and schedule.</p>
             <div className="membership-help-actions">
-              <a href="#contact" className="button primary">Book Free Consultation</a>
+              <button type="button" onClick={openContactModal} className="button primary">Book Free Consultation</button>
               <a href={quickWhatsAppUrl} target="_blank" rel="noreferrer" className="button secondary">
                 WhatsApp Us
               </a>
@@ -52,7 +55,7 @@ function MembershipPlans() {
                 ))}
               </div>
 
-              <a className="plan-btn" href="#contact">{plan.cta}</a>
+              <button className="plan-btn" type="button" onClick={openContactModal}>{plan.cta}</button>
             </motion.article>
           ))}
         </div>

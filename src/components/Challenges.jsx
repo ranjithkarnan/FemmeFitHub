@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Award, CalendarDays, Clock3, Sparkles, Trophy, UserRound } from 'lucide-react';
+import { useContactModal } from '../context/ContactModalContext.jsx';
 
 const challenges = {
   week: [
@@ -52,6 +53,7 @@ function Challenges() {
   const [activeTab, setActiveTab] = useState('week');
   const activeChallenges = challenges[activeTab];
   const featured = challenges.week[0];
+  const { openContactModal } = useContactModal();
 
   return (
     <section id="challenges" className="section challenges-section landing-anchor">
@@ -68,7 +70,7 @@ function Challenges() {
             <h3>{featured.name}</h3>
             <p>{featured.type} with coach {featured.trainer}. Stay consistent, track your effort, and earn the {featured.reward} reward.</p>
           </div>
-          <a className="challenge-btn" href="#contact">Join Challenge</a>
+          <button className="challenge-btn" type="button" onClick={openContactModal}>Join Challenge</button>
         </article>
 
         <div className="challenges-tabs" role="tablist" aria-label="Challenge time period">
@@ -123,7 +125,7 @@ function Challenges() {
                 </div>
               </div>
 
-              <a className="challenge-btn" href="#contact">Join Challenge</a>
+              <button className="challenge-btn" type="button" onClick={openContactModal}>Join Challenge</button>
             </article>
           ))}
         </div>

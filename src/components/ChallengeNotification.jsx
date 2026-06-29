@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Clock3, Flame, Trophy, UserRound, X } from 'lucide-react';
 import { getActiveChallenge } from '../utils/challengeStorage';
+import { useContactModal } from '../context/ContactModalContext.jsx';
 
 function ChallengeNotification() {
   const [show, setShow] = useState(false);
   const [challenge, setChallenge] = useState(() => getActiveChallenge());
+  const { openContactModal } = useContactModal();
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -17,13 +19,6 @@ function ChallengeNotification() {
 
   const closeNotification = () => {
     setShow(false);
-  };
-
-  const joinChallenge = (event) => {
-    event.preventDefault();
-    setShow(false);
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
   };
 
   if (!show) return null;
@@ -55,9 +50,16 @@ function ChallengeNotification() {
         </div>
       </div>
 
-      <a href="#contact" className="challenge-notification-btn" onClick={joinChallenge}>
+      <button
+        type="button"
+        className="challenge-notification-btn"
+        onClick={() => {
+          closeNotification();
+          openContactModal();
+        }}
+      >
         Join Challenge
-      </a>
+      </button>
     </div>
   );
 }

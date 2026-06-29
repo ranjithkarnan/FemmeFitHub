@@ -1,8 +1,11 @@
 import React from "react";
 import { Facebook, Instagram, Youtube } from "lucide-react";
 import { quickWhatsAppUrl } from "../utils/whatsapp";
+import { useContactModal } from "../context/ContactModalContext.jsx";
 
 function Footer() {
+  const { openContactModal } = useContactModal();
+
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
@@ -43,21 +46,21 @@ function Footer() {
 
         <div className="footer-column">
           <h3>Quick Links</h3>
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#programs">Programs</a>
-          <a href="#trainers">Trainers</a>
-          <a href="#membership">Membership</a>
-          <a href="#gallery">Gallery</a>
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/programs">Programs</a>
+          <a href="/trainers">Trainers</a>
+          <a href="/membership">Membership</a>
+          <a href="/gallery">Gallery</a>
         </div>
 
         <div className="footer-column">
           <h3>Support</h3>
-          <a href="#schedule">Class Schedule</a>
-          <a href="#tips">Fitness Tips</a>
-          <a href="#contact">FAQ</a>
-          <a href="#contact">Contact</a>
-          <a href="#contact">Free Trial</a>
+          <a href="/schedule">Class Schedule</a>
+          <a href="/programs">Fitness Tips</a>
+          <a href="/faq">FAQ</a>
+          <a href="/contact">Contact</a>
+          <button type="button" onClick={openContactModal}>Free Trial</button>
         </div>
 
         <div className="footer-column footer-contact">

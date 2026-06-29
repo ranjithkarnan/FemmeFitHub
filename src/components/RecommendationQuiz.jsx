@@ -2,6 +2,7 @@ import React from 'react';
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
+import { useContactModal } from '../context/ContactModalContext.jsx';
 
 const goals = ['Fat Loss', 'Strength', 'Dance Energy', 'Calm Mobility', 'Postnatal'];
 const schedules = ['2 days', '3 days', '5 days'];
@@ -9,6 +10,7 @@ const schedules = ['2 days', '3 days', '5 days'];
 function RecommendationQuiz({ panelOnly = false }) {
   const [goal, setGoal] = useState('Strength');
   const [schedule, setSchedule] = useState('3 days');
+  const { openContactModal } = useContactModal();
 
   const suggestion = useMemo(() => {
     if (goal === 'Fat Loss') return 'Weight Loss Training + Cardio Fitness + Nutrition Guidance';
@@ -48,7 +50,7 @@ function RecommendationQuiz({ panelOnly = false }) {
         <span>Recommended for {goal} / {schedule}</span>
         <h4>{suggestion}</h4>
         <p>Includes progress tracking, trainer notes, milestone badges, and a consultation-ready plan preview.</p>
-        <a className="button primary" href="#contact">Book Consultation</a>
+        <button className="button primary" type="button" onClick={openContactModal}>Book Consultation</button>
       </motion.article>
     </div>
   );

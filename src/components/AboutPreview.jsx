@@ -1,5 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Clock3, Eye, Goal, HeartHandshake, Target, Trophy, UsersRound } from 'lucide-react';
+import  Treadmill from"../assets/images/TreadMils.jpeg"; // Import the image file
+import Floor from "../assets/images/Floor.jpeg"; // Import the image file
+import GymEquipment from "../assets/images/GymEquipment.jpeg"; // Import the image file  
+import Treadmill2 from "../assets/images/TreadMils2.jpeg"; // Import the image file
+import { useContactModal } from '../context/ContactModalContext.jsx';
+
+
 
 const features = [
   { title: 'Women-Only Environment', icon: UsersRound },
@@ -9,9 +16,9 @@ const features = [
 ];
 
 const stats = [
-  { value: 500, suffix: '+', label: 'Members' },
+  { value: 200, suffix: '+', label: 'Members' },
   { value: 15, suffix: '+', label: 'Certified Trainers' },
-  { value: 98, suffix: '%', label: 'Satisfaction' },
+  { value: 99, suffix: '%', label: 'Satisfaction' },
   { value: 50, suffix: '+', label: 'Weekly Classes' }
 ];
 
@@ -76,6 +83,8 @@ function CountUpStat({ value, suffix, label }) {
 }
 
 function AboutPreview({ full = false }) {
+  const { openContactModal } = useContactModal();
+
   return (
     <section className="section about-section">
       <div className="container">
@@ -91,7 +100,7 @@ function AboutPreview({ full = false }) {
         <div className="split-layout about-split">
           <div className="image-stack about-image-stack">
             <img
-              src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?auto=format&fit=crop&w=900&q=80"
+              src={Treadmill}
               alt="Trainer helping a member with strength training"
             />
             <div className="glass-note">
@@ -121,7 +130,7 @@ function AboutPreview({ full = false }) {
                 </article>
               ))}
             </div>
-            {!full && <a className="text-link" href="#contact">Book a studio visit</a>}
+            {!full && <button className="text-link" type="button" onClick={openContactModal}>Book a studio visit</button>}
           </div>
         </div>
 

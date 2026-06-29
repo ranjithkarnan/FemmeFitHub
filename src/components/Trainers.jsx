@@ -3,38 +3,55 @@ import { motion } from 'framer-motion';
 import { Award, BadgeCheck, Instagram, Linkedin, MessageCircle, X, Youtube } from 'lucide-react';
 import { trainers } from '../data/trainers.js';
 import { quickWhatsAppUrl } from '../utils/whatsapp';
+import { useContactModal } from '../context/ContactModalContext.jsx';
 
 const trainerDetails = {
-  'Aarohi Mehta': {
-    bestFor: 'Strength, Weight Loss, Posture',
+  'Kayathri Murugan': {
+    bestFor: 'Body Recomposition, Weight Training, Posture',
     availability: 'Available This Week'
   },
-  'Nisha Kapoor': {
-    bestFor: 'Zumba, Cardio, Stamina',
+  'Karthiga Devi Prakash': {
+    bestFor: 'Diet Planning, Fitness Guidance, Lifestyle Support',
     availability: 'Limited Slots'
   },
-  'Meera Iyer': {
-    bestFor: 'Yoga, Mobility, Stress Relief',
+  'Yuvashree Senthilkumar': {
+    bestFor: 'Mobility, Recovery, Posture Correction',
     availability: 'Morning Batches'
   },
-  'Samaira Khan': {
-    bestFor: 'Nutrition, Habits, Lifestyle',
+  'Ezilarasi Rajan': {
+    bestFor: 'Physio Guidance, Habit Coaching, Sustainable Wellness',
     availability: 'Weekend Slots'
   }
 };
 
+const fallbackTrainerDetail = {
+  bestFor: 'Personalized Coaching, Confidence, Sustainable Progress',
+  availability: 'Available This Week'
+};
+
+const getInitials = (name) => name
+  .split(' ')
+  .map((word) => word[0])
+  .join('')
+  .slice(0, 2)
+  .toUpperCase();
+
 function Trainers() {
   const [selectedTrainer, setSelectedTrainer] = useState(null);
+  const { openContactModal } = useContactModal();
 
   const closeModal = () => setSelectedTrainer(null);
+  const selectedDetails = selectedTrainer
+    ? trainerDetails[selectedTrainer.name] || fallbackTrainerDetail
+    : fallbackTrainerDetail;
 
   return (
     <section className="trainers-section">
       <div className="container">
         <div className="section-heading trainers-heading">
           <div className="section-kicker">Certified Trainers</div>
-          <h2>Meet Your Certified Trainers</h2>
-          <p>Friendly experts in strength, dance fitness, yoga, nutrition, and sustainable habit change.</p>
+          <h2>Meet Our Expert Team</h2>
+          <p>Physiotherapists, dietician, and women-focused fitness professionals supporting members with safe training, posture correction, nutrition guidance, mobility, and sustainable results.</p>
         </div>
         <div className="trainers-grid trainer-grid">
           {trainers.map((trainer, index) => (
@@ -46,15 +63,15 @@ function Trainers() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.07 }}
             >
-              <div className="trainer-avatar">
-                <img src={trainer.image} alt={`${trainer.name}, ${trainer.role}`} loading="lazy" />
-                <span className="verified-badge" aria-label="Verified trainer"><BadgeCheck size={16} /></span>
+              <div className="trainer-avatar-initials" aria-hidden="true">
+                {getInitials(trainer.name)}
               </div>
               <h3>{trainer.name}</h3>
-              <p>{trainer.role}</p>
+              <p className="trainer-role">{trainer.role}</p>
               <span className="experience-badge">
                 <Award size={14} /> {trainer.experience} Experience
               </span>
+              <p className="trainer-specialty-preview">{trainer.specialty}</p>
               <button type="button" onClick={() => setSelectedTrainer(trainer)}>
                 View Profile
               </button>
@@ -67,7 +84,7 @@ function Trainers() {
             Our team will guide you based on your fitness goal, comfort level, and preferred schedule.
           </p>
           <div className="trainer-cta-actions">
-            <a className="btn btn-primary" href="#contact">Book Free Consultation</a>
+            <button className="btn btn-primary" type="button" onClick={openContactModal}>Book Free Consultation</button>
             <a className="btn btn-soft" href={quickWhatsAppUrl} target="_blank" rel="noreferrer">
               <MessageCircle size={18} /> WhatsApp Us
             </a>
@@ -88,35 +105,47 @@ function Trainers() {
               <X size={20} />
             </button>
             <div className="trainer-modal-header">
-              <div className="trainer-avatar">
-                <img src={selectedTrainer.image} alt={`${selectedTrainer.name}, ${selectedTrainer.role}`} />
-                <span className="verified-badge" aria-label="Verified trainer"><BadgeCheck size={16} /></span>
+              <div className="trainer-modal-avatar" aria-hidden="true">
+                {getInitials(selectedTrainer.name)}
               </div>
               <div>
                 <h3>{selectedTrainer.name}</h3>
                 <p>{selectedTrainer.role}</p>
-                <span className="availability-badge">{trainerDetails[selectedTrainer.name].availability}</span>
+                <span className="availability-badge">{selectedDetails.availability}</span>
               </div>
             </div>
             <div className="trainer-badges">
               <span><Award size={14} /> {selectedTrainer.experience} experience</span>
-              {selectedTrainer.certifications.map((certification) => (
-                <span key={certification}><BadgeCheck size={14} /> {certification}</span>
-              ))}
             </div>
             <div className="trainer-best-for">
               <strong>Best For</strong>
-              <p>{trainerDetails[selectedTrainer.name].bestFor}</p>
+              <p>{selectedDetails.bestFor}</p>
+            </div>
+            <div className="trainer-best-for">
+              <strong>Specialty</strong>
+              <p>{selectedTrainer.specialty}</p>
             </div>
             <p className="trainer-description">
               Helps members build confidence with {selectedTrainer.specialty.toLowerCase()} through
               clear coaching, kind accountability, and sustainable progress.
             </p>
-            <div className="trainer-tags">
-              {selectedTrainer.specialty.split(', ').map((tag) => <span key={tag}>{tag}</span>)}
+            <div className="trainer-certifications" aria-label={`${selectedTrainer.name} focus areas`}>
+              <strong className="trainer-focus-title">Focus Areas</strong>
+              {selectedTrainer.certifications.map((focusArea) => (
+                <span key={focusArea}><BadgeCheck size={14} /> {focusArea}</span>
+              ))}
             </div>
             <div className="trainer-footer">
-              <a className="trainer-btn" href="#contact" onClick={closeModal}>Book Session</a>
+              <button
+                className="trainer-btn"
+                type="button"
+                onClick={() => {
+                  closeModal();
+                  openContactModal();
+                }}
+              >
+                Book Session
+              </button>
               <div className="trainer-socials">
                 <a href="https://instagram.com" aria-label={`${selectedTrainer.name} on Instagram`}><Instagram /></a>
                 <a href="https://linkedin.com" aria-label={`${selectedTrainer.name} on LinkedIn`}><Linkedin /></a>

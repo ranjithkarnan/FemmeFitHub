@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, Clock3, GaugeCircle, MessageCircle } from 'lucide-react';
 import { programs } from '../data/programs.js';
 import { quickWhatsAppUrl } from '../utils/whatsapp';
+import { useContactModal } from '../context/ContactModalContext.jsx';
 
 const programOrder = [
   {
@@ -56,6 +57,16 @@ const programOrder = [
   }
 ];
 
+
+const programAltText = {
+  'Strength Training': 'Strength training program for women at Femme Fit Hub Chennai',
+  'Fat Loss Program': 'Weight loss training program for women at Femme Fit Hub Valasaravakkam',
+  'Yoga & Recovery': 'Yoga and recovery classes for women at Femme Fit Hub Chennai',
+  'Zumba Fitness': 'Zumba classes for women at Femme Fit Hub ladies fitness studio',
+  'Postnatal Fitness': 'Postnatal fitness training for women at Femme Fit Hub Chennai',
+  'Nutrition Coaching': 'Nutrition guidance for women at Femme Fit Hub Valasaravakkam'
+};
+
 const programCatalog = programOrder.map((item) => {
   const source = programs.find((program) => program.title === item.sourceTitle);
   return { ...source, ...item };
@@ -63,6 +74,7 @@ const programCatalog = programOrder.map((item) => {
 
 function Programs({ limit, showIntro = true }) {
   const visiblePrograms = limit ? programCatalog.slice(0, limit) : programCatalog;
+  const { openContactModal } = useContactModal();
 
   return (
     <section className="section programs-showcase">
@@ -88,7 +100,7 @@ function Programs({ limit, showIntro = true }) {
               transition={{ delay: index * 0.04 }}
             >
               <div className="program-image">
-                <img src={image} alt={`${title} class at Femme Fit Hub`} loading="lazy" />
+                <img src={image} alt={programAltText[title] || `${title} class at Femme Fit Hub ladies fitness studio`} loading="lazy" />
                 {popular && <span className="popular-badge">Most Popular</span>}
               </div>
               <div className="program-content">
@@ -112,14 +124,14 @@ function Programs({ limit, showIntro = true }) {
                     <span key={item}><CheckCircle2 size={16} /> {item}</span>
                   ))}
                 </div>
-                <a className="program-btn program-card-cta" href="#contact">
+                <button className="program-btn program-card-cta" type="button" onClick={openContactModal}>
                   Learn More <ArrowRight size={17} />
-                </a>
+                </button>
               </div>
             </motion.article>
           ))}
         </div>
-        {limit && <div className="center-action"><a className="btn btn-primary" href="#programs">Explore all programs</a></div>}
+        {limit && <div className="center-action"><a className="btn btn-primary" href="/programs">Explore all programs</a></div>}
         {!limit && (
           <div className="programs-bottom-cta">
             <div>
@@ -127,7 +139,7 @@ function Programs({ limit, showIntro = true }) {
               <p>Take a free consultation and let our coaches help you choose the right fitness journey.</p>
             </div>
             <div className="programs-bottom-actions">
-              <a className="btn btn-primary" href="#contact">Book Free Consultation</a>
+              <button className="btn btn-primary" type="button" onClick={openContactModal}>Book Free Consultation</button>
               <a className="btn btn-soft" href={quickWhatsAppUrl} target="_blank" rel="noreferrer">
                 <MessageCircle size={18} /> WhatsApp Us
               </a>

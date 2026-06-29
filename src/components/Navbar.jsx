@@ -1,58 +1,47 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
-import womenLogo from "../assets/logo/femme-fit-logo.png";
+import womenLogo from '../assets/logo/femme-fit-logo.png';
+import { useContactModal } from '../context/ContactModalContext.jsx';
 
 const navItems = [
-  { label: 'Home', id: 'home' },
-  { label: 'About', id: 'about' },
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
   {
     label: 'Programs',
-    id: 'programs',
+    to: '/programs',
     children: [
-      { label: 'Programs', id: 'programs' },
-      { label: 'Why Choose Us', id: 'why' },
-      { label: 'Fitness Calculator Hub', id: 'calculator' }
+      { label: 'Why Choose Us', to: '/why-choose-us' }
     ]
   },
-  {
-    label: 'Trainers',
-    id: 'trainers',
-    children: [
-      { label: 'Trainers', id: 'trainers' },
-      { label: 'Member Stories', id: 'stories' }
-    ]
-  },
-  { label: 'Membership', id: 'membership' },
+  { label: 'Trainers', to: '/trainers' },
+  { label: 'Membership', to: '/membership' },
   {
     label: 'Gallery',
-    id: 'gallery',
+    to: '/gallery',
     children: [
-      { label: 'Transformation Gallery', id: 'gallery' },
-      { label: 'Fitness Tips', id: 'tips' },
-      { label: 'Community', id: 'community' }
+      // { label: 'Transformation Gallery', to: '/gallery' },
+      { label: 'Queens Stories', to: '/stories' }
     ]
   },
   {
     label: 'Schedule',
-    id: 'schedule',
+    to: '/schedule',
     children: [
-      { label: 'Class Schedule', id: 'schedule' },
-      { label: 'Upcoming Challenges', id: 'challenges' }
+      // { label: 'Class Schedule', to: '/schedule' },
+      { label: 'Challenges', to: '/challenges' }
     ]
   },
   {
-    label: 'Contact',
-    id: 'contact',
+    label: 'Start Today',
+    to: '/contact',
     children: [
-      { label: 'Start Today', id: 'contact' },
-      { label: 'FAQ', id: 'faq' },
-      { label: 'Contact Us', id: 'contact' }
+      // { label: 'Start Today', to: '/contact' },
+      // { label: 'Member Stories', to: '/stories' },
+      { label: 'FAQ', to: '/faq' }
     ]
   }
 ];
-
-const navSectionIds = [...new Set(navItems.flatMap((item) => [item.id, ...(item.children || []).map((child) => child.id)]))];
 
 function RoundedM() {
   return (
@@ -66,61 +55,27 @@ function RoundedM() {
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [activeSection, setActiveSection] = useState('home');
+  const location = useLocation();
+  const { openContactModal } = useContactModal();
 
-  useEffect(() => {
-    const sections = navSectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (visible) {
-          setActiveSection(visible.target.id);
-        }
-      },
-      {
-        rootMargin: '-35% 0px -55% 0px',
-        threshold: [0.12, 0.28, 0.45]
-      }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-
-  const handleNavClick = (event, id) => {
-    event?.preventDefault();
+  const closeMenu = () => {
     setOpen(false);
     setOpenDropdown(null);
-
-    if (id === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
   };
 
   const toggleDropdown = (id) => {
     setOpenDropdown((current) => (current === id ? null : id));
   };
 
-  const isItemActive = (item) => activeSection === item.id || item.children?.some((child) => child.id === activeSection);
+  const isItemActive = (item) => location.pathname === item.to || item.children?.some((child) => child.to === location.pathname);
 
   return (
     <header className="site-header">
       <nav className="navbar container" aria-label="Main navigation">
-        <a className="brand" href="#home" aria-label="Femme Fit Hub home" onClick={(event) => handleNavClick(event, 'home')}>
-          {/* <span className="brand-mark"><Dumbbell size={22} /></span> */}
+        <NavLink className="brand" to="/" aria-label="Femme Fit Hub home" onClick={closeMenu}>
           <span className="brand-mark">
-  <img src={womenLogo} size={25} alt="Femme Fit Hub women-only fitness studio logo" />
-</span>
+            <img src={womenLogo} size={25} alt="Femme Fit Hub women-only fitness studio logo" />
+          </span>
           <span className="brand-wordmark">
             <span className="brand-femme" aria-hidden="true">
               <span>F</span>
@@ -131,7 +86,7 @@ function Navbar() {
             </span>
             <span className="brand-fithub">FIT HUB</span>
           </span>
-        </a>
+        </NavLink>
 
         <button
           className="menu-toggle"
@@ -147,48 +102,62 @@ function Navbar() {
           {navItems.map((item) => (
             item.children ? (
               <div
-                className={`nav-dropdown ${isItemActive(item) ? 'active' : ''} ${openDropdown === item.id ? 'is-open' : ''}`.trim()}
+                className={`nav-dropdown ${isItemActive(item) ? 'active' : ''} ${openDropdown === item.label ? 'is-open' : ''}`.trim()}
                 key={item.label}
               >
-                <button
-                  className="nav-link nav-dropdown-trigger"
-                  type="button"
-                  onClick={() => toggleDropdown(item.id)}
-                  aria-expanded={openDropdown === item.id}
-                  aria-current={isItemActive(item) ? 'page' : undefined}
-                >
-                  {item.label}
-                  <ChevronDown size={15} />
-                </button>
+                <div className="nav-dropdown-head">
+                  <NavLink
+                    className={({ isActive }) => `nav-link nav-dropdown-trigger ${isActive || isItemActive(item) ? 'active' : ''}`.trim()}
+                    to={item.to}
+                    onClick={closeMenu}
+                    aria-current={isItemActive(item) ? 'page' : undefined}
+                  >
+                    {item.label}
+                  </NavLink>
+                  <button
+                    className="nav-dropdown-toggle"
+                    type="button"
+                    onClick={() => toggleDropdown(item.label)}
+                    aria-label={`Toggle ${item.label} submenu`}
+                    aria-expanded={openDropdown === item.label}
+                  >
+                    <ChevronDown size={15} />
+                  </button>
+                </div>
                 <div className="nav-submenu" aria-label={`${item.label} submenu`}>
                   {item.children.map((child) => (
-                    <a
-                      href={`#${child.id}`}
+                    <NavLink
+                      to={child.to}
                       key={`${item.label}-${child.label}`}
-                      onClick={(event) => handleNavClick(event, child.id)}
-                      className={activeSection === child.id ? 'active' : ''}
-                      aria-current={activeSection === child.id ? 'page' : undefined}
+                      onClick={closeMenu}
+                      className={({ isActive }) => (isActive ? 'active' : undefined)}
                     >
                       {child.label}
-                    </a>
+                    </NavLink>
                   ))}
                 </div>
               </div>
             ) : (
-              <a
-                className={`nav-link ${activeSection === item.id ? 'active' : ''}`.trim()}
-                href={`#${item.id}`}
-                key={item.id}
-                onClick={(event) => handleNavClick(event, item.id)}
-                aria-current={activeSection === item.id ? 'page' : undefined}
+              <NavLink
+                className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`.trim()}
+                to={item.to}
+                key={item.to}
+                onClick={closeMenu}
               >
                 {item.label}
-              </a>
+              </NavLink>
             )
           ))}
-          <a className="nav-cta" href="#contact" onClick={(event) => handleNavClick(event, 'contact')}>
+          <button
+            className="nav-cta"
+            type="button"
+            onClick={() => {
+              closeMenu();
+              openContactModal();
+            }}
+          >
             Join Now
-          </a>
+          </button>
         </div>
       </nav>
     </header>

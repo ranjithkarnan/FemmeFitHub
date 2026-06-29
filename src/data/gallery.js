@@ -2,7 +2,7 @@ export const galleryImages = [
   {
     title: 'Strength Milestone',
     alt: 'Woman lifting dumbbells during strength workout',
-    image: 'https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?auto=format&fit=crop&w=900&q=80'
+    // image: 'https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?auto=format&fit=crop&w=900&q=80'
   },
   {
     title: 'Morning Yoga Flow',

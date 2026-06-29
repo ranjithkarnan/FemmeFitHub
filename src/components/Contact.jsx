@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Award, Check, Mail, MapPin, Phone, ShieldCheck, Sparkles, Star, Users } from 'lucide-react';
-import FAQ from './FAQ.jsx';
 
 const consultationBenefits = [
   'Personalized Program Guidance',
   'Women-Only Fitness Environment',
-  'Certified Coaching Team',
-  'Flexible Class Scheduling'
+  'Certified Physio Therapist & diet Team',
+  'Flexible Class Scheduling',
 ];
 
 const trustBadges = ['200+ Active Members', '15+ Certified Trainers', '99% Satisfaction', 'Women-Only Environment'];
@@ -162,6 +161,8 @@ Source: Femme Fit Hub Website
       <option>Steam</option>
       <option>Personal Training</option>
       <option>Nutrition Guidance</option>
+       <option>Post-Natal Fitness</option>
+        <option>Posture Correction</option>
     </select>
 
     <span className="select-arrow">▼</span>
@@ -181,7 +182,6 @@ Source: Femme Fit Hub Website
               )}
             </form>
 
-            <FAQ embedded />
 
             <div className="choose-trust-grid">
               <h3>Why Women Choose Femme Fit Hub</h3>

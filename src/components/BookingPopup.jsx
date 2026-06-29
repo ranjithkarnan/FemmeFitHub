@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { quickWhatsAppUrl } from '../utils/whatsapp';
+import { useContactModal } from '../context/ContactModalContext.jsx';
 
 function BookingPopup() {
   const [show, setShow] = useState(false);
   const reopenTimerRef = useRef(null);
+  const { openContactModal } = useContactModal();
 
   useEffect(() => {
     const initialTimer = window.setTimeout(() => {
@@ -47,9 +49,16 @@ function BookingPopup() {
       </p>
 
       <div className="booking-popup-actions">
-        <a className="button primary" href="#contact" onClick={close}>
+        <button
+          className="button primary"
+          type="button"
+          onClick={() => {
+            close();
+            openContactModal();
+          }}
+        >
           Book Free Trial
-        </a>
+        </button>
 
         <a
           className="button secondary"
