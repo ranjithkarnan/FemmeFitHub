@@ -81,7 +81,7 @@ function Home() {
         <MembershipPlans />
       </section>
 
-      <section
+      {/* <section
         id="gallery"
         className="landing-anchor section gallery-section home-transformation-preview"
       >
@@ -125,7 +125,7 @@ function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <div id="stories" className="landing-anchor">
         <Testimonials />

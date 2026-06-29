@@ -86,7 +86,7 @@ Preferred Action:
 Source: Femme Fit Hub Website
 `;
 
-    const whatsappUrl = `https://wa.me/919884497990?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappUrl = `https://wa.me/918220138783?text=${encodeURIComponent(whatsappMessage)}`;
 
     setSending(true);
     setShowSuccess(true);

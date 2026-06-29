@@ -51,7 +51,7 @@ function Footer() {
           <a href="/programs">Programs</a>
           <a href="/trainers">Trainers</a>
           <a href="/membership">Membership</a>
-          <a href="/gallery">Gallery</a>
+          {/* <a href="/gallery">Gallery</a> */}
         </div>
 
         <div className="footer-column">

@@ -16,7 +16,7 @@ import ProgramsPage from './pages/ProgramsPage.jsx';
 import WhyChooseUsPage from './pages/WhyChooseUs.jsx';
 import TrainersPage from './pages/TrainersPage.jsx';
 import MembershipPage from './pages/MembershipPage.jsx';
-import GalleryPage from './pages/GalleryPage.jsx';
+// import GalleryPage from './pages/GalleryPage.jsx';
 import StoriesPage from './pages/StoriesPage.jsx';
 import CalculatorPage from './pages/CalculatorPage.jsx';
 import SchedulePage from './pages/SchedulePage.jsx';
@@ -84,7 +84,7 @@ function App() {
         <Route path="/why-choose-us" element={<WhyChooseUsPage />} />
         <Route path="/trainers" element={<TrainersPage />} />
         <Route path="/membership" element={<MembershipPage />} />
-        <Route path="/gallery" element={<GalleryPage />} />
+        {/* <Route path="/gallery" element={<GalleryPage />} /> */}
         <Route path="/stories" element={<StoriesPage />} />
         <Route path="/calculator" element={<CalculatorPage />} />
         <Route path="/schedule" element={<SchedulePage />} />

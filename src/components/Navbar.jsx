@@ -10,36 +10,32 @@ const navItems = [
   {
     label: 'Programs',
     to: '/programs',
-    children: [
-      { label: 'Why Choose Us', to: '/why-choose-us' }
-    ]
+    // children: [
+    //   { label: 'Why Choose Us', to: '/why-choose-us' }
+    // ]
   },
   { label: 'Trainers', to: '/trainers' },
   { label: 'Membership', to: '/membership' },
   {
-    label: 'Gallery',
-    to: '/gallery',
-    children: [
-      // { label: 'Transformation Gallery', to: '/gallery' },
-      { label: 'Queens Stories', to: '/stories' }
-    ]
+    label: 'Stories',
+    to: '/Stories'
   },
   {
     label: 'Schedule',
     to: '/schedule',
-    children: [
-      // { label: 'Class Schedule', to: '/schedule' },
-      { label: 'Challenges', to: '/challenges' }
-    ]
+    // children: [
+    //   { label: 'Class Schedule', to: '/schedule' },
+    //   { label: 'Challenges', to: '/challenges' }
+    // ]
   },
   {
     label: 'Start Today',
     to: '/contact',
-    children: [
-      // { label: 'Start Today', to: '/contact' },
-      // { label: 'Member Stories', to: '/stories' },
-      { label: 'FAQ', to: '/faq' }
-    ]
+    // children: [
+    //   // { label: 'Start Today', to: '/contact' },
+    //   // { label: 'Member Stories', to: '/stories' },
+    //   // { label: 'FAQ', to: '/faq' }
+    // ]
   }
 ];
 
