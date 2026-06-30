@@ -462,7 +462,7 @@
   }
 
   .google-trust-pills {
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
   }
 
   .whatsapp-float,
@@ -518,7 +518,7 @@
 
   .scroll-top {
     bottom: 270px;
-    right: 14px;
+    right: 24px;
   }
 
   .booking-popup {

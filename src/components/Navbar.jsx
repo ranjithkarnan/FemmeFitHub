@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import womenLogo from '../assets/logo/femme-fit-logo.png';
 import { useContactModal } from '../context/ContactModalContext.jsx';
+import { PhoneCall } from "lucide-react";
 
 const navItems = [
   { label: 'Home', to: '/' },
@@ -144,7 +145,7 @@ function Navbar() {
               </NavLink>
             )
           ))}
-          <button
+          {/* <button
             className="nav-cta"
             type="button"
             onClick={() => {
@@ -153,7 +154,18 @@ function Navbar() {
             }}
           >
             Join Now
-          </button>
+          </button> */}
+          <button
+  className="nav-call-btn"
+  type="button"
+  onClick={() => {
+    window.location.href = "tel:+918220138783";
+    closeMenu();
+  }}
+>
+  <PhoneCall size={18} />
+  <span>+91 8220138783</span>
+</button>
         </div>
       </nav>
     </header>

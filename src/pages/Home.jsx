@@ -137,7 +137,7 @@ function Home() {
         <Schedule />
       </section>
       <Challenges />
-      <section id="tips" className="landing-anchor">
+      {/* <section id="tips" className="landing-anchor">
         <section className="section tips-community-section">
           <div className="container">
             <div className="section-header centered">
@@ -165,7 +165,7 @@ function Home() {
             <Community />
           </div>
         </section>
-      </section>
+      </section> */}
       <section id="contact" className="landing-anchor">
         <Contact />
       </section>

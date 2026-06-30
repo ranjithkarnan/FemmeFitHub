@@ -1,19 +1,73 @@
-import React from 'react';
-import { useMemo, useState } from 'react';
-import { useContactModal } from '../context/ContactModalContext.jsx';
+import React from "react";
+import { useMemo, useState } from "react";
+import { useContactModal } from "../context/ContactModalContext.jsx";
 
 const schedule = [
-  { day: 'Monday', type: 'Strength', morning: 'Strength Basics', morningTime: '7:00 AM', evening: 'Zumba Burn', eveningTime: '6:30 PM', trainer: 'Aarohi' },
-  { day: 'Tuesday', type: 'Yoga', morning: 'Yoga Flow', morningTime: '8:00 AM', evening: 'Personal Training', eveningTime: '7:00 PM', trainer: 'Meera' },
-  { day: 'Wednesday', type: 'Cardio', morning: 'Cardio Fitness', morningTime: '7:30 AM', evening: 'Strength Sculpt', eveningTime: '6:00 PM', trainer: 'Nisha' },
-  { day: 'Thursday', type: 'Wellness', morning: 'Postnatal Fitness', morningTime: '10:00 AM', evening: 'Yoga Restore', eveningTime: '7:30 PM', trainer: 'Meera' },
-  { day: 'Friday', type: 'Cardio', morning: 'HIIT Circuit', morningTime: '7:00 AM', evening: 'Zumba Party', eveningTime: '6:30 PM', trainer: 'Nisha' },
-  { day: 'Saturday', type: 'Wellness', morning: 'Nutrition Clinic', morningTime: '11:00 AM', evening: 'Open Gym', eveningTime: '5:00 PM', trainer: 'Samaira' }
+  {
+    day: "Monday",
+    type: "Strength",
+    morning: "Strength Basics",
+    morningTime: "7:00 AM",
+    evening: "Zumba Burn",
+    eveningTime: "6:30 PM",
+    trainer: "Aarohi",
+  },
+  {
+    day: "Tuesday",
+    type: "Yoga",
+    morning: "Yoga Flow",
+    morningTime: "8:00 AM",
+    evening: "Personal Training",
+    eveningTime: "7:00 PM",
+    trainer: "Meera",
+  },
+  {
+    day: "Wednesday",
+    type: "Cardio",
+    morning: "Cardio Fitness",
+    morningTime: "7:30 AM",
+    evening: "Strength Sculpt",
+    eveningTime: "6:00 PM",
+    trainer: "Nisha",
+  },
+  {
+    day: "Thursday",
+    type: "Wellness",
+    morning: "Postnatal Fitness",
+    morningTime: "10:00 AM",
+    evening: "Yoga Restore",
+    eveningTime: "7:30 PM",
+    trainer: "Meera",
+  },
+  {
+    day: "Friday",
+    type: "Cardio",
+    morning: "HIIT Circuit",
+    morningTime: "7:00 AM",
+    evening: "Zumba Party",
+    eveningTime: "6:30 PM",
+    trainer: "Nisha",
+  },
+  {
+    day: "Saturday",
+    type: "Wellness",
+    morning: "Nutrition Clinic",
+    morningTime: "11:00 AM",
+    evening: "Open Gym",
+    eveningTime: "5:00 PM",
+    trainer: "Samaira",
+  },
 ];
 
 function Schedule() {
-  const [filter, setFilter] = useState('All');
-  const filtered = useMemo(() => filter === 'All' ? schedule : schedule.filter((row) => row.type === filter), [filter]);
+  const [filter, setFilter] = useState("All");
+  const filtered = useMemo(
+    () =>
+      filter === "All"
+        ? schedule
+        : schedule.filter((row) => row.type === filter),
+    [filter],
+  );
   const { openContactModal } = useContactModal();
 
   return (
@@ -22,16 +76,29 @@ function Schedule() {
         <div className="section-header centered">
           <span className="section-kicker">Class Schedule</span>
           <h2>Find a Class That Fits Your Day</h2>
-          <p>Choose from strength, yoga, cardio, and wellness sessions designed around your routine.</p>
+          <p>
+            Choose from strength, yoga, cardio, and wellness sessions designed
+            around your routine.
+          </p>
         </div>
         <div className="schedule-filters">
-          {['All', 'Strength', 'Yoga', 'Cardio', 'Wellness'].map((item) => (
-            <button className={`schedule-filter ${filter === item ? 'active' : ''}`} type="button" onClick={() => setFilter(item)} key={item}>{item}</button>
+          {["All", "Strength", "Yoga", "Cardio", "Wellness"].map((item) => (
+            <button
+              className={`schedule-filter ${filter === item ? "active" : ""}`}
+              type="button"
+              onClick={() => setFilter(item)}
+              key={item}
+            >
+              {item}
+            </button>
           ))}
         </div>
         <div className="schedule-grid">
           {filtered.map((row) => (
-            <article className={`schedule-card type-${row.type.toLowerCase()}`} key={row.day}>
+            <article
+              className={`schedule-card type-${row.type.toLowerCase()}`}
+              key={row.day}
+            >
               <div className="schedule-card-header">
                 <div>
                   <span className="schedule-day">{row.day}</span>
@@ -55,7 +122,13 @@ function Schedule() {
 
               <div className="schedule-footer">
                 <span className="trainer-chip">Trainer: {row.trainer}</span>
-                <button type="button" onClick={openContactModal} className="schedule-book-btn">Book Class</button>
+                <button
+                  type="button"
+                  onClick={openContactModal}
+                  className="schedule-book-btn"
+                >
+                  Book Class
+                </button>
               </div>
             </article>
           ))}
@@ -63,8 +136,17 @@ function Schedule() {
 
         <div className="schedule-help-card">
           <h3>Need help choosing your class?</h3>
-          <p>Tell us your goal and availability. We'll recommend the right weekly rhythm.</p>
-          <button type="button" onClick={openContactModal} className="schedule-book-btn">Book Free Consultation</button>
+          <p>
+            Tell us your goal and availability. We'll recommend the right weekly
+            rhythm.
+          </p>
+          <button
+            type="button"
+            onClick={openContactModal}
+            className="schedule-book-btn"
+          >
+            Book Free Consultation
+          </button>
         </div>
       </div>
     </section>

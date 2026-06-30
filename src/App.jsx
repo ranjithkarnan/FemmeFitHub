@@ -89,8 +89,8 @@ function App() {
         <Route path="/calculator" element={<CalculatorPage />} />
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/challenges" element={<ChallengesPage />} />
-        <Route path="/community" element={<CommunityPage />} />
-        <Route path="/fitness-tips" element={<FitnessTipsPage />} />
+        {/* <Route path="/community" element={<CommunityPage />} />
+        <Route path="/fitness-tips" element={<FitnessTipsPage />} /> */}
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/ladies-gym-valasaravakkam" element={<LadiesGymValasaravakkamPage />} />

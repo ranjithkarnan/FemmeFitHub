@@ -102,7 +102,7 @@ function Hero() {
           <h1>Transform Your Body, Empower Your Life</h1>
           <p>
             Women-only fitness studio for weight loss, strength training, cross fit,
-            nutrition guidance, and personal coaching.
+            nutrition guidance, mental strength and personal coaching.
           </p>
           <div className="hero-actions">
             <button className="btn btn-primary glow-btn magnetic" type="button" onClick={openContactModal}>
@@ -117,11 +117,15 @@ function Hero() {
               <ShieldCheck size={18} /> Women Only
             </span>
             <span>
-              <Sparkles size={18} /> Certified Trainers
+              <Sparkles size={18} /> Certified Physiotherapists
+            </span>
+              <span>
+              <Sparkles size={18} /> Certified Acupuncture doctor
             </span>
             <span>
               <CalendarCheck size={18} /> Free Trial Class
             </span>
+
           </div>
         </motion.div>
 

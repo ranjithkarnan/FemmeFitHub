@@ -3,7 +3,7 @@ export const trainers = [
     name: 'Kayathri Murugan',
     role: 'Physiotherapist',
     specialty: 'Pain management, posture correction, mobility improvement, rehabilitation exercises',
-    experience: '1 Year',
+    experience: '2 Year',
     certifications: ['Physiotherapy Support', 'Posture Correction', 'Mobility & Recovery'],
     socials: ['Instagram', 'LinkedIn']
   },
@@ -25,6 +25,14 @@ export const trainers = [
   },
   {
     name: 'Ezilarasi Rajan',
+    role: 'Physiotherapist',
+    specialty: 'Injury prevention, functional movement, recovery therapy, therapeutic exercise',
+    experience: '8 Years',
+    certifications: ['Physiotherapy Support', 'Functional Movement', 'Therapeutic Exercise'],
+    socials: ['Instagram', 'LinkedIn']
+  },
+    {
+    name: 'Deepa Saranya',
     role: 'Physiotherapist',
     specialty: 'Injury prevention, functional movement, recovery therapy, therapeutic exercise',
     experience: '8 Years',

@@ -2588,7 +2588,38 @@ textarea::placeholder {
   background: rgba(244, 197, 66, 0.15);
   transform: translateX(3px);
 }
+.nav-call-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 
+  padding: 12px 22px;
+
+  background: linear-gradient(135deg, #d4a017, #f4c542);
+  color: #3f2a1d;
+
+  border: none;
+  border-radius: 999px;
+
+  font-weight: 700;
+  font-size: 0.95rem;
+
+  cursor: pointer;
+  transition: all .3s ease;
+
+  box-shadow:
+    0 10px 25px rgba(244,197,66,.25);
+}
+
+.nav-call-btn:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 35px rgba(244,197,66,.35);
+}
+
+.nav-call-btn svg {
+  color: #3f2a1d;
+}
 .nav-links .nav-cta {
   display: inline-flex;
   align-items: center;
@@ -3147,6 +3178,31 @@ textarea::placeholder {
   gap: 24px;
   margin-top: 32px;
 }
+.principle-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 18px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.principle-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  color: black;
+  line-height: 1.7;
+  font-size: 0.98rem;
+}
+
+.principle-list svg {
+  color: #f4c542;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
 
 .about-principle-card {
   min-height: 260px;
@@ -3185,13 +3241,13 @@ textarea::placeholder {
   color: var(--text-dark, #2b1d13);
   font-family: "Poppins", sans-serif;
   font-size: 1.35rem;
-  font-weight: 800;
+  /* font-weight: 800; */
 }
 
 .about-principle-card p {
   max-width: 620px;
   color: var(--text-light, #6b5b4d);
-  font-family: "Inter", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
   font-size: 1.05rem;
   font-weight: 400;
   line-height: 1.75;
@@ -9423,7 +9479,7 @@ textarea::placeholder {
 body.modal-open {
   overflow: hidden;
 }
-
+  
 .contact-modal-overlay {
   position: fixed;
   inset: 0;
@@ -9627,6 +9683,267 @@ body.modal-open {
   border: 0;
   cursor: pointer;
 }
+
+/* Temporary */
+
+/* ==========================================
+   CONTACT MODAL FORM
+========================================== */
+
+.contact-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.contact-modal-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-modal-badge {
+  width: fit-content;
+  padding: 8px 16px;
+
+  background: rgba(244, 197, 66, .12);
+  border: 1px solid rgba(244, 197, 66, .35);
+
+  color: #b8860b;
+
+  border-radius: 999px;
+
+  font-size: .82rem;
+  font-weight: 700;
+
+  letter-spacing: .4px;
+}
+
+.contact-modal-header h3 {
+  margin: 0;
+
+  font-size: 2rem;
+  font-weight: 800;
+
+  color: #3d2c20;
+
+  line-height: 1.2;
+}
+
+.contact-modal-header p {
+  margin: 0;
+
+  color: #6f655d;
+
+  line-height: 1.8;
+  font-size: .97rem;
+}
+
+/* ==========================================
+   LABEL
+========================================== */
+
+.contact-modal-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-modal-form label span {
+  font-weight: 700;
+  color: #4b3223;
+  font-size: .92rem;
+}
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+.contact-modal-form input,
+.contact-modal-form select,
+.contact-modal-form textarea {
+
+  width: 100%;
+
+  padding: 15px 18px;
+
+  border-radius: 16px;
+
+  border: 1px solid #e5d8ca;
+
+  background: #fffdf9;
+
+  font-size: .95rem;
+
+  transition: .3s ease;
+
+  outline: none;
+}
+
+.contact-modal-form input::placeholder,
+.contact-modal-form textarea::placeholder {
+  color: #a6a09a;
+}
+
+.contact-modal-form input:focus,
+.contact-modal-form select:focus,
+.contact-modal-form textarea:focus {
+
+  border-color: #d4a017;
+
+  box-shadow:
+      0 0 0 4px rgba(244,197,66,.15);
+
+  background: white;
+}
+
+.contact-modal-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ==========================================
+   SELECT
+========================================== */
+
+.contact-modal-form select {
+  cursor: pointer;
+}
+
+/* ==========================================
+   PRIVACY NOTE
+========================================== */
+
+.contact-modal-note {
+
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  padding: 16px;
+
+  background: rgba(244,197,66,.08);
+
+  border: 1px solid rgba(244,197,66,.18);
+
+  border-radius: 16px;
+}
+
+.contact-modal-note svg {
+
+  color: #c78d00;
+
+  flex-shrink: 0;
+
+  margin-top: 2px;
+}
+
+.contact-modal-note span {
+
+  color: #6b5b4d;
+
+  line-height: 1.6;
+
+  font-size: .88rem;
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.contact-modal-submit {
+
+  margin-top: 6px;
+
+  width: 100%;
+
+  padding: 16px;
+
+  border: none;
+
+  border-radius: 18px;
+
+  background:
+      linear-gradient(
+          135deg,
+          #d4a017,
+          #f4c542
+      );
+
+  color: #3f2a1d;
+
+  font-weight: 800;
+
+  font-size: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+
+  transition: .35s ease;
+
+  box-shadow:
+      0 16px 32px rgba(244,197,66,.25);
+}
+
+.contact-modal-submit:hover {
+
+  transform: translateY(-3px);
+
+  box-shadow:
+      0 20px 40px rgba(244,197,66,.35);
+}
+
+.contact-modal-submit:disabled {
+
+  opacity: .65;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:768px){
+
+.contact-modal-header h3{
+
+font-size:1.6rem;
+
+}
+
+.contact-modal-form{
+
+gap:18px;
+
+}
+
+.contact-modal-form input,
+.contact-modal-form select,
+.contact-modal-form textarea{
+
+padding:14px 16px;
+
+}
+
+.contact-modal-submit{
+
+padding:15px;
+
+}
+
+}
+
 
 button.btn,
 button.button,

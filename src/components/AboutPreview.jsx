@@ -1,43 +1,92 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Clock3, Eye, Goal, HeartHandshake, Target, Trophy, UsersRound } from 'lucide-react';
-import  Treadmill from"../assets/images/TreadMils.jpeg"; // Import the image file
+import React, { useEffect, useRef, useState } from "react";
+import {
+  Clock3,
+  Eye,
+  Goal,
+  HeartHandshake,
+  Target,
+  Trophy,
+  UsersRound,
+} from "lucide-react";
+import Treadmill from "../assets/images/TreadMils.jpeg"; // Import the image file
 import Floor from "../assets/images/Floor.jpeg"; // Import the image file
-import GymEquipment from "../assets/images/GymEquipment.jpeg"; // Import the image file  
+import GymEquipment from "../assets/images/GymEquipment.jpeg"; // Import the image file
 import Treadmill2 from "../assets/images/TreadMils2.jpeg"; // Import the image file
-import { useContactModal } from '../context/ContactModalContext.jsx';
-
-
+import { useContactModal } from "../context/ContactModalContext.jsx";
+import { CheckCircle2 } from "lucide-react";
 
 const features = [
-  { title: 'Women-Only Environment', icon: UsersRound },
-  { title: 'Certified Coaches', icon: Trophy },
-  { title: 'Flexible Schedules', icon: Clock3 },
-  { title: 'Personalized Programs', icon: Goal }
+  { title: "Women-Only Environment", icon: UsersRound },
+  { title: "Certified Coaches", icon: Trophy },
+  { title: "Flexible Schedules", icon: Clock3 },
+  { title: "Personalized Programs", icon: Goal },
 ];
 
 const stats = [
-  { value: 200, suffix: '+', label: 'Members' },
-  { value: 15, suffix: '+', label: 'Certified Trainers' },
-  { value: 99, suffix: '%', label: 'Satisfaction' },
-  { value: 50, suffix: '+', label: 'Weekly Classes' }
+  { value: 200, suffix: "+", label: "Members" },
+  { value: 15, suffix: "+", label: "Certified Trainers" },
+  { value: 99, suffix: "%", label: "Satisfaction" },
+  { value: 50, suffix: "+", label: "Weekly Classes" },
 ];
+
+// const principles = [
+//   {
+//     title: 'Mission',
+//     text: 'Empowering women to transform their health, build confidence, and create stronger lifestyles through fitness, support, and consistency. Strong Women. Mental strength. Healthy Lives. Endless Confidence.',
+//     icon: Target
+//   },
+//   {
+//     title: 'Vision',
+//     text: 'To become the most trusted lady’s fitness destination, helping women transform their health, unlock their confidence, and achieve sustainable wellness at every stage of life. We aim to inspire every woman to become stronger physically and mentally through expert guidance, supportive coaching, and a positive environment where every fitness journey is celebrated.',
+//     icon: Eye
+//   },
+//   {
+//     title: 'Values',
+//     text: 'We believe every woman deserves to feel strong, mentally, healthy, and confident. We are committed to providing a supportive, safe, and motivating environment with personalized guidance to help every client achieve her proper life cycle & fitness goals.',
+//     icon: HeartHandshake
+//   }
+// ];
 
 const principles = [
   {
-    title: 'Mission',
-    text: 'Empower women through strength, confidence, and sustainable fitness.',
-    icon: Target
+    title: "Mission",
+    text: [
+      "Empowering women to transform their health.",
+      "Build confidence.",
+      "Create stronger lifestyles through fitness, support, and consistency.",
+      "Strong Women.",
+      "Mental strength.",
+      "Healthy Lives.",
+      "Endless Confidence.",
+    ],
+    icon: Target,
   },
   {
-    title: 'Vision',
-    text: 'Create the most supportive women-only fitness community.',
-    icon: Eye
+    title: "Vision",
+    text: [
+      "To become the most trusted lady’s fitness destination.",
+      "Helping women transform their health.",
+      "Unlock their confidence.",
+      "Achieve sustainable wellness at every stage of life.",
+      "Inspire every woman to become stronger physically and mentally.",
+      "Provide expert guidance.",
+      "Offer supportive coaching.",
+      "Create a positive environment where every fitness journey is celebrated.",
+    ],
+    icon: Eye,
   },
   {
-    title: 'Values',
-    text: 'Respect, consistency, accountability, and lifelong wellness.',
-    icon: HeartHandshake
-  }
+    title: "Values",
+    text: [
+      "We believe every woman deserves to feel strong.",
+      "Mentally healthy.",
+      "Confident.",
+      "Committed to providing a supportive, safe, and motivating environment.",
+      "Personalized guidance.",
+      "Help every client achieve her proper life cycle & fitness goals.",
+    ],
+    icon: HeartHandshake,
+  },
 ];
 
 function CountUpStat({ value, suffix, label }) {
@@ -67,7 +116,7 @@ function CountUpStat({ value, suffix, label }) {
         requestAnimationFrame(animate);
         observer.disconnect();
       },
-      { threshold: 0.35 }
+      { threshold: 0.35 },
     );
 
     observer.observe(node);
@@ -76,7 +125,10 @@ function CountUpStat({ value, suffix, label }) {
 
   return (
     <article ref={statRef}>
-      <strong>{count}{suffix}</strong>
+      <strong>
+        {count}
+        {suffix}
+      </strong>
       <span>{label}</span>
     </article>
   );
@@ -113,13 +165,17 @@ function AboutPreview({ full = false }) {
             <div className="section-kicker">Why Women Choose Us</div>
             <h3>Serious coaching with comfort, clarity, and community.</h3>
             <p>
-              We blend premium gym facilities with expert coaching and a warm community, so every
-              member can train with confidence and stay consistent.
+              We've loaded up on premium gym facilities, but we kept the expert
+              coaching and warm community front and center. So every member can
+              train with confidence (and finally stay consistent).
             </p>
             {full && (
               <p>
-                Our studio combines strength zones, cardio equipment, group class energy, yoga recovery,
-                nutrition guidance, and personal training into one easy-to-follow experience.
+                Our studio rolls everything into one easy-to-follow experience.
+                You'll find dedicated strength zones and cardio equipment
+                feeding right into that group class energy. We also bolted on
+                recovery and grounded nutrition guidance. And we round it
+                all out with one-on-one personal training.
               </p>
             )}
             <div className="about-feature-grid">
@@ -130,11 +186,22 @@ function AboutPreview({ full = false }) {
                 </article>
               ))}
             </div>
-            {!full && <button className="text-link" type="button" onClick={openContactModal}>Book a studio visit</button>}
+            {!full && (
+              <button
+                className="text-link"
+                type="button"
+                onClick={openContactModal}
+              >
+                Book a studio visit
+              </button>
+            )}
           </div>
         </div>
 
-        <div className="about-stat-grid" aria-label="Femme Fit Hub quick statistics">
+        <div
+          className="about-stat-grid"
+          aria-label="Femme Fit Hub quick statistics"
+        >
           {stats.map((stat) => (
             <CountUpStat key={stat.label} {...stat} />
           ))}
@@ -147,7 +214,15 @@ function AboutPreview({ full = false }) {
                 <Icon size={26} />
               </div>
               <h3>{title}</h3>
-              <p>{text}</p>
+              {/* <p>{text}</p> */}
+              <ul className="principle-list">
+                {text.map((text) => (
+                  <li key={text}>
+                    <CheckCircle2 size={16} />
+                    <span>{text}</span>
+                  </li>
+                ))}
+              </ul>
             </article>
           ))}
         </div>

@@ -1,31 +1,47 @@
-import React, { useState } from 'react';
-import { Award, Check, Mail, MapPin, Phone, ShieldCheck, Sparkles, Star, Users } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Award,
+  Check,
+  Mail,
+  MapPin,
+  Phone,
+  ShieldCheck,
+  Sparkles,
+  Star,
+  Users,
+} from "lucide-react";
 
 const consultationBenefits = [
-  'Personalized Program Guidance',
-  'Women-Only Fitness Environment',
-  'Certified Physio Therapist & diet Team',
-  'Flexible Class Scheduling',
+  "Personalized Program Guidance",
+  "Women-Only Fitness Environment",
+  "Certified Physiotherapists and Dieticians",
+  "Flexible Class Scheduling",
 ];
 
-const trustBadges = ['200+ Active Members', '15+ Certified Trainers', '99% Satisfaction', 'Women-Only Environment'];
+const trustBadges = [
+  "200+ Active Members",
+  "15+ Certified Trainers",
+  "99% Satisfaction",
+  "Women-Only Environment",
+];
 
 const trustCards = [
-  { title: 'Women-Only Space', icon: ShieldCheck },
-  { title: 'Expert Coaches', icon: Award },
-  { title: 'Supportive Community', icon: Users },
-  { title: 'Proven Results', icon: Star }
+  { title: "Women-Only Space", icon: ShieldCheck },
+  { title: "Expert Coaches", icon: Award },
+  { title: "Supportive Community", icon: Users },
+  { title: "Proven Results", icon: Star },
 ];
 
-const studioAddress = 'No 2/2, first floor, Sannathi street, Mari Amman Kovil St, Valasaravakkam, Tamil Nadu 600087';
-const mapLink = 'https://share.google/kSjLapvUefpUvJ45R';
+const studioAddress =
+  "No 2/2, first floor, Sannathi street, Mari Amman Kovil St, Valasaravakkam, Tamil Nadu 600087";
+const mapLink = "https://share.google/kSjLapvUefpUvJ45R";
 
 function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    goal: 'Weight Loss Training',
-    message: ''
+    name: "",
+    phone: "",
+    goal: "Weight Loss Training",
+    message: "",
   });
   const [sending, setSending] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -34,15 +50,19 @@ function Contact() {
   const handleChange = (event) => {
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (!formData.name.trim() || !formData.phone.trim() || !formData.goal.trim()) {
-      window.alert('Please complete all required fields.');
+    if (
+      !formData.name.trim() ||
+      !formData.phone.trim() ||
+      !formData.goal.trim()
+    ) {
+      window.alert("Please complete all required fields.");
       return;
     }
 
@@ -62,7 +82,7 @@ Goal:
 🎯 ${formData.goal}
 
 Customer Message:
-"${formData.message || 'No additional message provided.'}"
+"${formData.message || "No additional message provided."}"
 
 Preferred Action:
 ✅ Schedule Consultation
@@ -75,15 +95,15 @@ Source: Femme Fit Hub Website
     const whatsappUrl = `https://wa.me/918220138783?text=${encodeURIComponent(whatsappMessage)}`;
 
     window.setTimeout(() => {
-      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
       setShowSuccessPopup(false);
       setSending(false);
       setSuccess(false);
       setFormData({
-        name: '',
-        phone: '',
-        goal: 'Weight Loss Training',
-        message: ''
+        name: "",
+        phone: "",
+        goal: "Weight Loss Training",
+        message: "",
       });
     }, 2500);
   };
@@ -94,13 +114,21 @@ Source: Femme Fit Hub Website
         <div className="consultation-header">
           <span className="section-kicker">Start Today</span>
           <h2>Start Your Transformation Today</h2>
-          <strong>Ready to feel stronger, healthier, and more confident?</strong>
+          <strong>
+            Ready to feel stronger, healthier, and more confident?
+          </strong>
           <p>
-            Tell us your goal and preferred schedule. Our coaching team will guide you toward the
-            program that best fits your lifestyle and fitness journey.
+            Tell us your goal and preferred schedule. Our coaching team will
+            guide you toward the program that best fits your lifestyle and
+            fitness journey.
           </p>
-          <div className="consultation-stats" aria-label="Femme Fit Hub trust highlights">
-            {trustBadges.map((badge) => <span key={badge}>{badge}</span>)}
+          <div
+            className="consultation-stats"
+            aria-label="Femme Fit Hub trust highlights"
+          >
+            {trustBadges.map((badge) => (
+              <span key={badge}>{badge}</span>
+            ))}
           </div>
         </div>
 
@@ -109,71 +137,122 @@ Source: Femme Fit Hub Website
             <article className="consultation-card">
               <span className="panel-badge">Free Consultation</span>
               <h3>Book Your Free Fitness Consultation</h3>
-              <p>Speak with our team and receive personalized guidance based on your goals, schedule, and experience level.</p>
+              <p>
+                Speak with our team and receive personalized guidance based on
+                your goals, schedule, and experience level.
+              </p>
               <div className="consultation-benefits">
                 {consultationBenefits.map((benefit) => (
-                  <span key={benefit}><Check size={17} /> {benefit}</span>
+                  <span key={benefit}>
+                    <Check size={17} /> {benefit}
+                  </span>
                 ))}
               </div>
             </article>
 
             <div className="contact-info">
-              <a href="tel:+918220138783"><Phone size={18} /> +91 8220138783</a>
-              <a href="mailto:hello@femmefithub.com"><Mail size={18} /> hello@femmefithub.com</a>
-              <span><MapPin size={18} /> {studioAddress}</span>
+              <a href="tel:+918220138783">
+                <Phone size={18} /> +91 8220138783
+              </a>
+              <a href="mailto:hello@femmefithub.com">
+                <Mail size={18} /> hello@femmefithub.com
+              </a>
+              <span>
+                <MapPin size={18} /> {studioAddress}
+              </span>
             </div>
 
-            <div className="map-placeholder premium-map-card" role="img" aria-label="Google Maps placeholder for Femme Fit Hub location">
+            <div
+              className="map-placeholder premium-map-card"
+              role="img"
+              aria-label="Google Maps placeholder for Femme Fit Hub location"
+            >
               <MapPin />
               <div>
                 <strong>Visit Our Studio</strong>
-                <span>No 2/2, first floor, Sannathi street<br />Mari Amman Kovil St, Valasaravakkam<br />Tamil Nadu 600087</span>
-                <a href={mapLink} target="_blank" rel="noreferrer">Open in Google Maps</a>
+                <span>
+                  No 2/2, first floor, Sannathi street
+                  <br />
+                  Mari Amman Kovil St, Valasaravakkam
+                  <br />
+                  Tamil Nadu 600087
+                </span>
+                <a href={mapLink} target="_blank" rel="noreferrer">
+                  Open in Google Maps
+                </a>
               </div>
             </div>
           </div>
 
           <div className="consultation-form-area">
-            <form className="contact-form consultation-form" onSubmit={handleSubmit}>
+            <form
+              className="contact-form consultation-form"
+              onSubmit={handleSubmit}
+            >
               <label>
                 <span>Full Name</span>
-                <input type="text" name="name" placeholder="Your name" value={formData.name} onChange={handleChange} required />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
               </label>
               <label>
                 <span>Phone Number</span>
-                <input type="tel" name="phone" placeholder="+91 8220138783" value={formData.phone} onChange={handleChange} required />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="+91 8220138783"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                />
               </label>
-<label className="custom-select-wrapper">
-  <span>Fitness Goal</span>
+              <label className="custom-select-wrapper">
+                <span>Fitness Goal</span>
 
-  <div className="custom-select">
-    <select
-      name="goal"
-      value={formData.goal}
-      onChange={handleChange}
-      required
-    >
-      <option>General Fitness</option>
-      <option>Weight Loss Training</option>
-      <option>Weight Gain Training</option>
-      <option>Strength Training</option>
-      <option>Cross Fit</option>
-      <option>Steam</option>
-      <option>Personal Training</option>
-      <option>Nutrition Guidance</option>
-       <option>Post-Natal Fitness</option>
-        <option>Posture Correction</option>
-    </select>
+                <div className="custom-select">
+                  <select
+                    name="goal"
+                    value={formData.goal}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option>General Fitness</option>
+                    <option>Weight Loss Training</option>
+                    <option>Weight Gain Training</option>
+                    <option>Strength Training</option>
+                    <option>Cross Fit</option>
+                    <option>Steam</option>
+                    <option>Personal Training</option>
+                    <option>Nutrition Guidance</option>
+                    <option>Post-Natal Fitness</option>
+                    <option>Posture Correction</option>
+                  </select>
 
-    <span className="select-arrow">▼</span>
-  </div>
-</label>
+                  <span className="select-arrow">▼</span>
+                </div>
+              </label>
               <label>
                 <span>Message</span>
-                <textarea name="message" rows="5" placeholder="Tell us about your goals" value={formData.message} onChange={handleChange} />
+                <textarea
+                  name="message"
+                  rows="5"
+                  placeholder="Tell us about your goals"
+                  value={formData.message}
+                  onChange={handleChange}
+                />
               </label>
-              <button className="btn btn-primary" type="submit" disabled={sending}>
-                {sending ? 'Preparing WhatsApp...' : 'Send Enquiry'} {!sending && <Sparkles size={18} />}
+              <button
+                className="btn btn-primary"
+                type="submit"
+                disabled={sending}
+              >
+                {sending ? "Preparing WhatsApp..." : "Send Enquiry"}{" "}
+                {!sending && <Sparkles size={18} />}
               </button>
               {success && !showSuccessPopup && (
                 <div className="form-success" role="status">
@@ -181,7 +260,6 @@ Source: Femme Fit Hub Website
                 </div>
               )}
             </form>
-
 
             <div className="choose-trust-grid">
               <h3>Why Women Choose Femme Fit Hub</h3>
@@ -198,7 +276,12 @@ Source: Femme Fit Hub Website
         </div>
       </div>
       {showSuccessPopup && (
-        <div className="success-modal-overlay" role="dialog" aria-modal="true" aria-label="Enquiry ready">
+        <div
+          className="success-modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Enquiry ready"
+        >
           <div className="success-modal">
             <div className="success-icon">✓</div>
 
@@ -207,7 +290,8 @@ Source: Femme Fit Hub Website
             <p>You are being redirected to WhatsApp.</p>
 
             <p className="success-note">
-              Our team typically responds within 15-30 minutes during business hours.
+              Our team typically responds within 15-30 minutes during business
+              hours.
             </p>
 
             <div className="success-loader" aria-hidden="true">
@@ -216,9 +300,7 @@ Source: Femme Fit Hub Website
 
             <strong className="success-action">Opening WhatsApp...</strong>
 
-            <small>
-              Thank you for choosing Femme Fit Hub. 💪🌸
-            </small>
+            <small>Thank you for choosing Femme Fit Hub. 💪🌸</small>
           </div>
         </div>
       )}

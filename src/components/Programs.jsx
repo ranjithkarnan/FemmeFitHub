@@ -23,14 +23,14 @@ const programOrder = [
     duration: '12 Week Program',
     benefits: ['Personalized Coaching', 'Goal Tracking', 'Flexible Timings']
   },
-  {
-    sourceTitle: 'Yoga',
-    title: 'Yoga & Recovery',
-    difficulty: 'Beginner Friendly',
-    difficultyLevel: 'beginner',
-    duration: 'Flexible Schedule',
-    benefits: ['Mobility Support', 'Stress Relief', 'Recovery Focus']
-  },
+  // {
+  //   sourceTitle: 'Yoga',
+  //   title: 'Yoga & Recovery',
+  //   difficulty: 'Beginner Friendly',
+  //   difficultyLevel: 'beginner',
+  //   duration: 'Flexible Schedule',
+  //   benefits: ['Mobility Support', 'Stress Relief', 'Recovery Focus']
+  // },
   {
     sourceTitle: 'Zumba',
     title: 'Zumba Fitness',

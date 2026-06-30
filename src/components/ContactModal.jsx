@@ -161,7 +161,7 @@ Source: Femme Fit Hub Website
               </div>
             </aside>
 
-            <form className="contact-modal-form" onSubmit={handleSubmit}>
+            {/* <form className="contact-modal-form" onSubmit={handleSubmit}>
               <div>
                 <h3 id="contact-modal-title">Book Your Free Trial</h3>
                 <p>Share your details and continue to WhatsApp with a ready enquiry message.</p>
@@ -212,7 +212,92 @@ Source: Femme Fit Hub Website
               <button className="btn btn-primary contact-modal-submit" type="submit" disabled={sending}>
                 Continue to WhatsApp <MessageCircle size={18} />
               </button>
-            </form>
+            </form> */}
+            <form className="contact-modal-form" onSubmit={handleSubmit}>
+  <div className="contact-modal-header">
+    <span className="contact-modal-badge">
+      ✨ Free Fitness Consultation
+    </span>
+
+    <h3 id="contact-modal-title">
+      Start Your Fitness Journey Today
+    </h3>
+
+    <p>
+      Fill in your details below and continue to WhatsApp.
+      Our team will help you choose the right fitness program,
+      membership plan, and suitable batch timing.
+    </p>
+  </div>
+
+  <label>
+    <span>Your Name</span>
+    <input
+      type="text"
+      name="name"
+      placeholder="Enter your full name"
+      value={formData.name}
+      onChange={handleChange}
+      required
+    />
+  </label>
+
+  <label>
+    <span>Mobile Number</span>
+    <input
+      type="tel"
+      name="phone"
+      placeholder="+91 98765 43210"
+      value={formData.phone}
+      onChange={handleChange}
+      required
+    />
+  </label>
+
+  <label>
+    <span>What is your fitness goal?</span>
+    <select
+      name="goal"
+      value={formData.goal}
+      onChange={handleChange}
+      required
+    >
+      {goalOptions.map((goal) => (
+        <option key={goal}>{goal}</option>
+      ))}
+    </select>
+  </label>
+
+  <label>
+    <span>Tell us more (Optional)</span>
+    <textarea
+      name="message"
+      rows="4"
+      placeholder="Preferred batch timing, fitness experience, or any questions..."
+      value={formData.message}
+      onChange={handleChange}
+    />
+  </label>
+
+  <div className="contact-modal-note">
+    <ShieldCheck size={18} />
+
+    <span>
+      Your information is kept private and will only be used to
+      contact you regarding your fitness consultation.
+    </span>
+  </div>
+
+  <button
+    className="btn btn-primary contact-modal-submit"
+    type="submit"
+    disabled={sending}
+  >
+    Continue to WhatsApp
+
+    <MessageCircle size={18} />
+  </button>
+</form>
           </div>
         )}
       </div>

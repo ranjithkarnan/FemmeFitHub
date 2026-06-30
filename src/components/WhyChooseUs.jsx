@@ -79,7 +79,8 @@ function WhyChooseUs() {
         </div>
         <div className="why-trust-strip" aria-label="Femme Fit Hub trust highlights">
           <span>Women-Only Environment</span>
-          <span>Certified Coaches</span>
+          <span>Certified Physiotherapists</span>
+          {/* <span>Certified Acupuncture Doctor</span> */}
           <span>Flexible Timings</span>
           <span>Supportive Community</span>
         </div>
