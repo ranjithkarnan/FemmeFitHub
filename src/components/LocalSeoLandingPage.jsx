@@ -27,12 +27,18 @@ import { galleryImages } from '../data/gallery.js';
 import { googleReviews } from '../data/testimonials.js';
 import { useContactModal } from '../context/ContactModalContext.jsx';
 
-const trustBadges = ['Women Only', 'Certified Trainers', 'Nutrition Support', '5★ Google Rating'];
+const trustBadges = ['Women Only', 'Certified Trainers', 'Nutrition Support'];
 
 const heroStats = [
-  { value: 500, suffix: '+', label: 'Active Members' },
+  { value: 200, suffix: '+', label: 'Active Members' },
   { value: 79, suffix: '+', label: 'Google Reviews' },
-  { value: 98, suffix: '%', label: 'Satisfaction' }
+  { value: 99, suffix: '%', label: 'Satisfaction' }
+];
+
+const conversionCards = [
+  ['Free Trial Class', 'Experience the studio, trainer support, and class energy before joining.', Sparkles],
+  ['Goal-Based Plan', 'Get a practical training direction for weight loss, strength, posture, or wellness.', BadgeCheck],
+  ['Women-Only Comfort', 'Train in a supportive space designed around privacy, confidence, and consistency.', ShieldCheck]
 ];
 
 const benefits = [
@@ -113,7 +119,7 @@ function LocalSeoLandingPage({ page }) {
   const reviewPreview = googleReviews.slice(0, 3);
 
   return (
-    <>
+    <div className={`local-seo-page local-seo-page-${page.variant || 'default'}`}>
       <SEO title={page.title} description={page.description} />
 
       <section className="local-premium-hero">
@@ -124,7 +130,7 @@ function LocalSeoLandingPage({ page }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65 }}
           >
-            <span className="section-kicker">{page.kicker}</span>
+            <span className="section-kicker">{page.heroLabel || page.kicker}</span>
             <h1>{page.h1}</h1>
             <p>
               Women-only fitness studio for weight loss, strength training, cross fit,
@@ -137,6 +143,11 @@ function LocalSeoLandingPage({ page }) {
             <div className="local-premium-badges" aria-label="Femme Fit Hub trust badges">
               {trustBadges.map((badge) => <span key={badge}><CheckCircle2 size={16} /> {badge}</span>)}
             </div>
+            <div className="local-hero-micro-panel" aria-label="Studio visit highlights">
+              <span>Valasaravakkam</span>
+              <span>Fully AC Studio</span>
+              <span>Free Trial Available</span>
+            </div>
           </motion.div>
 
           <motion.div
@@ -145,7 +156,13 @@ function LocalSeoLandingPage({ page }) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.75, delay: 0.12 }}
           >
-            <img src={heroImage.image} alt="Women achieving fitness goals at Femme Fit Hub Valasaravakkam" />
+            <div className="local-hero-image-card">
+              <img src={heroImage.image} alt="Women achieving fitness goals at Femme Fit Hub Valasaravakkam" />
+              <div className="local-hero-image-note">
+                <strong>Women-first coaching</strong>
+                <span>Strength • Wellness • Confidence</span>
+              </div>
+            </div>
             <div className="local-floating-stats" ref={statsRef}>
               {heroStats.map((stat) => (
                 <article key={stat.label}>
@@ -155,6 +172,25 @@ function LocalSeoLandingPage({ page }) {
               ))}
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      <section className="local-conversion-strip-section">
+        <div className="container local-conversion-strip">
+          <div className="local-conversion-copy">
+            <span className="section-kicker">Start with clarity</span>
+            <h2>{page.conversionTitle || 'Choose the right fitness path from day one'}</h2>
+            <p>{page.conversionText || 'Book a consultation and our team will help you choose the right training direction before you commit.'}</p>
+          </div>
+          <div className="local-conversion-cards">
+            {conversionCards.map(([title, text, Icon]) => (
+              <article key={title}>
+                <Icon size={22} />
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -346,7 +382,7 @@ function LocalSeoLandingPage({ page }) {
       {/* <div className="local-sticky-cta">
         <button type="button" onClick={openContactModal}><Sparkles size={18} /> Book Free Trial</button>
       </div> */}
-    </>
+    </div>
   );
 }
 

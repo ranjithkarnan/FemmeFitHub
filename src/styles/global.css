@@ -8686,6 +8686,176 @@ textarea::placeholder {
   font-weight: 800;
 }
 
+.local-seo-page {
+  background: #fff8f0;
+}
+
+.local-seo-page-ladies-gym .local-premium-hero {
+  padding-bottom: 122px;
+}
+
+.local-seo-page-ladies-gym .local-premium-copy h1 {
+  max-width: 780px;
+}
+
+.local-hero-micro-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 650px;
+  margin-top: 24px;
+  padding: 12px;
+  border: 1px solid rgba(244, 197, 66, 0.22);
+  border-radius: 24px;
+  background: rgba(255, 248, 240, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.local-hero-micro-panel span {
+  flex: 1 1 150px;
+  padding: 11px 12px;
+  border-radius: 16px;
+  background: rgba(43, 29, 19, 0.28);
+  color: #fff8f0;
+  font-size: 0.88rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.local-hero-image-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(244, 197, 66, 0.34);
+  border-radius: 36px;
+  box-shadow: 0 36px 90px rgba(0, 0, 0, 0.32);
+}
+
+.local-hero-image-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, transparent 45%, rgba(43, 29, 19, 0.72)),
+    radial-gradient(circle at top right, rgba(244, 197, 66, 0.22), transparent 34%);
+  pointer-events: none;
+}
+
+.local-premium-visual .local-hero-image-card img {
+  display: block;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.local-hero-image-note {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 22px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1px solid rgba(244, 197, 66, 0.3);
+  border-radius: 22px;
+  background: rgba(43, 29, 19, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.local-hero-image-note strong {
+  color: #fff8f0;
+  font-weight: 900;
+}
+
+.local-hero-image-note span {
+  color: rgba(255, 248, 240, 0.74);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.local-conversion-strip-section {
+  position: relative;
+  z-index: 2;
+  margin-top: -62px;
+  padding-bottom: 72px;
+  background: linear-gradient(180deg, transparent, #fff8f0 58%);
+}
+
+.local-conversion-strip {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: 22px;
+  align-items: stretch;
+  padding: clamp(20px, 3vw, 28px);
+  border: 1px solid rgba(244, 197, 66, 0.26);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at top left, rgba(244, 197, 66, 0.18), transparent 34%),
+    rgba(255, 255, 255, 0.88);
+  box-shadow:
+    0 24px 70px rgba(75, 50, 35, 0.16),
+    0 0 28px rgba(244, 197, 66, 0.08);
+}
+
+.local-conversion-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+
+.local-conversion-copy h2 {
+  margin: 10px 0 12px;
+  color: #2b1d13;
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+  line-height: 1.08;
+}
+
+.local-conversion-copy p {
+  color: #6b5b4d;
+  line-height: 1.75;
+}
+
+.local-conversion-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.local-conversion-cards article {
+  padding: 20px;
+  border: 1px solid rgba(111, 78, 55, 0.1);
+  border-radius: 24px;
+  background: rgba(255, 248, 240, 0.78);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.local-conversion-cards article:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(75, 50, 35, 0.12);
+}
+
+.local-conversion-cards svg {
+  color: #d9a514;
+  margin-bottom: 12px;
+}
+
+.local-conversion-cards h3 {
+  color: #4b3223;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.local-conversion-cards p {
+  color: #6b5b4d;
+  font-size: 0.9rem;
+  line-height: 1.62;
+}
+
 .local-benefits-section,
 .local-programs-section,
 .local-membership-section,
@@ -9163,8 +9333,13 @@ textarea::placeholder {
 
 @media (max-width: 1120px) {
   .local-premium-hero-grid,
-  .local-seo-premium-content {
+  .local-seo-premium-content,
+  .local-conversion-strip {
     grid-template-columns: 1fr;
+  }
+
+  .local-conversion-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .local-benefits-grid,
@@ -9187,8 +9362,29 @@ textarea::placeholder {
     padding: 72px 0 58px;
   }
 
+  .local-seo-page-ladies-gym .local-premium-hero {
+    padding-bottom: 86px;
+  }
+
   .local-premium-visual img {
     min-height: 360px;
+  }
+
+  .local-hero-image-note {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .local-conversion-strip-section {
+    margin-top: -44px;
+    padding-bottom: 52px;
+  }
+
+  .local-conversion-cards {
+    grid-template-columns: 1fr;
   }
 
   .local-floating-stats {
