@@ -3,7 +3,7 @@ import { Star } from 'lucide-react';
 import { FcGoogle } from 'react-icons/fc';
 import { googleReviews } from '../data/testimonials.js';
 
-const trustStats = ['5 Rating', '80+ Reviews', '500+ Active Members', '98% Satisfaction'];
+const trustStats = ['5 Rating', '80+ Reviews', '200+ Active Members', '99% Satisfaction'];
 
 function Testimonials() {
   return (

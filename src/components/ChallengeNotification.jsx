@@ -28,10 +28,13 @@ function ChallengeNotification() {
       <button
         className="challenge-notification-close"
         type="button"
-        onClick={closeNotification}
+        onClick={(event) => {
+          event.stopPropagation();
+          closeNotification();
+        }}
         aria-label="Close challenge notification"
       >
-        <X size={16} />
+        <X size={20} />
       </button>
 
       <div className="challenge-notification-icon" aria-hidden="true">

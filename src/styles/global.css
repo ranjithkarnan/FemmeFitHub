@@ -7702,10 +7702,10 @@ textarea::placeholder {
 }
 .challenge-notification {
   position: fixed;
-  top: 92px;
+  top: calc(38px + var(--header-height) + 16px);
   left: 50%;
   transform: translateX(-50%);
-  z-index: 9998;
+  z-index: 9000;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -7726,6 +7726,12 @@ textarea::placeholder {
     0 0 34px rgba(244, 197, 66, 0.16);
   color: #fff8f0;
   animation: challengeSlideDown 0.45s ease forwards;
+  pointer-events: auto;
+}
+
+.challenge-notification,
+.challenge-notification * {
+  pointer-events: auto;
 }
 
 .challenge-notification-icon {
@@ -7801,25 +7807,29 @@ textarea::placeholder {
 
 .challenge-notification-close {
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: 3px;
+  right: 14px;
+  z-index: 999;
   display: grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   border: 1px solid rgba(244, 197, 66, 0.35);
-  background: #fff8f0;
-  color: #4b3223;
+  background: rgba(75, 50, 35, 0.92);
+  color: #fff8f0;
   cursor: pointer;
+  pointer-events: auto;
   transition:
     transform 0.25s ease,
-    background 0.25s ease;
+    background 0.25s ease,
+    color 0.25s ease;
 }
 
 .challenge-notification-close:hover {
-  transform: rotate(90deg);
-  background: #ffd966;
+  transform: scale(1.05);
+  background: #f4c542;
+  color: #4b3223;
 }
 
 @keyframes challengeSlideDown {
@@ -7836,9 +7846,9 @@ textarea::placeholder {
 
 @media (max-width: 720px) {
   .challenge-notification {
-    top: 84px;
+    top: calc(34px + var(--header-height) + 12px);
     grid-template-columns: 1fr;
-    padding: 22px;
+    padding: 58px 22px 22px;
     text-align: center;
   }
 
