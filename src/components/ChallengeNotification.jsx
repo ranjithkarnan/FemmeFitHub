@@ -1,30 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Clock3, Flame, Trophy, UserRound, X } from 'lucide-react';
-import { getActiveChallenge } from '../utils/challengeStorage';
 import { useContactModal } from '../context/ContactModalContext.jsx';
+import { getCountdownLabel, getFeaturedChallenge } from '../data/challenges.js';
 
 function ChallengeNotification() {
-  const [show, setShow] = useState(false);
-  const [challenge, setChallenge] = useState(() => getActiveChallenge());
+  const [showChallengeNotice, setShowChallengeNotice] = useState(false);
+  const featuredChallenge = getFeaturedChallenge();
   const { openContactModal } = useContactModal();
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
-      setChallenge(getActiveChallenge());
-      setShow(true);
+      setShowChallengeNotice(true);
     }, 1000);
 
     return () => window.clearTimeout(timer);
   }, []);
 
   const closeNotification = () => {
-    setShow(false);
+    setShowChallengeNotice(false);
   };
 
-  if (!show) return null;
+  if (!showChallengeNotice || !featuredChallenge) return null;
 
   return (
-    <div className="challenge-notification" role="status" aria-label="This week's challenge announcement">
+    <div className="challenge-notification" role="status" aria-label="Featured challenge announcement">
       <button
         className="challenge-notification-close"
         type="button"
@@ -42,14 +41,14 @@ function ChallengeNotification() {
       </div>
 
       <div className="challenge-notification-content">
-        <span>{challenge.type} Challenge is Live!</span>
-        <h3>{challenge.title}</h3>
-        <p>{challenge.description}</p>
+        <span>{featuredChallenge.type} Challenge is Live!</span>
+        <h3>{featuredChallenge.name}</h3>
+        <p>{featuredChallenge.shortDescription}</p>
 
         <div className="challenge-notification-meta">
-          <small><Clock3 size={14} /> {challenge.daysLeft}</small>
-          <small><Trophy size={14} /> Reward: {challenge.reward}</small>
-          <small><UserRound size={14} /> Trainer: {challenge.trainer}</small>
+          <small><Clock3 size={14} /> {getCountdownLabel(featuredChallenge)}</small>
+          <small><Trophy size={14} /> Reward: {featuredChallenge.reward}</small>
+          <small><UserRound size={14} /> Trainer: {featuredChallenge.trainer}</small>
         </div>
       </div>
 

@@ -15,6 +15,7 @@ import {
   resetActiveChallenge,
   saveActiveChallenge
 } from '../utils/challengeStorage';
+import { getCountdownLabel, getVisibleChallenges } from '../data/challenges.js';
 import './admin.css';
 
 const today = new Intl.DateTimeFormat('en-IN', {
@@ -53,11 +54,6 @@ const enquiries = [
   { name: 'Kavya Menon', phone: '9876567890', goal: 'Yoga', status: 'New', date: 'Today' }
 ];
 
-const challenges = [
-  { title: 'Plank Queen Challenge', type: 'Core Strength', progress: 68, daysLeft: '4 days left' },
-  { title: '30-Day Strength Reset', type: 'Strength', progress: 78, daysLeft: '10 days left' }
-];
-
 const plans = [
   { name: 'Basic Plan', interested: 42 },
   { name: 'Standard Plan', interested: 68, recommended: true },
@@ -92,6 +88,10 @@ function AdminDashboard() {
   const navigate = useNavigate();
   const [challengeForm, setChallengeForm] = useState(() => getActiveChallenge());
   const [challengeMessage, setChallengeMessage] = useState('');
+  const dashboardChallenges = [
+    ...getVisibleChallenges('week'),
+    ...getVisibleChallenges('month')
+  ].slice(0, 4);
 
   const logout = () => {
     window.localStorage.removeItem('ffhAdminLoggedIn');
@@ -252,14 +252,14 @@ function AdminDashboard() {
           <article id="challenges" className="admin-panel">
             <div className="admin-panel-heading">
               <h2>Upcoming Challenges</h2>
-              <span>2 active</span>
+              <span>{dashboardChallenges.length} visible</span>
             </div>
             <div className="admin-challenge-list">
-              {challenges.map((challenge) => (
-                <div className="admin-challenge-card" key={challenge.title}>
+              {dashboardChallenges.map((challenge) => (
+                <div className="admin-challenge-card" key={challenge.id}>
                   <span>{challenge.type}</span>
-                  <h3>{challenge.title}</h3>
-                  <small>{challenge.daysLeft}</small>
+                  <h3>{challenge.name}</h3>
+                  <small>{getCountdownLabel(challenge)}</small>
                   <div className="admin-progress"><span style={{ width: `${challenge.progress}%` }} /></div>
                   <strong>{challenge.progress}%</strong>
                 </div>

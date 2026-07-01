@@ -1,58 +1,18 @@
 import React, { useState } from 'react';
 import { Award, CalendarDays, Clock3, Sparkles, Trophy, UserRound } from 'lucide-react';
 import { useContactModal } from '../context/ContactModalContext.jsx';
-
-const challenges = {
-  week: [
-    {
-      name: 'Plank Queen Challenge',
-      type: 'Core Strength',
-      dates: 'June 24 - June 30',
-      difficulty: 'Beginner Friendly',
-      trainer: 'Aarohi',
-      reward: 'Member Spotlight',
-      progress: 68,
-      countdown: '4 days left'
-    },
-    {
-      name: 'Zumba Energy Week',
-      type: 'Dance Fitness',
-      dates: 'June 24 - June 30',
-      difficulty: 'All Levels',
-      trainer: 'Nisha',
-      reward: 'Free Group Class Pass',
-      progress: 52,
-      countdown: '4 days left'
-    }
-  ],
-  month: [
-    {
-      name: '30-Day Strength Reset',
-      type: 'Strength',
-      dates: 'June 1 - June 30',
-      difficulty: 'Intermediate',
-      trainer: 'Aarohi',
-      reward: 'Free Progress Consultation',
-      progress: 78,
-      countdown: '10 days left'
-    },
-    {
-      name: 'Healthy Meal Routine Challenge',
-      type: 'Nutrition',
-      dates: 'June 1 - June 30',
-      difficulty: 'Beginner Friendly',
-      trainer: 'Samaira',
-      reward: 'Nutrition Guide PDF',
-      progress: 64,
-      countdown: '10 days left'
-    }
-  ]
-};
+import {
+  getCountdownLabel,
+  getFeaturedChallenge,
+  getVisibleChallenges
+} from '../data/challenges.js';
 
 function Challenges() {
   const [activeTab, setActiveTab] = useState('week');
-  const activeChallenges = challenges[activeTab];
-  const featured = challenges.week[0];
+  const activeChallenges = getVisibleChallenges(activeTab);
+  const featured = getFeaturedChallenge();
+  const weekCount = getVisibleChallenges('week').length;
+  const monthCount = getVisibleChallenges('month').length;
   const { openContactModal } = useContactModal();
 
   return (
@@ -64,14 +24,17 @@ function Challenges() {
           <p>Join weekly and monthly challenges designed to keep members motivated, consistent, and excited.</p>
         </div>
 
-        <article className="challenge-featured">
-          <div>
-            <span className="challenge-featured-kicker"><Trophy size={16} /> This Week's Featured Challenge</span>
-            <h3>{featured.name}</h3>
-            <p>{featured.type} with coach {featured.trainer}. Stay consistent, track your effort, and earn the {featured.reward} reward.</p>
-          </div>
-          <button className="challenge-btn" type="button" onClick={openContactModal}>Join Challenge</button>
-        </article>
+        {featured && (
+          <article className="challenge-featured">
+            <div>
+              <span className="challenge-featured-kicker"><Trophy size={16} /> Featured Challenge</span>
+              <h3>{featured.name}</h3>
+              <p>{featured.shortDescription}</p>
+              <small>{featured.type} with coach {featured.trainer}. Reward: {featured.reward}.</small>
+            </div>
+            <button className="challenge-btn" type="button" onClick={openContactModal}>Join Challenge</button>
+          </article>
+        )}
 
         <div className="challenges-tabs" role="tablist" aria-label="Challenge time period">
           <button
@@ -81,7 +44,7 @@ function Challenges() {
             role="tab"
             aria-selected={activeTab === 'week'}
           >
-            This Week
+            This Week ({weekCount})
           </button>
           <button
             type="button"
@@ -90,22 +53,29 @@ function Challenges() {
             role="tab"
             aria-selected={activeTab === 'month'}
           >
-            This Month
+            This Month ({monthCount})
           </button>
         </div>
 
         <div className="challenges-grid">
+          {activeChallenges.length === 0 && (
+            <article className="challenge-empty-state">
+              <h3>No active challenges right now.</h3>
+              <p>Stay tuned for our next Femme Fit Hub challenge.</p>
+            </article>
+          )}
+
           {activeChallenges.map((challenge) => (
             <article className="challenge-card" key={challenge.name}>
               <div className="challenge-card-top">
                 <span className="challenge-type"><Sparkles size={15} /> {challenge.type}</span>
-                <span className="challenge-countdown"><Clock3 size={15} /> {challenge.countdown}</span>
+                <span className="challenge-countdown"><Clock3 size={15} /> {getCountdownLabel(challenge)}</span>
               </div>
 
               <h3>{challenge.name}</h3>
 
               <div className="challenge-meta">
-                <span><CalendarDays size={16} /> {challenge.dates}</span>
+                <span><CalendarDays size={16} /> {challenge.displayDates}</span>
                 <span><Award size={16} /> {challenge.difficulty}</span>
                 <span><UserRound size={16} /> Trainer: {challenge.trainer}</span>
               </div>
