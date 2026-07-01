@@ -42,8 +42,10 @@ function PublicLayout() {
     <>
       {loading && <PageLoader onFinish={() => setLoading(false)} />}
 
-      <TopAnnouncementBar />
-      <Navbar />
+      <header className="site-sticky-header">
+        <TopAnnouncementBar />
+        <Navbar />
+      </header>
       <AnimatePresence mode="wait">
         <motion.main
           key={location.pathname}

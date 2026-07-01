@@ -67,7 +67,7 @@ function Navbar() {
   const isItemActive = (item) => location.pathname === item.to || item.children?.some((child) => child.to === location.pathname);
 
   return (
-    <header className="site-header">
+    <div className="site-header">
       <nav className="navbar container" aria-label="Main navigation">
         <NavLink className="brand" to="/" aria-label="Femme Fit Hub home" onClick={closeMenu}>
           <span className="brand-mark">
@@ -168,7 +168,7 @@ function Navbar() {
 </button>
         </div>
       </nav>
-    </header>
+    </div>
   );
 }
 
