@@ -5,7 +5,7 @@ import { useContactModal } from '../context/ContactModalContext.jsx';
 const announcementItems = [
   '🎉 First Year Anniversary Offer is Live Now! Book Your Slot Today',
   'Limited Slots Available',
-  'Call Now: +91 98844 97990',
+  'Call Now: +91 82201 38783',
   'Free Trial Class Available'
 ];
 
