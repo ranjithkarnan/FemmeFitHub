@@ -2,6 +2,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
+import TopAnnouncementBar from './components/TopAnnouncementBar.jsx';
 import FloatingActions from './components/FloatingActions.jsx';
 import BottomNav from './components/BottomNav.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
@@ -41,6 +42,7 @@ function PublicLayout() {
     <>
       {loading && <PageLoader onFinish={() => setLoading(false)} />}
 
+      <TopAnnouncementBar />
       <Navbar />
       <AnimatePresence mode="wait">
         <motion.main

@@ -9479,7 +9479,98 @@ textarea::placeholder {
 body.modal-open {
   overflow: hidden;
 }
-  
+
+.top-announcement-bar {
+  position: relative;
+  z-index: 90;
+  width: 100%;
+  height: 38px;
+  display: block;
+  overflow: hidden;
+  border: 0;
+  background: #4b3223;
+  color: #f4c542;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.top-announcement-bar::before,
+.top-announcement-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 72px;
+  pointer-events: none;
+}
+
+.top-announcement-bar::before {
+  left: 0;
+  background: linear-gradient(90deg, #4b3223, transparent);
+}
+
+.top-announcement-bar::after {
+  right: 0;
+  background: linear-gradient(270deg, #4b3223, transparent);
+}
+
+.top-announcement-track {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  min-width: max-content;
+  white-space: nowrap;
+  animation: announcementMove 28s linear infinite;
+  will-change: transform;
+}
+
+.top-announcement-bar:hover .top-announcement-track {
+  animation-play-state: paused;
+}
+
+.top-announcement-track span {
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 28px;
+  color: #f4c542;
+}
+
+.top-announcement-track span::after {
+  content: "•";
+  margin-left: 28px;
+  color: rgba(255, 217, 102, 0.68);
+}
+
+@keyframes announcementMove {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .top-announcement-bar {
+    height: 34px;
+    font-size: 0.8rem;
+  }
+
+  .top-announcement-track span {
+    padding-inline: 18px;
+  }
+
+  .top-announcement-track span::after {
+    margin-left: 18px;
+  }
+}
+
 .contact-modal-overlay {
   position: fixed;
   inset: 0;
