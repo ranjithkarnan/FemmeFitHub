@@ -6,19 +6,19 @@ const valueCards = [
     icon: Handshake,
     number: '01',
     title: 'Respectful Space',
-    text: 'Every class, consultation, and workout is built around comfort, dignity, and encouragement.'
+    text: 'We anchor every workout and private consultation in your personal comfort. You\'ll find genuine encouragement in our classes (along with plenty of dignity).'
   },
   {
     icon: Dumbbell,
     number: '02',
     title: 'Smart Training',
-    text: 'We use progressive programming, form coaching, and realistic goals for long-term results.'
+    text: 'Our coaches lean heavily on progressive programming and dialed-in form coaching. So you hit realistic goals and hold onto those results long-term.'
   },
   {
     icon: Flower2,
     number: '03',
     title: 'Whole Lifestyle',
-    text: 'Fitness here includes strength, nutrition, recovery, schedule support, and community.'
+    text: 'Fitness here ties together your strength work and physical recovery. We also bolt on grounded nutrition and flexible schedule support. And you get a community that actually has your back.'
   }
 ];
 
