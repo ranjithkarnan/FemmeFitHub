@@ -29,7 +29,7 @@ const whyQuotes = [
   },
   {
     text: 'Strength begins the moment you decide your health deserves time, care, and consistency.',
-    author: 'Femme Fit Hub Coaches'
+    author: 'Femme Fit Hub Trainers'
   },
   {
     text: 'Every confident woman was once a beginner who chose to keep showing up.',

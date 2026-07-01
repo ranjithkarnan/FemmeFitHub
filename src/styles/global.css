@@ -5032,13 +5032,13 @@ textarea::placeholder {
 /* Compact trainer showcase with profile modal */
 .trainers-section .trainers-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
 }
 
 .trainer-mini-card {
   display: grid;
-  align-content: start;
+  /* align-content: start; */
   justify-items: center;
   min-height: 340px;
   padding: 24px;
@@ -5143,12 +5143,12 @@ textarea::placeholder {
 }
 
 .trainer-mini-card .trainer-role {
-  min-height: 44px;
-  margin: 0 0 14px;
+  /* min-height: 44px; */
+  margin: 0 0 0px;
   color: #6f4e37;
   font-size: 0.92rem;
   font-weight: 800;
-  line-height: 1.35;
+  /* line-height: 1.35; */
 }
 
 .trainer-specialty-preview {
@@ -5193,6 +5193,166 @@ textarea::placeholder {
 .trainer-mini-card button:hover {
   transform: translateY(-2px);
   box-shadow: 0 18px 34px rgba(244, 197, 66, 0.32);
+}
+
+/* Premium trainer hover interaction */
+.trainer-mini-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+  will-change: transform;
+}
+
+.trainer-mini-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(
+      120deg,
+      transparent,
+      rgba(244, 197, 66, 0.15),
+      transparent
+    );
+  transform: translateX(-120%);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+}
+
+.trainer-mini-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.trainer-mini-card:hover {
+  border-color: #f4c542;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(75, 50, 35, 0.98),
+      rgba(105, 70, 45, 0.98)
+    );
+  box-shadow:
+    0 18px 45px rgba(244, 197, 66, 0.18),
+    0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.trainer-mini-card:hover::before {
+  transform: translateX(120%);
+}
+
+.trainer-avatar-initials {
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease;
+  will-change: transform;
+}
+
+.trainer-mini-card:hover .trainer-avatar-initials {
+  transform: scale(1.1) rotate(6deg);
+  box-shadow:
+    0 0 30px rgba(244, 197, 66, 0.45),
+    0 16px 34px rgba(244, 197, 66, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.trainer-mini-card h3 {
+  transition:
+    color 0.3s ease,
+    letter-spacing 0.3s ease,
+    font-weight 0.3s ease;
+}
+
+.trainer-mini-card:hover h3 {
+  color: #f4c542;
+  font-weight: 950;
+  letter-spacing: 0.4px;
+}
+
+.trainer-mini-card .trainer-role {
+  transition: color 0.3s ease;
+}
+
+.trainer-mini-card:hover .trainer-role {
+  color: rgba(255, 248, 240, 0.9);
+}
+
+.experience-badge {
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.trainer-mini-card:hover .experience-badge {
+  transform: scale(1.05);
+  background: #f4c542;
+  color: #4b3223;
+  box-shadow: 0 12px 26px rgba(244, 197, 66, 0.24);
+}
+
+.trainer-specialty-preview {
+  opacity: 0.82;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    color 0.3s ease;
+  will-change: transform, opacity;
+}
+
+.trainer-mini-card:hover .trainer-specialty-preview {
+  opacity: 1;
+  transform: translateY(-4px);
+  color: rgba(255, 248, 240, 0.84);
+}
+
+.trainer-mini-card button {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+  will-change: transform;
+}
+
+.trainer-mini-card:hover button {
+  transform: scale(1.06);
+  background: linear-gradient(135deg, #f4c542, #ffd966);
+  box-shadow: 0 18px 34px rgba(244, 197, 66, 0.32);
+}
+
+@media (hover: none) {
+  .trainer-mini-card:hover,
+  .trainer-mini-card:hover .trainer-avatar-initials,
+  .trainer-mini-card:hover .experience-badge,
+  .trainer-mini-card:hover .trainer-specialty-preview,
+  .trainer-mini-card:hover button {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trainer-mini-card,
+  .trainer-mini-card::before,
+  .trainer-avatar-initials,
+  .trainer-mini-card h3,
+  .trainer-mini-card .trainer-role,
+  .experience-badge,
+  .trainer-specialty-preview,
+  .trainer-mini-card button {
+    transition: none;
+    animation: none;
+  }
+
+  .trainer-mini-card::before {
+    display: none;
+  }
 }
 
 .trainer-modal-backdrop {
