@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import beforeImage from '../assets/images/TreadMils-960.webp';
+import afterImage from '../assets/images/GymEquipment-960.webp';
 
 const timeline = [
   { week: 'Week 1', label: 'Movement assessment', progress: 30 },
@@ -41,13 +43,21 @@ function TransformationJourney() {
         >
           <div className="comparison-frame">
             <img
-              src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=900&q=80"
+              src={beforeImage}
               alt="Fitness coaching before phase"
+              width="960"
+              height="640"
+              loading="lazy"
+              decoding="async"
             />
             <div className="comparison-after" style={{ width: `${slider}%` }}>
               <img
-                src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?auto=format&fit=crop&w=900&q=80"
+                src={afterImage}
                 alt="Fitness transformation after phase"
+                width="853"
+                height="640"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <span className="before-label">Before</span>

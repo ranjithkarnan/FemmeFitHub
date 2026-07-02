@@ -100,7 +100,15 @@ function Programs({ limit, showIntro = true }) {
               transition={{ delay: index * 0.04 }}
             >
               <div className="program-image">
-                <img src={image} alt={programAltText[title] || `${title} class at Femme Fit Hub ladies fitness studio`} loading="lazy" />
+                <img
+                  src={image}
+                  alt={programAltText[title] || `${title} class at Femme Fit Hub ladies fitness studio`}
+                  loading="lazy"
+                  decoding="async"
+                  width="960"
+                  height="640"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 260px, 220px"
+                />
                 {popular && <span className="popular-badge">Most Popular</span>}
               </div>
               <div className="program-content">

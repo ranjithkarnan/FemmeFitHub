@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
-import womenLogo from '../assets/logo/femme-fit-logo.png';
+import womenLogo from '../assets/logo/femme-fit-logo-160.webp';
 import { useContactModal } from '../context/ContactModalContext.jsx';
 import { PhoneCall } from "lucide-react";
 
@@ -71,7 +71,13 @@ function Navbar() {
       <nav className="navbar container" aria-label="Main navigation">
         <NavLink className="brand" to="/" aria-label="Femme Fit Hub home" onClick={closeMenu}>
           <span className="brand-mark">
-            <img src={womenLogo} size={25} alt="Femme Fit Hub women-only fitness studio logo" />
+            <img
+              src={womenLogo}
+              width="72"
+              height="72"
+              alt="Femme Fit Hub women-only fitness studio logo"
+              decoding="async"
+            />
           </span>
           <span className="brand-wordmark">
             <span className="brand-femme" aria-hidden="true">

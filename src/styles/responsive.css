@@ -330,7 +330,8 @@
     width: 100%;
   }
 
-  .hero-video-wrap video {
+  .hero-video-wrap video,
+  .hero-video-wrap img {
     height: 100%;
   }
 
@@ -1567,3 +1568,18 @@
   }
 }
 
+@media (max-width: 480px) {
+  .local-seo-page ~ .floating-actions,
+  .floating-actions {
+    right: 16px;
+    bottom: 90px;
+  }
+}
+
+@media (max-width: 390px) {
+  .floating-actions a,
+  .floating-actions button {
+    width: 44px;
+    height: 44px;
+  }
+}

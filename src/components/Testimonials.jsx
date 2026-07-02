@@ -25,9 +25,9 @@ function Testimonials() {
           </div>
 
           <div>
-            <div className="stars" aria-label="5 star rating">
+            <div className="stars" role="img" aria-label="5 out of 5 star rating">
               {[...Array(5)].map((_, starIndex) => (
-                <Star fill="currentColor" size={16} key={starIndex} />
+                <Star fill="currentColor" size={16} key={starIndex} aria-hidden="true" />
               ))}
             </div>
             <span>Based on 80+ Google Reviews</span>
@@ -49,9 +49,9 @@ function Testimonials() {
                   </div>
                 </div>
 
-                <div className="review-stars" aria-label={`${review.rating} star rating`}>
+                <div className="review-stars" role="img" aria-label={`${review.rating} out of 5 star rating`}>
                   {[...Array(review.rating)].map((_, starIndex) => (
-                    <Star fill="currentColor" size={16} key={starIndex} />
+                    <Star fill="currentColor" size={16} key={starIndex} aria-hidden="true" />
                   ))}
                 </div>
 
@@ -78,7 +78,7 @@ function Testimonials() {
         <div className="google-trust-pills" aria-label="Femme Fit Hub review highlights">
           {trustStats.map((stat) => (
             <span key={stat}>
-              <Star fill="currentColor" size={15} />
+              <Star fill="currentColor" size={15} aria-hidden="true" />
               {stat}
             </span>
           ))}

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
@@ -12,27 +12,25 @@ import ChallengeNotification from './components/ChallengeNotification.jsx';
 import ExitPopup from './components/ExitPopup.jsx';
 import Footer from './components/Footer.jsx';
 import Home from './pages/Home.jsx';
-import About from './pages/About.jsx';
-import ProgramsPage from './pages/ProgramsPage.jsx';
-import WhyChooseUsPage from './pages/WhyChooseUs.jsx';
-import TrainersPage from './pages/TrainersPage.jsx';
-import MembershipPage from './pages/MembershipPage.jsx';
-// import GalleryPage from './pages/GalleryPage.jsx';
-import StoriesPage from './pages/StoriesPage.jsx';
-import CalculatorPage from './pages/CalculatorPage.jsx';
-import SchedulePage from './pages/SchedulePage.jsx';
-import ChallengesPage from './pages/ChallengesPage.jsx';
-import CommunityPage from './pages/CommunityPage.jsx';
-import FitnessTipsPage from './pages/FitnessTipsPage.jsx';
-import ContactPage from './pages/ContactPage.jsx';
-import LadiesGymValasaravakkamPage from './pages/LadiesGymValasaravakkamPage.jsx';
-import WeightLossTrainingValasaravakkamPage from './pages/WeightLossTrainingValasaravakkamPage.jsx';
-import WomenOnlyGymChennaiPage from './pages/WomenOnlyGymChennaiPage.jsx';
-import GymMembershipFeesValasaravakkamPage from './pages/GymMembershipFeesValasaravakkamPage.jsx';
-import FaqPage from './pages/FaqPage.jsx';
-import AdminLogin from './admin/AdminLogin.jsx';
-import AdminDashboard from './admin/AdminDashboard.jsx';
 import ProtectedAdminRoute from './admin/ProtectedAdminRoute.jsx';
+
+const About = lazy(() => import('./pages/About.jsx'));
+const ProgramsPage = lazy(() => import('./pages/ProgramsPage.jsx'));
+const WhyChooseUsPage = lazy(() => import('./pages/WhyChooseUs.jsx'));
+const TrainersPage = lazy(() => import('./pages/TrainersPage.jsx'));
+const MembershipPage = lazy(() => import('./pages/MembershipPage.jsx'));
+const StoriesPage = lazy(() => import('./pages/StoriesPage.jsx'));
+const CalculatorPage = lazy(() => import('./pages/CalculatorPage.jsx'));
+const SchedulePage = lazy(() => import('./pages/SchedulePage.jsx'));
+const ChallengesPage = lazy(() => import('./pages/ChallengesPage.jsx'));
+const ContactPage = lazy(() => import('./pages/ContactPage.jsx'));
+const LadiesGymValasaravakkamPage = lazy(() => import('./pages/LadiesGymValasaravakkamPage.jsx'));
+const WeightLossTrainingValasaravakkamPage = lazy(() => import('./pages/WeightLossTrainingValasaravakkamPage.jsx'));
+const WomenOnlyGymChennaiPage = lazy(() => import('./pages/WomenOnlyGymChennaiPage.jsx'));
+const GymMembershipFeesValasaravakkamPage = lazy(() => import('./pages/GymMembershipFeesValasaravakkamPage.jsx'));
+const FaqPage = lazy(() => import('./pages/FaqPage.jsx'));
+const AdminLogin = lazy(() => import('./admin/AdminLogin.jsx'));
+const AdminDashboard = lazy(() => import('./admin/AdminDashboard.jsx'));
 
 function PublicLayout() {
   const [loading, setLoading] = useState(true);
@@ -54,7 +52,9 @@ function PublicLayout() {
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.28, ease: 'easeOut' }}
         >
-          <Outlet />
+          <Suspense fallback={<div className="route-loading" role="status" aria-label="Loading page" />}>
+            <Outlet />
+          </Suspense>
         </motion.main>
       </AnimatePresence>
       <Footer />
@@ -71,13 +71,15 @@ function PublicLayout() {
 function App() {
   return (
     <Routes>
-      <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/admin/login" element={<Suspense fallback={<div className="route-loading" />}><AdminLogin /></Suspense>} />
       <Route
         path="/admin/dashboard"
         element={(
-          <ProtectedAdminRoute>
-            <AdminDashboard />
-          </ProtectedAdminRoute>
+          <Suspense fallback={<div className="route-loading" />}>
+            <ProtectedAdminRoute>
+              <AdminDashboard />
+            </ProtectedAdminRoute>
+          </Suspense>
         )}
       />
 

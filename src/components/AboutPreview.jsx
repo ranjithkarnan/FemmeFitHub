@@ -8,10 +8,7 @@ import {
   Trophy,
   UsersRound,
 } from "lucide-react";
-import Treadmill from "../assets/images/TreadMils.jpeg"; // Import the image file
-import Floor from "../assets/images/Floor.jpeg"; // Import the image file
-import GymEquipment from "../assets/images/GymEquipment.jpeg"; // Import the image file
-import Treadmill2 from "../assets/images/TreadMils2.jpeg"; // Import the image file
+import Treadmill from "../assets/images/TreadMils-960.webp";
 import { useContactModal } from "../context/ContactModalContext.jsx";
 import { CheckCircle2 } from "lucide-react";
 
@@ -154,6 +151,10 @@ function AboutPreview({ full = false }) {
             <img
               src={Treadmill}
               alt="Trainer helping a member with strength training"
+              width="960"
+              height="640"
+              loading="lazy"
+              decoding="async"
             />
             <div className="glass-note">
               <strong>Women-First Coaching</strong>

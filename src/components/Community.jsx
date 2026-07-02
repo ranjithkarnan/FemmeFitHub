@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import spotlightImage from '../assets/images/TreadMils2-960.webp';
 
 const events = [
   { title: 'Sunrise Strength Club', date: 'Every Monday', note: 'Member-only lifting circle' },
@@ -38,7 +39,14 @@ function Community() {
 
       <article className="spotlight-card">
         <div className="spotlight-image">
-          <img src="https://images.unsplash.com/photo-1609899464726-209befaac5bc?auto=format&fit=crop&w=600&q=80" alt="Member spotlight portrait" />
+          <img
+            src={spotlightImage}
+            alt="Member spotlight portrait"
+            width="480"
+            height="640"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <div className="spotlight-content">
           <span>Member Spotlight</span>

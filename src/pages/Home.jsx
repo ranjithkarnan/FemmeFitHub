@@ -108,7 +108,15 @@ function Home() {
                   className={`gallery-card ${index === 0 ? "featured" : ""}`}
                   key={item.title}
                 >
-                  <img src={item.image} alt={item.alt} loading="lazy" />
+                  <img
+                    src={item.image}
+                    alt={item.alt}
+                    loading="lazy"
+                    decoding="async"
+                    width="960"
+                    height="640"
+                    sizes="(max-width: 760px) 100vw, 33vw"
+                  />
                   <div className="gallery-overlay">
                     <span>{item.title}</span>
                   </div>

@@ -8,10 +8,8 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
-import  Treadmill from"../assets/images/TreadMils.jpeg"; // Import the image file
-import Floor from "../assets/images/Floor.jpeg"; // Import the image file
-import GymEquipment from "../assets/images/GymEquipment.jpeg"; // Import the image file  
-import Treadmill2 from "../assets/images/TreadMils2.jpeg"; // Import the image file
+import heroPoster from "../assets/images/hero-poster.webp";
+import floorImage from "../assets/images/Floor-960.webp";
 import { useContactModal } from '../context/ContactModalContext.jsx';
 
 
@@ -66,20 +64,15 @@ function Hero() {
   return (
     <section className="hero cinematic-hero">
       <motion.div className="hero-video-wrap" style={{ y }} aria-hidden="true">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=80"
-          // poster={Floor}
-          alt="Weight loss transformation support at Femme Fit Hub fitness studio"
-        >
-          <source
-            src="https://cdn.coverr.co/videos/coverr-working-out-in-the-gym-9955/1080p.mp4"
-            type="video/mp4"
-          />
-        </video>
+        <img
+          src={heroPoster}
+          alt=""
+          width="1203"
+          height="900"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
       </motion.div>
       <div className="hero-gradient" aria-hidden="true" />
       <div className="lux-particles" aria-hidden="true">
@@ -136,9 +129,13 @@ function Hero() {
           transition={{ duration: 0.9, delay: 0.15 }}
         >
           <img
-            src={Floor}
+            src={floorImage}
             alt="Women training at Femme Fit Hub ladies gym in Valasaravakkam Chennai"
+            width="856"
+            height="640"
             loading="eager"
+            decoding="async"
+            fetchPriority="high"
           />
           <div
             ref={statsRef}

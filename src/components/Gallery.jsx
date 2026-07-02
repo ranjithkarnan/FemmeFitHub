@@ -27,7 +27,15 @@ function Gallery({ transformationsOnly = false }) {
           <div className="gallery-grid">
             {galleryImages.map((item) => (
               <figure className="gallery-item" key={item.title} onClick={() => setPreview(item)}>
-                <img src={item.image} alt={item.alt} loading="lazy" />
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  loading="lazy"
+                  decoding="async"
+                  width="960"
+                  height="640"
+                  sizes="(max-width: 760px) 100vw, 33vw"
+                />
                 <figcaption>{item.title}</figcaption>
               </figure>
             ))}
@@ -36,7 +44,7 @@ function Gallery({ transformationsOnly = false }) {
       </div>
       {preview && (
         <button className="lightbox" type="button" onClick={() => setPreview(null)} aria-label="Close gallery preview">
-          <img src={preview.image} alt={preview.alt} />
+          <img src={preview.image} alt={preview.alt} width="960" height="640" decoding="async" />
           <span>{preview.title}</span>
         </button>
       )}

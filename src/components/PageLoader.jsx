@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import logo from '../assets/logo/femme-fit-logo.png';
+import logo from '../assets/logo/femme-fit-logo-160.webp';
 import './PageLoader.css';
 
 const quotes = [
@@ -86,7 +86,7 @@ function PageLoader({ onFinish }) {
 
       <div className="loader-card">
         <div className="loader-logo-ring">
-          <img src={logo} alt="Femme Fit Hub" />
+          <img src={logo} width="160" height="160" alt="Femme Fit Hub" decoding="async" />
         </div>
 
         {/* <h1>Femme Fit Hub</h1> */}

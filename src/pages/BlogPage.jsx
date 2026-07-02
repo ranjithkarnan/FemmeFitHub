@@ -14,7 +14,15 @@ function BlogPage() {
         <div className="container blog-grid">
           {blogs.map((blog) => (
             <article className="blog-card lift-card" key={blog.title}>
-              <img src={blog.image} alt={blog.title} />
+              <img
+                src={blog.image}
+                alt={blog.title}
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 760px) 100vw, 33vw"
+              />
               <div>
                 <span>{blog.category} · {blog.date}</span>
                 <h2>{blog.title}</h2>

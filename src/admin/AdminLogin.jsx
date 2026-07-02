@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, LockKeyhole, Mail, ShieldCheck, Sparkles } from 'lucide-react';
+import loginVisual from '../assets/images/GymEquipment-960.webp';
 import './admin.css';
 
 const ADMIN_EMAIL = 'admin@femmefithub.com';
 const ADMIN_PASSWORD = 'femme123';
-const loginVisual = 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=900&q=80';
 
 function AdminLogin() {
   const navigate = useNavigate();
@@ -105,7 +105,14 @@ function AdminLogin() {
         </form>
 
         <aside className="admin-login-panel" aria-label="Admin portal visual">
-          <img src={loginVisual} alt="Woman training with dumbbells" />
+          <img
+            src={loginVisual}
+            alt="Woman training with dumbbells"
+            width="853"
+            height="640"
+            loading="lazy"
+            decoding="async"
+          />
           <div className="admin-login-visual-copy">
             <span>Studio Intelligence</span>
             <h2>Track leads, classes, and member momentum beautifully.</h2>

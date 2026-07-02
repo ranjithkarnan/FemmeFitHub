@@ -492,7 +492,7 @@ p {
       rgba(111, 78, 55, 0.74),
       rgba(244, 197, 66, 0.58)
     ),
-    url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=80")
+    url("/hero-poster.webp")
       center/cover;
 }
 
@@ -585,7 +585,7 @@ p {
       rgba(111, 78, 55, 0.86),
       rgba(244, 197, 66, 0.66)
     ),
-    url("https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1600&q=80")
+    url("/hero-poster.webp")
       center/cover;
 }
 
@@ -1656,10 +1656,12 @@ textarea:focus {
   inset: 0;
 }
 
-.hero-video-wrap video {
+.hero-video-wrap video,
+.hero-video-wrap img {
   width: 100%;
   height: 115%;
   object-fit: cover;
+  display: block;
   filter: saturate(1.08) contrast(1.08);
 }
 
@@ -7357,7 +7359,7 @@ textarea::placeholder {
   color: #fff8f0;
   background:
     linear-gradient(180deg, rgba(43, 29, 19, 0.12), rgba(43, 29, 19, 0.88)),
-    url("https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=900&q=80")
+    url("/hero-poster.webp")
       center/cover;
 }
 
@@ -9680,6 +9682,28 @@ body.modal-open {
   width: 100%;
 }
 
+.route-loading {
+  min-height: 42vh;
+  display: grid;
+  place-items: center;
+}
+
+.route-loading::after {
+  content: "";
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 4px solid rgba(111, 78, 55, 0.14);
+  border-top-color: var(--accent);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .site-sticky-header .site-header {
   position: relative;
   top: auto;
@@ -10346,6 +10370,375 @@ button.cta-card {
   .local-sticky-cta button {
     width: 100%;
     justify-content: center;
+  }
+}
+
+/* SEO landing page mobile hardening */
+.local-seo-page {
+  overflow-x: clip;
+}
+
+.local-seo-page *,
+.local-seo-page *::before,
+.local-seo-page *::after {
+  min-width: 0;
+}
+
+.local-seo-page h1,
+.local-seo-page h2,
+.local-seo-page h3,
+.local-seo-page p,
+.local-seo-page a,
+.local-seo-page button,
+.local-seo-page li,
+.local-seo-page span {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.local-seo-page img,
+.local-seo-page video {
+  max-width: 100%;
+}
+
+.local-seo-page img {
+  height: auto;
+}
+
+.local-seo-page .section-header h2,
+.local-seo-page .local-final-cta h2,
+.local-seo-page .local-seo-premium-content h2 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  line-height: 1.12;
+}
+
+.local-seo-page p,
+.local-seo-page li {
+  font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+}
+
+@media (min-width: 761px) {
+  .local-premium-copy {
+    max-width: 650px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .local-premium-hero-grid {
+    gap: 38px;
+  }
+
+  .local-conversion-strip,
+  .local-seo-premium-content {
+    gap: 22px;
+  }
+
+  .local-timeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .local-timeline article:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .local-seo-page .container {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 20px;
+  }
+
+  .local-seo-page .section {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .local-premium-hero {
+    padding: 70px 0 56px;
+  }
+
+  .local-premium-copy {
+    max-width: 100%;
+  }
+
+  .local-premium-copy h1 {
+    max-width: 100%;
+    font-size: clamp(2.1rem, 7vw, 4.8rem);
+    line-height: 1.08;
+    margin-bottom: 16px;
+  }
+
+  .local-premium-copy p {
+    max-width: 100%;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    line-height: 1.55;
+  }
+
+  .local-premium-actions,
+  .local-final-cta div {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .local-premium-actions .btn,
+  .local-final-cta .btn,
+  .local-review-grid + .center-action .btn,
+  .local-membership-grid button {
+    width: 100%;
+    max-width: 340px;
+    justify-content: center;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .local-premium-badges {
+    gap: 10px;
+  }
+
+  .local-premium-badges span,
+  .local-hero-micro-panel span {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  .local-hero-micro-panel {
+    padding: 10px;
+  }
+
+  .local-hero-image-card {
+    border-radius: 28px;
+  }
+
+  .local-premium-visual img,
+  .local-premium-visual .local-hero-image-card img {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .local-floating-stats {
+    width: 100%;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .local-floating-stats article {
+    min-width: 0;
+    padding: 13px 10px;
+    text-align: center;
+  }
+
+  .local-floating-stats strong {
+    font-size: clamp(1.35rem, 6vw, 1.75rem);
+  }
+
+  .local-floating-stats span {
+    font-size: 0.74rem;
+    line-height: 1.25;
+  }
+
+  .local-conversion-strip {
+    border-radius: 26px;
+  }
+
+  .local-conversion-cards,
+  .local-benefits-grid,
+  .local-membership-grid,
+  .local-program-cards,
+  .local-review-grid,
+  .local-gallery-grid,
+  .local-seo-premium-content,
+  .local-timeline {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .local-timeline article:last-child {
+    grid-column: auto;
+  }
+
+  .local-benefits-grid article,
+  .local-membership-grid article,
+  .local-review-grid article,
+  .local-program-cards article,
+  .local-timeline article,
+  .local-conversion-cards article,
+  .local-seo-premium-content > div:first-child,
+  .local-seo-highlight-card,
+  .local-accordion-card {
+    padding: 20px;
+  }
+
+  .local-program-cards article {
+    align-items: start;
+  }
+
+  .local-program-cards a {
+    width: fit-content;
+  }
+
+  .local-seo-premium-content li {
+    padding: 12px;
+  }
+
+  .local-seo-highlight-card article {
+    padding: 18px 18px 18px 48px;
+  }
+
+  .local-final-cta {
+    padding: 34px 20px;
+    border-radius: 28px;
+  }
+}
+
+@media (max-width: 576px) {
+  .local-premium-hero-grid {
+    gap: 28px;
+  }
+
+  .local-premium-copy h1 {
+    font-size: clamp(2rem, 9.2vw, 2.9rem);
+    line-height: 1.1;
+  }
+
+  .local-premium-copy p {
+    font-size: 1rem;
+  }
+
+  .local-hero-image-note {
+    position: static;
+    margin: 10px;
+    transform: none;
+  }
+
+  .local-floating-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .local-floating-stats article {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    text-align: left;
+  }
+
+  .local-conversion-strip-section {
+    margin-top: -28px;
+  }
+
+  .local-conversion-strip,
+  .local-final-cta,
+  .local-accordion-card,
+  .local-seo-premium-content > div:first-child,
+  .local-seo-highlight-card {
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .local-seo-page .container {
+    padding-inline: 18px;
+  }
+
+  .local-premium-actions .btn,
+  .local-final-cta .btn,
+  .local-membership-grid button {
+    max-width: 100%;
+  }
+
+  .local-premium-badges span,
+  .local-hero-micro-panel span,
+  .local-seo-premium-content li {
+    font-size: 0.9rem;
+  }
+
+  .local-accordion-list button {
+    padding: 16px;
+  }
+
+  .local-accordion-list p {
+    padding-inline: 16px;
+  }
+
+  .floating-actions {
+    right: 16px;
+    bottom: 90px;
+  }
+
+  .floating-actions a,
+  .floating-actions button {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 390px) {
+  .local-seo-page .container {
+    padding-inline: 16px;
+  }
+
+  .local-premium-hero {
+    padding-top: 58px;
+  }
+
+  .local-premium-copy h1 {
+    font-size: clamp(1.9rem, 10vw, 2.45rem);
+  }
+
+  .local-premium-actions,
+  .local-final-cta div {
+    align-items: center;
+  }
+
+  .local-benefits-grid article,
+  .local-membership-grid article,
+  .local-review-grid article,
+  .local-program-cards article,
+  .local-timeline article,
+  .local-conversion-cards article,
+  .local-seo-premium-content > div:first-child,
+  .local-seo-highlight-card,
+  .local-accordion-card {
+    padding: 18px;
+  }
+
+  .local-seo-highlight-card article {
+    padding: 16px 16px 16px 44px;
+  }
+}
+
+@media (max-width: 360px) {
+  .local-seo-page .container {
+    padding-inline: 14px;
+  }
+
+  .local-premium-copy h1 {
+    font-size: 1.9rem;
+  }
+
+  .local-premium-copy p,
+  .local-conversion-copy p,
+  .local-benefits-grid p,
+  .local-membership-grid p,
+  .local-review-grid p,
+  .local-program-cards p,
+  .local-seo-premium-content p,
+  .local-seo-highlight-card p {
+    line-height: 1.5;
+  }
+
+  .local-floating-stats article {
+    padding: 12px;
+  }
+
+  .floating-actions a,
+  .floating-actions button {
+    width: 44px;
+    height: 44px;
   }
 }
 

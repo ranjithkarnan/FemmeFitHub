@@ -157,7 +157,15 @@ function LocalSeoLandingPage({ page }) {
             transition={{ duration: 0.75, delay: 0.12 }}
           >
             <div className="local-hero-image-card">
-              <img src={heroImage.image} alt="Women achieving fitness goals at Femme Fit Hub Valasaravakkam" />
+              <img
+                src={heroImage.image}
+                alt="Women achieving fitness goals at Femme Fit Hub Valasaravakkam"
+                width="960"
+                height="640"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
+              />
               <div className="local-hero-image-note">
                 <strong>Women-first coaching</strong>
                 <span>Strength • Wellness • Confidence</span>
@@ -268,12 +276,18 @@ function LocalSeoLandingPage({ page }) {
           <div className="section-header centered">
             <span className="section-kicker">Google Reviews</span>
             <h2>Loved by Women Across Valasaravakkam</h2>
-            <p>★★★★★ 5★ Based on 79+ Google Reviews</p>
+            <p>
+              <span role="img" aria-label="5 out of 5 star rating">★★★★★ 5★</span>
+              {' '}Based on 79+ Google Reviews
+            </p>
           </div>
           <div className="local-review-grid">
             {reviewPreview.map((review) => (
               <article key={review.name}>
-                <div><FcGoogle size={22} /><strong>5★</strong></div>
+                <div>
+                  <FcGoogle size={22} aria-hidden="true" />
+                  <strong role="img" aria-label="5 out of 5 star rating">5★</strong>
+                </div>
                 <p>{review.text}</p>
                 <span>{review.name}</span>
               </article>
@@ -359,7 +373,15 @@ function LocalSeoLandingPage({ page }) {
           <div className="local-gallery-grid">
             {galleryPreview.map((item, index) => (
               <article className={index === 0 ? 'featured' : ''} key={item.title}>
-                <img src={item.image} alt={item.alt} />
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  width="960"
+                  height="640"
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(max-width: 760px) 100vw, 33vw"
+                />
                 <span>{item.title}</span>
               </article>
             ))}

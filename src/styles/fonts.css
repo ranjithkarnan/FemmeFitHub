@@ -1,21 +1,5 @@
 @font-face {
   font-family: 'Eurofurence';
-  src: url('../assets/fonts/eurof35.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Eurofurence';
-  src: url('../assets/fonts/eurof55.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Eurofurence';
   src: url('../assets/fonts/eurof75.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;

@@ -1,10 +1,14 @@
 import { Activity, Baby, Dumbbell, Flame, HeartPulse, Salad, Sparkles, UserRoundCheck } from 'lucide-react';
+import floorImage from '../assets/images/Floor-960.webp';
+import treadmillImage from '../assets/images/TreadMils-960.webp';
+import treadmillPortraitImage from '../assets/images/TreadMils2-960.webp';
+import equipmentImage from '../assets/images/GymEquipment-960.webp';
 
 export const programs = [
   {
     title: 'Weight Loss Training',
     icon: Flame,
-    image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80',
+    image: treadmillImage,
     description: 'Structured fat-loss workouts with habit coaching, weekly tracking, and energizing group support.',
     duration: '45 min',
     difficulty: 'Intermediate',
@@ -14,7 +18,7 @@ export const programs = [
   {
     title: 'Strength Training',
     icon: Dumbbell,
-    image: 'https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?auto=format&fit=crop&w=900&q=80',
+    image: equipmentImage,
     description: 'Progressive resistance sessions for lean muscle, posture, bone health, and everyday confidence.',
     duration: '50 min',
     difficulty: 'All levels',
@@ -24,7 +28,7 @@ export const programs = [
   {
     title: 'Zumba',
     icon: Sparkles,
-    image: 'https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?auto=format&fit=crop&w=900&q=80',
+    image: floorImage,
     description: 'High-energy dance fitness with upbeat playlists, joyful movement, and serious calorie burn.',
     duration: '45 min',
     difficulty: 'All levels',
@@ -34,7 +38,7 @@ export const programs = [
   {
     title: 'Yoga',
     icon: HeartPulse,
-    image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=80',
+    image: floorImage,
     description: 'Mobility, breathwork, flexibility, and recovery sessions designed for calm strength.',
     duration: '60 min',
     difficulty: 'Beginner',
@@ -44,7 +48,7 @@ export const programs = [
   {
     title: 'Personal Training',
     icon: UserRoundCheck,
-    image: 'https://images.unsplash.com/photo-1571019613914-85f342c6a11e?auto=format&fit=crop&w=900&q=80',
+    image: equipmentImage,
     description: 'One-on-one coaching with custom plans, form correction, and goal-specific accountability.',
     duration: '60 min',
     difficulty: 'Custom',
@@ -54,7 +58,7 @@ export const programs = [
   {
     title: 'Cardio Fitness',
     icon: Activity,
-    image: 'https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=900&q=80',
+    image: treadmillImage,
     description: 'Heart-healthy treadmill, cycling, HIIT, and circuit sessions for stamina and endurance.',
     duration: '40 min',
     difficulty: 'Intermediate',
@@ -64,7 +68,7 @@ export const programs = [
   {
     title: 'Postnatal Fitness',
     icon: Baby,
-    image: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=900&q=80',
+    image: treadmillPortraitImage,
     description: 'Gentle, guided rebuilding for core stability, mobility, strength, and renewed energy.',
     duration: '45 min',
     difficulty: 'Gentle',
@@ -74,7 +78,7 @@ export const programs = [
   {
     title: 'Nutrition Guidance',
     icon: Salad,
-    image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=80',
+    image: floorImage,
     description: 'Balanced meal guidance that supports fitness goals without crash diets or confusion.',
     duration: 'Consult',
     difficulty: 'Personalized',
