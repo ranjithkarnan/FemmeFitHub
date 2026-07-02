@@ -65,11 +65,11 @@ function PageLoader({ onFinish }) {
   const [quote, setQuote] = useState('Strong women build strong routines.');
 
   useEffect(() => {
-    const frameId = window.requestAnimationFrame(() => {
-      setQuote(getNextQuote());
-    });
+    const scheduleIdle = window.requestIdleCallback || ((callback) => window.setTimeout(callback, 1200));
+    const cancelIdle = window.cancelIdleCallback || window.clearTimeout;
+    const idleId = scheduleIdle(() => setQuote(getNextQuote()), { timeout: 1500 });
 
-    return () => window.cancelAnimationFrame(frameId);
+    return () => cancelIdle(idleId);
   }, []);
 
   useEffect(() => {

@@ -34,17 +34,43 @@ const AdminDashboard = lazy(() => import('./admin/AdminDashboard.jsx'));
 
 function PublicLayout() {
   const [loading, setLoading] = useState(true);
-  const [showNonCriticalUi, setShowNonCriticalUi] = useState(false);
+  const [showFooter, setShowFooter] = useState(false);
+  const [enableMarketingPopups, setEnableMarketingPopups] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     if (loading) return undefined;
 
-    const scheduleIdle = window.requestIdleCallback || ((callback) => window.setTimeout(callback, 900));
+    const scheduleIdle = window.requestIdleCallback || ((callback, options) => window.setTimeout(callback, options?.timeout || 1500));
     const cancelIdle = window.cancelIdleCallback || window.clearTimeout;
-    const idleId = scheduleIdle(() => setShowNonCriticalUi(true), { timeout: 1800 });
+    const idleId = scheduleIdle(() => setShowFooter(true), { timeout: 2500 });
 
     return () => cancelIdle(idleId);
+  }, [loading]);
+
+  useEffect(() => {
+    if (loading) return undefined;
+
+    const scheduleIdle = window.requestIdleCallback || ((callback, options) => window.setTimeout(callback, options?.timeout || 4000));
+    const cancelIdle = window.cancelIdleCallback || window.clearTimeout;
+    let idleId;
+
+    const startMarketingUi = () => {
+      idleId = scheduleIdle(() => setEnableMarketingPopups(true), { timeout: 4000 });
+    };
+
+    if (document.readyState === 'complete') {
+      startMarketingUi();
+    } else {
+      window.addEventListener('load', startMarketingUi, { once: true });
+    }
+
+    return () => {
+      window.removeEventListener('load', startMarketingUi);
+      if (idleId) {
+        cancelIdle(idleId);
+      }
+    };
   }, [loading]);
 
   return (
@@ -68,13 +94,15 @@ function PublicLayout() {
           </Suspense>
         </motion.main>
       </AnimatePresence>
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
+      {showFooter && (
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
+      )}
       <FloatingActions />
       <BottomNav />
       <ScrollToTop />
-      {showNonCriticalUi && (
+      {enableMarketingPopups && (
         <Suspense fallback={null}>
           <ChallengeNotification />
           <BookingPopup />
