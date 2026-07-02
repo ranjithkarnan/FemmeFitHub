@@ -10,12 +10,13 @@
     radial-gradient(circle at bottom right, rgba(244, 197, 66, 0.12), transparent 35%),
     linear-gradient(145deg, #2b1d13, #4b3223);
   overflow: hidden;
-  transition: opacity 0.45s ease, visibility 0.45s ease;
+  transition: opacity 0.45s ease;
+  will-change: opacity;
 }
 
 .page-loader.hide {
   opacity: 0;
-  visibility: hidden;
+  pointer-events: none;
 }
 
 .loader-glow {
@@ -56,6 +57,7 @@
     0 16px 36px rgba(244, 197, 66, 0.25),
     0 0 0 8px rgba(244, 197, 66, 0.08);
   animation: logoPulse 1.8s ease-in-out infinite;
+  will-change: transform;
 }
 
 .loader-logo-ring img {
@@ -95,15 +97,18 @@
 .loader-line span {
   display: block;
   height: 100%;
-  width: 0;
+  width: 100%;
   border-radius: inherit;
   background: linear-gradient(135deg, #f4c542, #ffd966);
+  transform: scaleX(0);
+  transform-origin: left center;
   animation: loaderProgress 2.1s ease forwards;
+  will-change: transform;
 }
 
 @keyframes loaderProgress {
   to {
-    width: 100%;
+    transform: scaleX(1);
   }
 }
 
@@ -123,16 +128,10 @@
   0%,
   100% {
     transform: scale(1);
-    box-shadow:
-      0 16px 36px rgba(244, 197, 66, 0.25),
-      0 0 0 8px rgba(244, 197, 66, 0.08);
   }
 
   50% {
     transform: scale(1.04);
-    box-shadow:
-      0 22px 48px rgba(244, 197, 66, 0.34),
-      0 0 0 14px rgba(244, 197, 66, 0.06);
   }
 }
 

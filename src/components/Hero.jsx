@@ -10,8 +10,10 @@ import {
 } from "lucide-react";
 import heroPoster480 from "../assets/images/hero-poster-480.webp";
 import heroPoster768 from "../assets/images/hero-poster-768.webp";
+import heroPoster360 from "../assets/images/hero-poster-360.webp";
 import heroPoster1200 from "../assets/images/hero-poster-1200.webp";
 import floorImage480 from "../assets/images/Floor-480.webp";
+import floorImage768 from "../assets/images/Floor-768.webp";
 import floorImage from "../assets/images/Floor-960.webp";
 import { useContactModal } from '../context/ContactModalContext.jsx';
 
@@ -68,6 +70,7 @@ function Hero() {
     <section className="hero cinematic-hero">
       <motion.div className="hero-video-wrap" style={{ y }} aria-hidden="true">
         <picture>
+          <source media="(max-width: 380px)" srcSet={heroPoster360} />
           <source media="(max-width: 480px)" srcSet={heroPoster480} />
           <source media="(max-width: 768px)" srcSet={heroPoster768} />
           <img
@@ -136,8 +139,8 @@ function Hero() {
           transition={{ duration: 0.9, delay: 0.15 }}
         >
           <img
-            src={floorImage}
-            srcSet={`${floorImage480} 480w, ${floorImage} 960w`}
+            src={floorImage480}
+            srcSet={`${floorImage480} 480w, ${floorImage768} 768w, ${floorImage} 960w`}
             sizes="(max-width: 640px) 92vw, (max-width: 980px) 70vw, 42vw"
             alt="Women training at Femme Fit Hub ladies gym in Valasaravakkam Chennai"
             width="856"

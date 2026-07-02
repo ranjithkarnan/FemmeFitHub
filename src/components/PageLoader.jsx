@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../assets/logo/femme-fit-logo-160.webp';
 import './PageLoader.css';
 
@@ -62,7 +62,15 @@ function getNextQuote() {
 
 function PageLoader({ onFinish }) {
   const [hide, setHide] = useState(false);
-  const quote = useMemo(() => getNextQuote(), []);
+  const [quote, setQuote] = useState('Strong women build strong routines.');
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      setQuote(getNextQuote());
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, []);
 
   useEffect(() => {
     let finishTimer;

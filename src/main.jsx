@@ -6,7 +6,6 @@ import { ContactModalProvider } from './context/ContactModalContext.jsx';
 import './styles/variables.css';
 import './styles/global.css';
 import './styles/responsive.css';
-import './styles/fonts.css';
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
