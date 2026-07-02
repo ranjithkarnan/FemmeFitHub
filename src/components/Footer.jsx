@@ -66,7 +66,7 @@ function Footer() {
         <div className="footer-column footer-contact">
           <h3>Contact</h3>
           <p>+91 8220138783</p>
-          <p>queens@femmefithub.com</p>
+          <p>hello@femmefithub.com</p>
           <p>
             No 2/2, first floor, Sannathi street, Mari Amman Kovil St,
             Valasaravakkam, Tamil Nadu 600087

@@ -87,6 +87,22 @@ export const challenges = [
     featured: false,
     status: 'active',
     shortDescription: 'Reset your strength routine with guided weekly progress checkpoints.'
+  },
+    {
+    id: 'july-strength-reset-2026',
+    name: '30-Day Strength point Reset',
+    type: 'Strength',
+    category: 'month',
+    startDate: '2026-07-07',
+    endDate: '2026-07-07',
+    displayDates: 'July 1 - July 31',
+    difficulty: 'Intermediate',
+    trainer: 'Kayathri Murugan',
+    reward: 'Free Progress Consultation',
+    progress: 24,
+    featured: false,
+    status: 'upcoming',
+    shortDescription: 'Reset your strength routine with guided weekly progress checkpoints.'
   }
 ];
 
