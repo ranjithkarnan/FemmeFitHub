@@ -331,6 +331,7 @@
   }
 
   .hero-video-wrap video,
+  .hero-video-wrap picture,
   .hero-video-wrap img {
     height: 100%;
   }

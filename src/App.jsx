@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
@@ -6,14 +6,14 @@ import TopAnnouncementBar from './components/TopAnnouncementBar.jsx';
 import FloatingActions from './components/FloatingActions.jsx';
 import BottomNav from './components/BottomNav.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
-import BookingPopup from './components/BookingPopup.jsx';
 import PageLoader from './components/PageLoader.jsx';
-import ChallengeNotification from './components/ChallengeNotification.jsx';
-import ExitPopup from './components/ExitPopup.jsx';
-import Footer from './components/Footer.jsx';
 import Home from './pages/Home.jsx';
 import ProtectedAdminRoute from './admin/ProtectedAdminRoute.jsx';
 
+const Footer = lazy(() => import('./components/Footer.jsx'));
+const BookingPopup = lazy(() => import('./components/BookingPopup.jsx'));
+const ChallengeNotification = lazy(() => import('./components/ChallengeNotification.jsx'));
+const ExitPopup = lazy(() => import('./components/ExitPopup.jsx'));
 const About = lazy(() => import('./pages/About.jsx'));
 const ProgramsPage = lazy(() => import('./pages/ProgramsPage.jsx'));
 const WhyChooseUsPage = lazy(() => import('./pages/WhyChooseUs.jsx'));
@@ -34,7 +34,18 @@ const AdminDashboard = lazy(() => import('./admin/AdminDashboard.jsx'));
 
 function PublicLayout() {
   const [loading, setLoading] = useState(true);
+  const [showNonCriticalUi, setShowNonCriticalUi] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    if (loading) return undefined;
+
+    const scheduleIdle = window.requestIdleCallback || ((callback) => window.setTimeout(callback, 900));
+    const cancelIdle = window.cancelIdleCallback || window.clearTimeout;
+    const idleId = scheduleIdle(() => setShowNonCriticalUi(true), { timeout: 1800 });
+
+    return () => cancelIdle(idleId);
+  }, [loading]);
 
   return (
     <>
@@ -57,13 +68,19 @@ function PublicLayout() {
           </Suspense>
         </motion.main>
       </AnimatePresence>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
       <FloatingActions />
       <BottomNav />
       <ScrollToTop />
-      {!loading && <ChallengeNotification />}
-      {!loading && <BookingPopup />}
-      {!loading && <ExitPopup />}
+      {showNonCriticalUi && (
+        <Suspense fallback={null}>
+          <ChallengeNotification />
+          <BookingPopup />
+          <ExitPopup />
+        </Suspense>
+      )}
     </>
   );
 }

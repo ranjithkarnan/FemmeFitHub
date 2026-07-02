@@ -8,6 +8,7 @@ import {
   Trophy,
   UsersRound,
 } from "lucide-react";
+import TreadmillMobile from "../assets/images/TreadMils-480.webp";
 import Treadmill from "../assets/images/TreadMils-960.webp";
 import { useContactModal } from "../context/ContactModalContext.jsx";
 import { CheckCircle2 } from "lucide-react";
@@ -150,6 +151,8 @@ function AboutPreview({ full = false }) {
           <div className="image-stack about-image-stack">
             <img
               src={Treadmill}
+              srcSet={`${TreadmillMobile} 480w, ${Treadmill} 960w`}
+              sizes="(max-width: 640px) 92vw, (max-width: 980px) 70vw, 46vw"
               alt="Trainer helping a member with strength training"
               width="960"
               height="640"

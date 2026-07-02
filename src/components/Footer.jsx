@@ -85,7 +85,7 @@ function Footer() {
       <div className="footer-bottom">
         <p>© 2026 Femme Fit Hub. All rights reserved.</p>
         <p>
-          Digital Experience by{" "}
+          Developed by{" "}
           <strong>
             {" "}
             <a

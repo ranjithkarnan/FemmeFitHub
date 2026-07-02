@@ -1,38 +1,59 @@
-import React from "react";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
 } from "lucide-react";
 import Hero from "../components/Hero.jsx";
-import AboutPreview from "../components/AboutPreview.jsx";
-import Programs from "../components/Programs.jsx";
-import Trainers from "../components/Trainers.jsx";
-import Testimonials from "../components/Testimonials.jsx";
-import MembershipPlans from "../components/MembershipPlans.jsx";
-import Schedule from "../components/Schedule.jsx";
-import Challenges from "../components/Challenges.jsx";
-import Contact from "../components/Contact.jsx";
-// import CalculatorHub from "../components/CalculatorHub.jsx";
-import Community from "../components/Community.jsx";
-import { blogs } from "../data/blogs.js";
-import { galleryImages } from "../data/gallery.js";
-import {
-  ShieldCheck,
-  Sparkles,
-  UsersRound,
-  HeartPulse,
-  Apple,
-  Snowflake,
-  Zap,
-} from "lucide-react";
 import SEO from "../components/SEO.jsx";
-import WhyChooseUs from "../components/WhyChooseUs.jsx";
-import { useContactModal } from "../context/ContactModalContext.jsx";
 
+const AboutPreview = lazy(() => import("../components/AboutPreview.jsx"));
+const Programs = lazy(() => import("../components/Programs.jsx"));
+const WhyChooseUs = lazy(() => import("../components/WhyChooseUs.jsx"));
+const Trainers = lazy(() => import("../components/Trainers.jsx"));
+const Testimonials = lazy(() => import("../components/Testimonials.jsx"));
+const MembershipPlans = lazy(() => import("../components/MembershipPlans.jsx"));
+const Schedule = lazy(() => import("../components/Schedule.jsx"));
+const Challenges = lazy(() => import("../components/Challenges.jsx"));
+const Contact = lazy(() => import("../components/Contact.jsx"));
 
+function DeferredSection({ children, minHeight = 420 }) {
+  const ref = useRef(null);
+  const [shouldRender, setShouldRender] = useState(false);
+
+  useEffect(() => {
+    if (shouldRender) return undefined;
+
+    const node = ref.current;
+    if (!node || typeof IntersectionObserver === "undefined") {
+      setShouldRender(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldRender(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "520px 0px" }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [shouldRender]);
+
+  return (
+    <div ref={ref} style={!shouldRender ? { minHeight } : undefined}>
+      {shouldRender ? (
+        <Suspense fallback={<div className="deferred-section-placeholder" style={{ minHeight }} />}>
+          {children}
+        </Suspense>
+      ) : null}
+    </div>
+  );
+}
 
 function Home() {
-  const { openContactModal } = useContactModal();
-
   return (
     <>
       <SEO
@@ -44,14 +65,20 @@ function Home() {
       </section>
 
       <section id="about" className="landing-anchor">
-        <AboutPreview full />
+        <DeferredSection minHeight={620}>
+          <AboutPreview full />
+        </DeferredSection>
       </section>
 
       <section id="programs" className="landing-anchor home-programs-preview">
-        <Programs />
+        <DeferredSection minHeight={720}>
+          <Programs />
+        </DeferredSection>
       </section>
 
-      <WhyChooseUs />
+      <DeferredSection minHeight={620}>
+        <WhyChooseUs />
+      </DeferredSection>
 
 
       <section className="section local-seo-home-links">
@@ -71,14 +98,18 @@ function Home() {
       </section>
 
       <section id="trainers" className="landing-anchor">
-        <Trainers />
+        <DeferredSection minHeight={560}>
+          <Trainers />
+        </DeferredSection>
       </section>
 
       <section
         id="membership"
         className="landing-anchor home-membership-preview"
       >
-        <MembershipPlans />
+        <DeferredSection minHeight={620}>
+          <MembershipPlans />
+        </DeferredSection>
       </section>
 
       {/* <section
@@ -136,15 +167,21 @@ function Home() {
       </section> */}
 
       <div id="stories" className="landing-anchor">
-        <Testimonials />
+        <DeferredSection minHeight={520}>
+          <Testimonials />
+        </DeferredSection>
       </div>
 
 
       {/* <CalculatorHub /> */}
       <section id="schedule" className="landing-anchor">
-        <Schedule />
+        <DeferredSection minHeight={620}>
+          <Schedule />
+        </DeferredSection>
       </section>
-      <Challenges />
+      <DeferredSection minHeight={620}>
+        <Challenges />
+      </DeferredSection>
       {/* <section id="tips" className="landing-anchor">
         <section className="section tips-community-section">
           <div className="container">
@@ -175,7 +212,9 @@ function Home() {
         </section>
       </section> */}
       <section id="contact" className="landing-anchor">
-        <Contact />
+        <DeferredSection minHeight={720}>
+          <Contact />
+        </DeferredSection>
       </section>
     </>
   );
