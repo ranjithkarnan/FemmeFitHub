@@ -29,6 +29,9 @@ const WeightLossTrainingValasaravakkamPage = lazy(() => import('./pages/WeightLo
 const WomenOnlyGymChennaiPage = lazy(() => import('./pages/WomenOnlyGymChennaiPage.jsx'));
 const GymMembershipFeesValasaravakkamPage = lazy(() => import('./pages/GymMembershipFeesValasaravakkamPage.jsx'));
 const FaqPage = lazy(() => import('./pages/FaqPage.jsx'));
+const BlogHome = lazy(() => import('./pages/BlogHome.jsx'));
+const BlogCategoryPage = lazy(() => import('./pages/BlogCategoryPage.jsx'));
+const BlogArticlePage = lazy(() => import('./pages/BlogArticlePage.jsx'));
 const AdminLogin = lazy(() => import('./admin/AdminLogin.jsx'));
 const AdminDashboard = lazy(() => import('./admin/AdminDashboard.jsx'));
 
@@ -143,6 +146,9 @@ function App() {
         {/* <Route path="/community" element={<CommunityPage />} />
         <Route path="/fitness-tips" element={<FitnessTipsPage />} /> */}
         <Route path="/faq" element={<FaqPage />} />
+        <Route path="/blog" element={<BlogHome />} />
+        <Route path="/blog/:categorySlug" element={<BlogCategoryPage />} />
+        <Route path="/blog/:categorySlug/:articleSlug" element={<BlogArticlePage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/ladies-gym-valasaravakkam" element={<LadiesGymValasaravakkamPage />} />
         <Route path="/weight-loss-training-valasaravakkam" element={<WeightLossTrainingValasaravakkamPage />} />

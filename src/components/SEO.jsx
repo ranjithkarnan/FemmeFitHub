@@ -14,7 +14,21 @@ function setMetaTag(name, content, attribute = 'name') {
   tag.setAttribute('content', content);
 }
 
-function SEO({ title, description, keywords }) {
+function setCanonical(url) {
+  if (!url) return;
+
+  let link = document.head.querySelector('link[rel="canonical"]');
+
+  if (!link) {
+    link = document.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    document.head.appendChild(link);
+  }
+
+  link.setAttribute('href', url);
+}
+
+function SEO({ title, description, keywords, canonical, schema }) {
   useEffect(() => {
     if (title) {
       document.title = title;
@@ -31,7 +45,27 @@ function SEO({ title, description, keywords }) {
     if (keywords) {
       setMetaTag('keywords', keywords);
     }
-  }, [title, description, keywords]);
+
+    if (canonical) {
+      setCanonical(canonical);
+      setMetaTag('og:url', canonical, 'property');
+    }
+
+    document.head.querySelectorAll('script[data-seo-schema="true"]').forEach((node) => node.remove());
+    const schemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
+
+    schemas.forEach((item) => {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.dataset.seoSchema = 'true';
+      script.textContent = JSON.stringify(item);
+      document.head.appendChild(script);
+    });
+
+    return () => {
+      document.head.querySelectorAll('script[data-seo-schema="true"]').forEach((node) => node.remove());
+    };
+  }, [title, description, keywords, canonical, schema]);
 
   return null;
 }

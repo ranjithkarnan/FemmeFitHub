@@ -19,7 +19,7 @@ const navItems = [
   { label: 'Membership', to: '/membership' },
   {
     label: 'Stories',
-    to: '/Stories'
+    to: '/stories'
   },
   {
     label: 'Schedule',
@@ -32,11 +32,11 @@ const navItems = [
   {
     label: 'Start Today',
     to: '/contact',
-    // children: [
-    //   // { label: 'Start Today', to: '/contact' },
-    //   // { label: 'Member Stories', to: '/stories' },
-    //   // { label: 'FAQ', to: '/faq' }
-    // ]
+    children: [
+      { label: 'Start Today', to: '/contact' },
+      { label: 'Fitness Blog', to: '/blog' },
+      { label: 'FAQ', to: '/faq' }
+    ]
   }
 ];
 

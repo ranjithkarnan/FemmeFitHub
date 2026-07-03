@@ -51,13 +51,14 @@ function Footer() {
           <a href="/programs">Programs</a>
           <a href="/trainers">Trainers</a>
           <a href="/membership">Membership</a>
+          <a href="/blog">Blog</a>
           {/* <a href="/gallery">Gallery</a> */}
         </div>
 
         <div className="footer-column">
           <h3>Support</h3>
           <a href="/schedule">Class Schedule</a>
-          <a href="/programs">Fitness Tips</a>
+          <a href="/blog/workout-tips">Fitness Tips</a>
           <a href="/faq">FAQ</a>
           <a href="/contact">Contact</a>
           <button type="button" onClick={openContactModal}>Free Trial</button>
