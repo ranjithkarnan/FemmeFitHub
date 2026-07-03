@@ -520,7 +520,7 @@
 
   .scroll-top {
     bottom: 270px;
-    right: 24px;
+    /* right: 24px; */
   }
 
   .booking-popup {
