@@ -25,22 +25,22 @@ function Footer() {
             >
               <Instagram size={20} />
             </a>
-            <a
+            {/* <a
               href="https://www.facebook.com/femme.fithub"
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
             >
               <Facebook size={20} />
-            </a>
-            <a
+            </a> */}
+            {/* <a
               href="https://www.youtube.com/@femmefithub"
               target="_blank"
               rel="noreferrer"
               aria-label="YouTube"
             >
               <Youtube size={21} />
-            </a>
+            </a> */}
           </div>
         </div>
 

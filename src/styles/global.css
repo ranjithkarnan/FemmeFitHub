@@ -1508,7 +1508,7 @@ textarea:focus {
   width: fit-content;
   margin-bottom: 12px;
   color: rgba(255, 248, 240, 0.74);
-  font-weight: 700;
+  /* font-weight: 700; */
   text-decoration: none;
   transition:
     color 0.25s ease,
