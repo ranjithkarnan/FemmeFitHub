@@ -11831,6 +11831,7 @@ button.cta-card {
   }
 
   .blog-article-page .container {
+    width: 100%;
     max-width: 100%;
     padding-inline: 18px;
   }
@@ -11884,11 +11885,14 @@ button.cta-card {
 
   .blog-premium-layout,
   .blog-article-layout {
-    padding-inline: 18px;
+    width: 100%;
+    min-width: 0;
+    padding-inline: 0;
   }
 
   .blog-premium-layout .blog-article-content,
   .blog-article-content {
+    min-width: 0;
     width: 100%;
     max-width: 100%;
     padding: 22px 18px;
@@ -11965,9 +11969,19 @@ button.cta-card {
   .blog-premium-layout .blog-article-content p,
   .blog-article-content p,
   .blog-article-content li {
+    max-width: 100%;
     font-size: 1rem;
     line-height: 1.75;
-    overflow-wrap: anywhere;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  .blog-article-content h1,
+  .blog-article-content h2,
+  .blog-article-content h3,
+  .blog-lead {
+    max-width: 100%;
+    overflow-wrap: break-word;
   }
 
   .blog-article-content section {
@@ -12073,10 +12087,13 @@ button.cta-card {
 }
 
 @media (max-width: 480px) {
-  .blog-article-page .container,
+  .blog-article-page .container {
+    padding-inline: 14px;
+  }
+
   .blog-premium-layout,
   .blog-article-layout {
-    padding-inline: 14px;
+    padding-inline: 0;
   }
 
   .blog-premium-article-page .blog-article-hero h1,
@@ -12100,10 +12117,13 @@ button.cta-card {
 }
 
 @media (max-width: 360px) {
-  .blog-article-page .container,
+  .blog-article-page .container {
+    padding-inline: 12px;
+  }
+
   .blog-premium-layout,
   .blog-article-layout {
-    padding-inline: 12px;
+    padding-inline: 0;
   }
 
   .blog-premium-article-page .blog-article-hero h1,
