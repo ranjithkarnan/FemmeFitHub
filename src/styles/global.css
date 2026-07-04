@@ -5170,32 +5170,69 @@ textarea::placeholder {
   font-size: 2.3rem;
 }
 
-.trainer-mini-card .trainer-avatar,
-.trainer-modal-header .trainer-avatar {
+.trainer-image-wrapper,
+.trainer-modal-image-wrapper {
   position: relative;
-  width: 110px;
-  height: 110px;
-  margin: 0 auto 16px;
-  padding: 5px;
+  display: grid;
+  place-items: center;
   border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #fff8f0;
   background: linear-gradient(135deg, #f4c542, #ffd966);
-  box-shadow: 0 14px 34px rgba(244, 197, 66, 0.24);
+  box-shadow:
+    0 16px 34px rgba(244, 197, 66, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
-.trainer-modal-header .trainer-avatar {
+.trainer-image-wrapper {
+  width: 112px;
+  height: 112px;
+  margin: 0 auto 18px;
+}
+
+.trainer-modal-image-wrapper {
   width: 132px;
   height: 132px;
   margin: 0;
 }
 
-.trainer-mini-card .trainer-avatar img,
-.trainer-modal-header .trainer-avatar img {
+.trainer-image,
+.trainer-modal-image {
   display: block;
   width: 100%;
   height: 100%;
-  border: 4px solid #fff8f0;
-  border-radius: 50%;
   object-fit: cover;
+  object-position: center 22%;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+.trainer-image-protection {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: transparent;
+}
+
+.trainer-watermark,
+.trainer-modal-watermark {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 3;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.trainer-modal-watermark {
+  right: 12px;
+  bottom: 12px;
 }
 
 .trainer-mini-card .verified-badge,
@@ -5327,7 +5364,7 @@ textarea::placeholder {
 }
 
 .trainer-avatar-initials,
-.trainer-mini-card .trainer-avatar {
+.trainer-image-wrapper {
   transition:
     transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
     box-shadow 0.35s ease;
@@ -5335,12 +5372,11 @@ textarea::placeholder {
 }
 
 .trainer-mini-card:hover .trainer-avatar-initials,
-.trainer-mini-card:hover .trainer-avatar {
-  transform: scale(1.1) rotate(6deg);
+.trainer-mini-card:hover .trainer-image-wrapper {
+  transform: scale(1.08) rotate(3deg);
   box-shadow:
-    0 0 30px rgba(244, 197, 66, 0.45),
-    0 16px 34px rgba(244, 197, 66, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    0 0 32px rgba(244, 197, 66, 0.42),
+    0 18px 38px rgba(0, 0, 0, 0.18);
 }
 
 .trainer-mini-card h3 {

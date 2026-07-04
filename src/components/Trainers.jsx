@@ -92,18 +92,27 @@ function Trainers() {
               transition={{ delay: index * 0.08 }}
             >
               {trainer.image ? (
-                <div className="trainer-avatar" aria-hidden="true">
+                <div
+                  className="trainer-image-wrapper"
+                  onContextMenu={(event) => event.preventDefault()}
+                  onDragStart={(event) => event.preventDefault()}
+                >
                   <img
                     src={trainer.image}
-                    alt=""
+                    alt={`${trainer.name}, ${trainer.role} at Femme Fit Hub`}
+                    className="trainer-image"
                     loading="lazy"
                     decoding="async"
                     width="110"
                     height="110"
                     draggable="false"
-                    onContextMenu={(e) => e.preventDefault()}
-                    onDragStart={(e) => e.preventDefault()}
+                    onContextMenu={(event) => event.preventDefault()}
+                    onDragStart={(event) => event.preventDefault()}
                   />
+                  <div className="trainer-image-protection" aria-hidden="true" />
+                  <span className="trainer-watermark" aria-hidden="true">
+                    Femme Fit Hub
+                  </span>
                 </div>
               ) : (
                 <div className="trainer-avatar-initials" aria-hidden="true">
@@ -171,15 +180,27 @@ function Trainers() {
             </button>
             <div className="trainer-modal-header">
               {selectedTrainer.image ? (
-                <div className="trainer-avatar" aria-hidden="true">
+                <div
+                  className="trainer-modal-image-wrapper"
+                  onContextMenu={(event) => event.preventDefault()}
+                  onDragStart={(event) => event.preventDefault()}
+                >
                   <img
                     src={selectedTrainer.image}
-                    alt=""
+                    alt={`${selectedTrainer.name}, ${selectedTrainer.role} at Femme Fit Hub`}
+                    className="trainer-modal-image"
                     loading="lazy"
                     decoding="async"
                     width="132"
                     height="132"
+                    draggable="false"
+                    onContextMenu={(event) => event.preventDefault()}
+                    onDragStart={(event) => event.preventDefault()}
                   />
+                  <div className="trainer-image-protection" aria-hidden="true" />
+                  <span className="trainer-modal-watermark" aria-hidden="true">
+                    Femme Fit Hub
+                  </span>
                 </div>
               ) : (
                 <div className="trainer-modal-avatar" aria-hidden="true">

@@ -296,7 +296,7 @@ export const blogs = [
     ],
     ctaText: 'Book a free trial at Femme Fit Hub and compare programs, membership options, and trainer support before you decide.',
     relatedArticles: [
-      { title: 'Ladies Gym in Chennai Guide', category: 'Local Guides', href: '/blog/local-guides/ladies-gym-in-chennai-guide' },
+      { title: 'Ladies Gym in Chennai Guide', category: 'Local Guides', href: '/blog/local-guides/ladies-gym-in-chennai' },
       { title: 'Women Only Gym Chennai', category: 'Local Guides', href: '/blog/local-guides/women-only-gym-chennai' },
       { title: 'Weight Loss Training in Valasaravakkam', category: 'Local Guides', href: '/blog/local-guides/weight-loss-training-valasaravakkam' },
       { title: 'Gym Membership Fees in Valasaravakkam', category: 'Local Guides', href: '/blog/local-guides/gym-membership-fees-valasaravakkam' }
