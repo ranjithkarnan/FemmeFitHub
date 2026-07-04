@@ -100,6 +100,9 @@ function Trainers() {
                     decoding="async"
                     width="110"
                     height="110"
+                    draggable="false"
+                    onContextMenu={(e) => e.preventDefault()}
+                    onDragStart={(e) => e.preventDefault()}
                   />
                 </div>
               ) : (

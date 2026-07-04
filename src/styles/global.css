@@ -175,6 +175,7 @@ body {
     var(--cream-2);
   /* line-height: 1.6; */
   overflow-x: hidden;
+  /* user-select: none; */
 }
 
 body::selection {
@@ -4253,6 +4254,9 @@ textarea::placeholder {
 .trainer-image {
   height: 260px;
   overflow: hidden;
+   -webkit-user-drag: none;
+   user-select: none;
+   pointer-events: none;
 }
 
 .trainer-image img {
@@ -11281,6 +11285,41 @@ button.cta-card {
   font-weight: 700;
 }
 
+.blog-author-review-card {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 24px 0 6px;
+  padding: 16px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(255, 248, 240, 0.94), rgba(247, 235, 221, 0.94));
+  border: 1px solid rgba(244, 197, 66, 0.24);
+  box-shadow: 0 16px 34px rgba(75, 50, 35, 0.08);
+}
+
+.blog-author-review-card div {
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(111, 78, 55, 0.1);
+}
+
+.blog-author-review-card span {
+  display: block;
+  margin-bottom: 5px;
+  color: #8b5e3c;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.blog-author-review-card strong {
+  color: #2b1d13;
+  font-size: 0.94rem;
+  line-height: 1.35;
+}
+
 .blog-article-content section {
   margin-top: 34px;
 }
@@ -11881,6 +11920,11 @@ button.cta-card {
     padding: 8px 11px;
     font-size: 0.78rem;
     white-space: normal;
+  }
+
+  .blog-author-review-card {
+    grid-template-columns: 1fr;
+    padding: 14px;
   }
 
   .blog-premium-featured-image {

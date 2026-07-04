@@ -1,5 +1,5 @@
 // import deepaSaranyaImage from '../assets/images/trainers/Deepa Saranya.jpeg';
-import deepaSaranyaImage from '../assets/images/trainers/Deepa Saranya.jpeg';
+import deepaSaranyaImage from '../assets/images/trainers/Deepa Saranya.webp';
 
 export const trainers = [
   {

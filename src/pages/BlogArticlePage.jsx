@@ -10,6 +10,7 @@ import { WHATSAPP_NUMBER, quickWhatsAppUrl } from '../utils/whatsapp.js';
 const siteUrl = 'https://femmefithub.com';
 
 const internalLinkLabels = {
+  '/about': 'About Femme Fit Hub',
   '/programs': 'Explore Programs',
   '/trainers': 'Meet Trainers',
   '/membership': 'View Membership',
@@ -254,6 +255,23 @@ function BlogArticlePage() {
             ) : null}
 
             <p className="blog-lead">{article.intro}</p>
+
+            {isPremiumArticle ? (
+              <aside className="blog-author-review-card">
+                <div>
+                  <span>Written by</span>
+                  <strong>{article.author || 'Femme Fit Hub Editorial Team'}</strong>
+                </div>
+                <div>
+                  <span>Reviewed by</span>
+                  <strong>{article.reviewedBy || article.verifiedBy || 'Certified Fitness Trainers'}</strong>
+                </div>
+                <div>
+                  <span>Last updated</span>
+                  <strong>{article.updated || article.date}</strong>
+                </div>
+              </aside>
+            ) : null}
 
             {article.sections.map((section) => (
               <section key={section.heading} id={slugify(section.heading)}>
