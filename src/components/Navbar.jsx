@@ -15,7 +15,7 @@ const navItems = [
     //   { label: 'Why Choose Us', to: '/why-choose-us' }
     // ]
   },
-  { label: 'Trainers', to: '/trainers' },
+  { label: 'Our Team', to: '/trainers' },
   { label: 'Membership', to: '/membership' },
   {
     label: 'Stories',

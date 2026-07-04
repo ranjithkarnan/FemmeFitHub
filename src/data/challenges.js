@@ -103,36 +103,122 @@ export const challenges = [
     featured: false,
     status: 'upcoming',
     shortDescription: 'Reset your strength routine with guided weekly progress checkpoints.'
+  },
+  {
+    id: 'queens-conversation-circle-august-2026',
+    name: 'Queens Conversation Circle',
+    type: 'Community Wellness',
+    category: 'week',
+    startDate: '2026-08-03',
+    endDate: '2026-08-03',
+    displayDates: 'August 3',
+    difficulty: 'All Levels',
+    trainer: 'Femme Fit Hub Team',
+    reward: 'Member Spotlight',
+    progress: 0,
+    featured: false,
+    status: 'upcoming',
+    shortDescription: 'Start August with a supportive women-only conversation circle focused on confidence, routine, and wellness.'
+  },
+  {
+    id: 'queens-healthy-treat-august-2026',
+    name: 'Queens Healthy Treat',
+    type: 'Nutrition & Wellness',
+    category: 'week',
+    startDate: '2026-08-19',
+    endDate: '2026-08-19',
+    displayDates: 'August 19',
+    difficulty: 'Beginner Friendly',
+    trainer: 'Femme Fit Hub Team',
+    reward: 'Healthy Treat Guide',
+    progress: 0,
+    featured: false,
+    status: 'upcoming',
+    shortDescription: 'Discover simple healthy treat ideas that support fitness goals without making wellness feel restrictive.'
+  },
+  {
+    id: 'fun-activity-dance-august-2026',
+    name: 'Fun Activity & Dance',
+    type: 'Dance Fitness',
+    category: 'week',
+    startDate: '2026-08-28',
+    endDate: '2026-08-28',
+    displayDates: 'August 28',
+    difficulty: 'All Levels',
+    trainer: 'Femme Fit Hub Team',
+    reward: 'Challenge Winner Shoutout',
+    progress: 0,
+    featured: false,
+    status: 'upcoming',
+    shortDescription: 'Close the month with an energetic dance session and fun studio activity for members.'
   }
 ];
 
 export const getToday = () => new Date();
 
+const parseChallengeDate = (value) => new Date(`${value}T00:00:00`);
+
+const getWeekRange = (date) => {
+  const start = new Date(date);
+  const dayFromMonday = (start.getDay() + 6) % 7;
+  start.setDate(start.getDate() - dayFromMonday);
+  start.setHours(0, 0, 0, 0);
+
+  const end = new Date(start);
+  end.setDate(start.getDate() + 6);
+  end.setHours(23, 59, 59, 999);
+
+  return { start, end };
+};
+
+const getMonthRange = (date) => ({
+  start: new Date(date.getFullYear(), date.getMonth(), 1, 0, 0, 0, 0),
+  end: new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59, 999)
+});
+
+const overlapsRange = (challenge, range) => {
+  const startDate = parseChallengeDate(challenge.startDate);
+  const endDate = parseChallengeDate(challenge.endDate);
+  endDate.setHours(23, 59, 59, 999);
+
+  return startDate <= range.end && endDate >= range.start;
+};
+
 export const isChallengeActiveOrUpcoming = (challenge, today = getToday()) => {
-  const endDate = new Date(challenge.endDate);
+  const endDate = parseChallengeDate(challenge.endDate);
   endDate.setHours(23, 59, 59, 999);
   return endDate >= today && challenge.status !== 'archived';
 };
 
-export const getVisibleChallenges = (category, today = getToday()) => challenges
-  .filter((challenge) => challenge.category === category)
-  .filter((challenge) => isChallengeActiveOrUpcoming(challenge, today))
-  .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+export const getVisibleChallenges = (category, today = getToday()) => {
+  const range = category === 'week' ? getWeekRange(today) : getMonthRange(today);
+
+  return challenges
+    .filter((challenge) => isChallengeActiveOrUpcoming(challenge, today))
+    .filter((challenge) => {
+      if (category === 'week' || category === 'month') {
+        return overlapsRange(challenge, range);
+      }
+
+      return challenge.category === category;
+    })
+    .sort((a, b) => parseChallengeDate(a.startDate) - parseChallengeDate(b.startDate));
+};
 
 export const getFeaturedChallenge = (today = getToday()) => {
   const visible = challenges
     .filter((challenge) => isChallengeActiveOrUpcoming(challenge, today))
     .sort((a, b) => {
       if (a.featured !== b.featured) return Number(b.featured) - Number(a.featured);
-      return new Date(a.startDate) - new Date(b.startDate);
+      return parseChallengeDate(a.startDate) - parseChallengeDate(b.startDate);
     });
 
   return visible[0] || null;
 };
 
 export const getCountdownLabel = (challenge, today = getToday()) => {
-  const startDate = new Date(challenge.startDate);
-  const endDate = new Date(challenge.endDate);
+  const startDate = parseChallengeDate(challenge.startDate);
+  const endDate = parseChallengeDate(challenge.endDate);
   endDate.setHours(23, 59, 59, 999);
 
   const oneDay = 1000 * 60 * 60 * 24;

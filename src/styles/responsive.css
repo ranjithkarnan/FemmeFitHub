@@ -1274,10 +1274,13 @@
     width: 100%;
   }
 
+  .membership-feature-tags {
+    grid-template-columns: 1fr;
+  }
+
   .membership-feature-tags span {
-    flex: 1 1 auto;
-    justify-content: center;
-    text-align: center;
+    justify-content: flex-start;
+    text-align: left;
   }
 }
 

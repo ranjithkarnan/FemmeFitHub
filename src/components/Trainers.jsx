@@ -14,6 +14,10 @@ import { quickWhatsAppUrl } from "../utils/whatsapp";
 import { useContactModal } from "../context/ContactModalContext.jsx";
 
 const trainerDetails = {
+  "Deepa Saranya": {
+    bestFor: "Pain Management, Flexibility Improvement, Personal Training",
+    availability: "Available This Week",
+  },
   "Kayathri Murugan": {
     bestFor: "Body Recomposition, Weight Training, Posture",
     availability: "Available This Week",
@@ -58,7 +62,7 @@ function Trainers() {
     <section className="trainers-section">
       <div className="container">
         <div className="section-heading trainers-heading">
-          <div className="section-kicker">Certified Trainers</div>
+          <div className="section-kicker">Certified Coaches</div>
           <h2>Meet Our Expert Team</h2>
           <p>
             You get direct access to our physiotherapists and dietician. We also
@@ -87,9 +91,22 @@ function Trainers() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.08 }}
             >
-              <div className="trainer-avatar-initials" aria-hidden="true">
-                {getInitials(trainer.name)}
-              </div>
+              {trainer.image ? (
+                <div className="trainer-avatar" aria-hidden="true">
+                  <img
+                    src={trainer.image}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    width="110"
+                    height="110"
+                  />
+                </div>
+              ) : (
+                <div className="trainer-avatar-initials" aria-hidden="true">
+                  {getInitials(trainer.name)}
+                </div>
+              )}
               <h3>{trainer.name}</h3>
               <p className="trainer-role">{trainer.role}</p>
               <span className="experience-badge">
@@ -150,9 +167,22 @@ function Trainers() {
               <X size={20} />
             </button>
             <div className="trainer-modal-header">
-              <div className="trainer-modal-avatar" aria-hidden="true">
-                {getInitials(selectedTrainer.name)}
-              </div>
+              {selectedTrainer.image ? (
+                <div className="trainer-avatar" aria-hidden="true">
+                  <img
+                    src={selectedTrainer.image}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    width="132"
+                    height="132"
+                  />
+                </div>
+              ) : (
+                <div className="trainer-modal-avatar" aria-hidden="true">
+                  {getInitials(selectedTrainer.name)}
+                </div>
+              )}
               <div>
                 <h3>{selectedTrainer.name}</h3>
                 <p>{selectedTrainer.role}</p>

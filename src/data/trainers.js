@@ -1,13 +1,18 @@
+// import deepaSaranyaImage from '../assets/images/trainers/Deepa Saranya.jpeg';
+import deepaSaranyaImage from '../assets/images/trainers/Deepa Saranya.jpeg';
+
 export const trainers = [
   {
     name: 'Deepa Saranya',
     role: 'Physiotherapist',
-    specialty: 'Injury prevention, functional movement, recovery therapy, therapeutic exercise',
+    image: deepaSaranyaImage,
+    specialty: 'Pain management, flexibility improvement, special child handling, and personal training support',
     experience: '8 Years',
     certifications: [
-      'Physiotherapy Support',
-      'Functional Movement',
-      'Therapeutic Exercise'
+      'Pain Management',
+      'Flexibility Improvement',
+      'Special Child Handling',
+      'Personal Training'
     ],
     socials: ['Instagram', 'LinkedIn']
   },

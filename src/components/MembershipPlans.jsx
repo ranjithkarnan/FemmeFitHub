@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { CheckCircle2 } from 'lucide-react';
 import { plans } from '../data/plans.js';
 import { quickWhatsAppUrl } from '../utils/whatsapp';
 import { useContactModal } from '../context/ContactModalContext.jsx';
@@ -51,7 +52,10 @@ function MembershipPlans() {
 
               <div className="membership-feature-tags" aria-label={`${plan.name} features`}>
                 {plan.features.map((feature) => (
-                  <span key={feature}>{feature}</span>
+                  <span key={feature}>
+                    <CheckCircle2 size={16} />
+                    {feature}
+                  </span>
                 ))}
               </div>
 
