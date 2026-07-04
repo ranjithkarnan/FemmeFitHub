@@ -4444,7 +4444,7 @@ textarea::placeholder {
 
 .trainers-section .trainer-image {
   height: 100%;
-  min-height: 320px;
+  /* min-height: 320px; */
   overflow: hidden;
 }
 
@@ -5541,7 +5541,7 @@ textarea::placeholder {
   margin-bottom: 22px;
 }
 
-.trainer-modal-header .trainer-avatar {
+.trainer-modal-header .trainer-modal-image-wrapper {
   margin-bottom: 0;
 }
 
