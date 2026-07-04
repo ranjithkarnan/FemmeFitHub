@@ -5448,6 +5448,7 @@ textarea::placeholder {
 @media (hover: none) {
   .trainer-mini-card:hover,
   .trainer-mini-card:hover .trainer-avatar-initials,
+  .trainer-mini-card:hover .trainer-image-wrapper,
   .trainer-mini-card:hover .experience-badge,
   .trainer-mini-card:hover .trainer-specialty-preview,
   .trainer-mini-card:hover button {
@@ -5459,6 +5460,8 @@ textarea::placeholder {
   .trainer-mini-card,
   .trainer-mini-card::before,
   .trainer-avatar-initials,
+  .trainer-image-wrapper,
+  .trainer-modal-image-wrapper,
   .trainer-mini-card h3,
   .trainer-mini-card .trainer-role,
   .experience-badge,

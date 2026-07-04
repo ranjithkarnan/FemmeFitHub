@@ -500,7 +500,7 @@ export const blogs = [
     seoTitle: 'Ladies Gym in Chennai: Your Complete Guide (2026)',
     metaDescription: 'Looking for a ladies gym in Chennai? Discover fees, trainers, and programs at a women-only studio in Valasaravakkam. Book your free trial today!',
     keywords: 'ladies gym Chennai, women only gym, Valasaravakkam fitness, strength training for women, weight loss gym, female fitness trainer, women gym membership, ladies fitness classes, Chennai fitness studio, gym near me for ladies',
-    path: '/blog/local-guides/ladies-gym-in-chennai-guide',
+    path: '/blog/local-guides/ladies-gym-in-chennai',
     localGuide: true,
     premiumArticle: true,
     intro: 'Typed "ladies gym near me" into Google more than once this month? You are not the only one. Chennai fitness has grown fast, but many women still want a place that feels comfortable, private, and properly coached.',
