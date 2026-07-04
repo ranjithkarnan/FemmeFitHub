@@ -12,7 +12,8 @@ function About() {
       <section className="page-hero">
         <div className="container">
           <div className="section-kicker">Our Story</div>
-          <h1>A premium fitness space where women train with clarity, comfort, and confidence.</h1>
+          {/* <h1>A premium fitness space where women train with clarity, comfort, and confidence.</h1> */}
+          <h1>our queens Born from passion and build with purpose</h1>
           {/* <p>Femme Fit Hub was created for women who want serious coaching without intimidation.</p> */}
         </div>
       </section>

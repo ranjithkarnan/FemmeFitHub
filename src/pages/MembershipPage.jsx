@@ -12,7 +12,9 @@ function MembershipPage() {
       <section className="page-hero">
         <div className="container">
           <div className="section-kicker">Membership</div>
-          <h1>Choose the support level that matches your goal and schedule.</h1>
+          {/* <h1>Choose the support level that matches your goal and schedule.</h1> */}
+          <h1>join as a member. Leave as a queen. Your strongest, Healthiest, and most confident self begins here.</h1>
+
         </div>
       </section>
       <MembershipPlans />

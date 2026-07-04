@@ -26,6 +26,26 @@ export const programs = [
     highlights: ['Form coaching', 'Progressive lifts', 'Posture work']
   },
   {
+    title: 'Weight Gain Training',
+    icon: Dumbbell,
+    image: equipmentImage,
+    description: 'Guided strength and nutrition support for healthy weight gain, muscle development, and confident progress.',
+    duration: '50 min',
+    difficulty: 'Intermediate',
+    calories: 'Goal based',
+    highlights: ['Muscle gain', 'Strength progression', 'Nutrition support']
+  },
+  {
+    title: 'CrossFit',
+    icon: Activity,
+    image: treadmillPortraitImage,
+    description: 'Scalable high-energy strength and conditioning sessions for stamina, power, and full-body performance.',
+    duration: '60 min',
+    difficulty: 'Scalable',
+    calories: '520 kcal',
+    highlights: ['Functional strength', 'Conditioning', 'Team energy']
+  },
+  {
     title: 'Zumba',
     icon: Sparkles,
     image: floorImage,

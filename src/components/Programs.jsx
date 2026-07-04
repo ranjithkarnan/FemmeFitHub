@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Clock3, GaugeCircle, MessageCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Clock3, Dumbbell, GaugeCircle, MessageCircle } from 'lucide-react';
 import { programs } from '../data/programs.js';
 import { quickWhatsAppUrl } from '../utils/whatsapp';
 import { useContactModal } from '../context/ContactModalContext.jsx';
@@ -17,20 +17,28 @@ const programOrder = [
   },
   {
     sourceTitle: 'Weight Loss Training',
-    title: 'Fat Loss Program',
+    title: 'Weight Loss Program',
     difficulty: 'Intermediate',
     difficultyLevel: 'intermediate',
     duration: '12 Week Program',
     benefits: ['Personalized Coaching', 'Goal Tracking', 'Flexible Timings']
   },
-  // {
-  //   sourceTitle: 'Yoga',
-  //   title: 'Yoga & Recovery',
-  //   difficulty: 'Beginner Friendly',
-  //   difficultyLevel: 'beginner',
-  //   duration: 'Flexible Schedule',
-  //   benefits: ['Mobility Support', 'Stress Relief', 'Recovery Focus']
-  // },
+  {
+    sourceTitle: 'Weight Gain Training',
+    title: 'Weight Gain Program',
+    difficulty: 'Intermediate',
+    difficultyLevel: 'intermediate',
+    duration: '12 Week Program',
+    benefits: ['Personalized Coaching', 'Goal Tracking', 'Flexible Timings']
+  },
+  {
+  sourceTitle: 'CrossFit',
+  title: 'CrossFit',
+  difficulty: 'High Intensity (Scalable)',
+  difficultyLevel: 'all-levels',
+  duration: '60 Minutes',
+  benefits: ['Full-Body Strength', 'Cardiovascular Endurance', 'Metabolic Conditioning']
+},
   {
     sourceTitle: 'Zumba',
     title: 'Zumba Fitness',
@@ -60,8 +68,9 @@ const programOrder = [
 
 const programAltText = {
   'Strength Training': 'Strength training program for women at Femme Fit Hub Chennai',
-  'Fat Loss Program': 'Weight loss training program for women at Femme Fit Hub Valasaravakkam',
-  'Yoga & Recovery': 'Yoga and recovery classes for women at Femme Fit Hub Chennai',
+  'Weight Loss Program': 'Weight loss training program for women at Femme Fit Hub Valasaravakkam',
+  'Weight Gain Program': 'Weight gain training program for women at Femme Fit Hub Chennai',
+  'CrossFit': 'CrossFit training for women at Femme Fit Hub Valasaravakkam',
   'Zumba Fitness': 'Zumba classes for women at Femme Fit Hub ladies fitness studio',
   'Postnatal Fitness': 'Postnatal fitness training for women at Femme Fit Hub Chennai',
   'Nutrition Coaching': 'Nutrition guidance for women at Femme Fit Hub Valasaravakkam'
@@ -69,7 +78,16 @@ const programAltText = {
 
 const programCatalog = programOrder.map((item) => {
   const source = programs.find((program) => program.title === item.sourceTitle);
-  return { ...source, ...item };
+  const fallback = programs.find((program) => program.title === 'Strength Training') || programs[0] || {};
+
+  return {
+    ...fallback,
+    ...source,
+    ...item,
+    icon: source?.icon || fallback.icon || Dumbbell,
+    image: source?.image || fallback.image,
+    description: source?.description || `${item.title} is designed with expert coaching, safe progression, and supportive guidance for women.`
+  };
 });
 
 function Programs({ limit, showIntro = true }) {
