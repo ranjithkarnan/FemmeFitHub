@@ -11000,7 +11000,7 @@ button.cta-card {
 .blog-featured-card img,
 .blog-article-hero-grid img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  /* aspect-ratio: 4 / 3; */
   object-fit: cover;
   border-radius: 26px;
   border: 1px solid rgba(244, 197, 66, 0.28);
