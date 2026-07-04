@@ -485,7 +485,7 @@ export const blogs = [
   },
   {
     title: 'Ladies Gym in Chennai: Your Complete Guide (2026)',
-    slug: 'ladies-gym-in-chennai-guide',
+    slug: 'ladies-gym-in-chennai',
     category: 'Local Guides',
     categorySlug: 'local-guides',
     date: 'July 2026',
