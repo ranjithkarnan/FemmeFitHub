@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, ChevronRight, Copy, Facebook, Linkedin, MessageCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronRight, Copy, Instagram, MessageCircle } from 'lucide-react';
 import SEO from '../components/SEO.jsx';
 import { getBlogCategory } from '../data/blogCategories.js';
 import { getArticleUrl, getBlogArticle } from '../data/blogs.js';
 import { useContactModal } from '../context/ContactModalContext.jsx';
-import { quickWhatsAppUrl } from '../utils/whatsapp.js';
+import { WHATSAPP_NUMBER, quickWhatsAppUrl } from '../utils/whatsapp.js';
 
 const siteUrl = 'https://femmefithub.com';
 
@@ -127,6 +127,7 @@ function BlogArticlePage() {
   const { openContactModal } = useContactModal();
   const [progress, setProgress] = useState(0);
   const [openFaq, setOpenFaq] = useState(0);
+  const [mobileTocOpen, setMobileTocOpen] = useState(false);
 
   const schemas = useMemo(() => (article ? buildSchemas(article, category) : []), [article, category]);
   const tocItems = useMemo(() => (article?.sections || []).map((section) => ({
@@ -163,12 +164,11 @@ function BlogArticlePage() {
   }
 
   const articleUrl = getArticleUrl(article);
-  const shareText = encodeURIComponent(article.title);
-  const encodedUrl = encodeURIComponent(articleUrl);
+  const articleWhatsAppUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hi Femme Fit Hub,\n\nI was reading this article and would like to know more:\n${article.title}\n${articleUrl}\n\nPlease share details about your women-only fitness programs.`)}`;
   const isPremiumArticle = Boolean(article.premiumArticle);
 
   return (
-    <article className={`blog-page ${isPremiumArticle ? 'blog-premium-article-page' : ''}`.trim()}>
+    <article className={`blog-page blog-article-page ${isPremiumArticle ? 'blog-premium-article-page' : ''}`.trim()}>
       <SEO
         title={article.seoTitle}
         description={article.metaDescription}
@@ -230,14 +230,29 @@ function BlogArticlePage() {
         <div className={`container ${isPremiumArticle ? 'blog-premium-layout' : 'blog-article-layout'}`}>
           {isPremiumArticle && (
             <aside className="blog-share-bar" aria-label="Share article">
-              <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`} target="_blank" rel="noreferrer" aria-label="Share on Facebook"><Facebook size={18} /></a>
-              <a href={`https://wa.me/?text=${shareText}%20${encodedUrl}`} target="_blank" rel="noreferrer" aria-label="Share on WhatsApp"><MessageCircle size={18} /></a>
-              <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`} target="_blank" rel="noreferrer" aria-label="Share on LinkedIn"><Linkedin size={18} /></a>
+              <a href="https://www.instagram.com/femme_fithub/" target="_blank" rel="noreferrer" aria-label="Open Femme Fit Hub on Instagram"><Instagram size={18} /></a>
+              <a href={articleWhatsAppUrl} target="_blank" rel="noreferrer" aria-label={`Send ${article.title} enquiry on WhatsApp`}><MessageCircle size={18} /></a>
               <button type="button" aria-label="Copy article link" onClick={() => navigator.clipboard?.writeText(articleUrl)}><Copy size={18} /></button>
             </aside>
           )}
 
           <div className="blog-article-content">
+            {isPremiumArticle && tocItems.length ? (
+              <div className="blog-mobile-toc">
+                <button type="button" onClick={() => setMobileTocOpen((value) => !value)} aria-expanded={mobileTocOpen}>
+                  On this page
+                  <span>{mobileTocOpen ? '-' : '+'}</span>
+                </button>
+                {mobileTocOpen ? (
+                  <div>
+                    {tocItems.map((item) => (
+                      <a href={`#${item.id}`} key={item.id} onClick={() => setMobileTocOpen(false)}>{item.label}</a>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
+
             <p className="blog-lead">{article.intro}</p>
 
             {article.sections.map((section) => (
@@ -266,7 +281,7 @@ function BlogArticlePage() {
                 ) : null}
 
                 {section.table ? (
-                  <div className="blog-comparison-table" role="region" aria-label={section.table.label || section.heading}>
+                  <div className="blog-comparison-table table-scroll" role="region" aria-label={section.table.label || section.heading}>
                     <table>
                       <thead>
                         <tr>

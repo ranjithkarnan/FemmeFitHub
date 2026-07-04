@@ -102,7 +102,7 @@ function Hero() {
           <div className="eyebrow">
             <Crown size={16} /> Women fitness, strength & wellness studio
           </div>
-          <h1>Transform Your Body, Empower Your Life</h1>
+          <h1>Train like a Queen, Rise like a Champion</h1>
           <p>
             Women-only fitness studio for weight loss, strength training, cross fit,
             nutrition guidance, mental strength and personal coaching.

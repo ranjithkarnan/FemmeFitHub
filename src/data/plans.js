@@ -7,7 +7,7 @@ export const plans = [
     shortBestFor: 'Best for beginners',
     cta: 'Ask for Details',
     featured: false,
-    features: ['Gym Access', 'Basic Workout Guidance', 'Flexible Timings', 'Community Support']
+    features: ['Gym Access', 'Basic Workout Card', 'Flexible Timings', 'Community Support']
   },
   {
     name: 'Standard Plan',
@@ -20,13 +20,13 @@ export const plans = [
     features: ['Everything in Basic', 'Group Classes', 'Monthly Progress Check', 'Fat Loss Guidance', 'Trainer Support']
   },
   {
-    name: 'Premium Plan',
+    name: 'Standard Premium',
     badge: 'Elite',
     description: 'Personalized coaching for women who want focused transformation.',
     bestFor: 'Best for focused transformation with personal coaching and nutrition guidance.',
     shortBestFor: 'Best for transformation',
     cta: 'Book Consultation',
     featured: false,
-    features: ['Everything in Standard', 'Personal Training', 'Nutrition Guidance', 'Weekly Progress Tracking', 'Priority Consultation']
-  }
+    features: ['Physio support','Everything in card','Measurement card','Schedule card','Diet','Steam','Group classes','Personal Training', 'Nutrition Guidance', 'Weekly Progress Tracking', 'Priority Consultation']
+  },
 ];
