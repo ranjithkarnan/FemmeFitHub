@@ -1363,6 +1363,21 @@
     padding: 24px;
   }
 
+  .working-hours-card {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .working-hours-list div {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .working-hours-list dd {
+    text-align: left;
+  }
+
   .consultation-stats span {
     flex: 1 1 100%;
   }

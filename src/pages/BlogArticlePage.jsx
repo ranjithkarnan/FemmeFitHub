@@ -99,6 +99,26 @@ function buildSchemas(article, category) {
         addressCountry: 'IN'
       },
       areaServed: ['Valasaravakkam', 'Chennai', 'Porur', 'Virugambakkam', 'KK Nagar'],
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '05:00',
+          closes: '22:00'
+        },
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: 'Saturday',
+          opens: '05:00',
+          closes: '21:00'
+        },
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: 'Sunday',
+          opens: '06:00',
+          closes: '13:00'
+        }
+      ],
       sameAs: ['https://www.instagram.com/femme_fithub/']
     });
   }
@@ -278,6 +298,34 @@ function BlogArticlePage() {
                 <h2>{section.heading}</h2>
                 {section.body ? <p>{section.body}</p> : null}
                 {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+
+                {section.subsections?.map((subsection) => (
+                  <div className="blog-subsection" key={subsection.heading}>
+                    <h3>{subsection.heading}</h3>
+                    {subsection.body ? <p>{subsection.body}</p> : null}
+                    {subsection.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+
+                    {subsection.list?.length ? (
+                      <ul className="blog-rich-list">
+                        {subsection.list.map((item) => <li key={item}>{item}</li>)}
+                      </ul>
+                    ) : null}
+
+                    {subsection.image ? (
+                      <figure className="blog-article-image">
+                        <img
+                          src={subsection.image.src}
+                          alt={subsection.image.alt}
+                          width={subsection.image.width || 1200}
+                          height={subsection.image.height || 675}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <figcaption>{subsection.image.caption}</figcaption>
+                      </figure>
+                    ) : null}
+                  </div>
+                ))}
 
                 {section.list?.length ? (
                   <ul className="blog-rich-list">

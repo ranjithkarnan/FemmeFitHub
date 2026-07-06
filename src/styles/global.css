@@ -7473,6 +7473,167 @@ textarea::placeholder {
   color: #f4c542;
 }
 
+.working-hours-card {
+  position: relative;
+  overflow: hidden;
+  padding: 22px;
+  border: 1px solid rgba(244, 197, 66, 0.24);
+  border-radius: 26px;
+  color: #4b3223;
+  background:
+    radial-gradient(circle at top right, rgba(244, 197, 66, 0.16), transparent 36%),
+    rgba(255, 255, 255, 0.82);
+  box-shadow:
+    0 18px 44px rgba(75, 50, 35, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.working-hours-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, #f4c542, #ffd966);
+  pointer-events: none;
+}
+
+.working-hours-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(244, 197, 66, 0.42);
+  box-shadow:
+    0 28px 62px rgba(75, 50, 35, 0.15),
+    0 0 28px rgba(244, 197, 66, 0.12);
+}
+
+.working-hours-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.working-hours-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  color: #4b3223;
+  background: linear-gradient(135deg, #f4c542, #ffd966);
+  box-shadow: 0 12px 28px rgba(244, 197, 66, 0.24);
+}
+
+.working-hours-card h3 {
+  margin: 0 0 7px;
+  color: #d9a514;
+  font-size: 1.12rem;
+  font-weight: 950;
+}
+
+.working-hours-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  color: #6b5b4d;
+  font-size: 0.88rem;
+  font-weight: 900;
+}
+
+.working-hours-status span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+}
+
+.working-hours-status.is-open {
+  color: #166534;
+}
+
+.working-hours-status.is-open span {
+  background: #22c55e;
+}
+
+.working-hours-status.is-closed {
+  color: #991b1b;
+}
+
+.working-hours-status.is-closed span {
+  background: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
+}
+
+.working-hours-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.working-hours-list div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 14px;
+  border: 1px solid rgba(111, 78, 55, 0.1);
+  border-radius: 16px;
+  background: rgba(255, 248, 240, 0.72);
+}
+
+.working-hours-list dt {
+  color: #4b3223;
+  font-weight: 900;
+}
+
+.working-hours-list dd {
+  margin: 0;
+  color: #6b5b4d;
+  font-weight: 850;
+  text-align: right;
+}
+
+.working-hours-card--footer {
+  margin-top: 18px;
+  padding: 18px;
+  border-color: rgba(244, 197, 66, 0.26);
+  color: #fff8f0;
+  background:
+    radial-gradient(circle at top right, rgba(244, 197, 66, 0.16), transparent 36%),
+    rgba(255, 248, 240, 0.08);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+}
+
+.working-hours-card--footer h3 {
+  color: #f4c542;
+}
+
+.working-hours-card--footer .working-hours-list div {
+  border-color: rgba(244, 197, 66, 0.16);
+  background: rgba(255, 248, 240, 0.08);
+}
+
+.working-hours-card--footer .working-hours-list dt,
+.working-hours-card--footer .working-hours-list dd {
+  color: rgba(255, 248, 240, 0.86);
+}
+
+.working-hours-card--footer .working-hours-status.is-open {
+  color: #86efac;
+}
+
+.working-hours-card--footer .working-hours-status.is-closed {
+  color: #fecaca;
+}
+
 .premium-map-card {
   position: relative;
   overflow: hidden;
@@ -11551,6 +11712,18 @@ button.cta-card {
 .blog-premium-layout .blog-article-content h2 {
   font-size: clamp(2rem, 4vw, 2.65rem);
   margin-top: 14px;
+}
+
+.blog-subsection {
+  margin-top: 26px;
+}
+
+.blog-subsection h3 {
+  color: #4b3223;
+  font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 10px;
 }
 
 .blog-share-bar {

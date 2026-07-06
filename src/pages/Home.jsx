@@ -57,7 +57,7 @@ function Home() {
   return (
     <>
       <SEO
-        title="Femme Fit Hub | Best Ladies Gym in Valasaravakkam, Chennai"
+        title="Ladies Gym in Valasaravakkam | Femme Fit Hub"
         description="Join Femme Fit Hub, a premium ladies gym in Valasaravakkam, Chennai. Strength training, weight loss programs, cross fit, nutrition guidance, personal training, and women-only fitness coaching."
       />
       <section id="home" className="landing-anchor">

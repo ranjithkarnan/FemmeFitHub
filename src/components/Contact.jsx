@@ -10,6 +10,7 @@ import {
   Star,
   Users,
 } from "lucide-react";
+import WorkingHours from "./WorkingHours.jsx";
 
 const consultationBenefits = [
   "Personalized Program Guidance",
@@ -161,6 +162,8 @@ Source: Femme Fit Hub Website
                 <MapPin size={18} /> {studioAddress}
               </span>
             </div>
+
+            <WorkingHours />
 
             <div
               className="map-placeholder premium-map-card"

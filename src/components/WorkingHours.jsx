@@ -1,0 +1,120 @@
+import React, { useEffect, useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Clock3 } from 'lucide-react';
+
+const weeklyHours = [
+  {
+    label: 'Monday - Friday',
+    days: [1, 2, 3, 4, 5],
+    openMinutes: 5 * 60,
+    closeMinutes: 22 * 60,
+    display: '5:00 AM - 10:00 PM'
+  },
+  {
+    label: 'Saturday',
+    days: [6],
+    openMinutes: 5 * 60,
+    closeMinutes: 21 * 60,
+    display: '5:00 AM - 9:00 PM'
+  },
+  {
+    label: 'Sunday',
+    days: [0],
+    openMinutes: 6 * 60,
+    closeMinutes: 13 * 60,
+    display: '6:00 AM - 1:00 PM'
+  }
+];
+
+const formatTime = (minutes) => {
+  const hour24 = Math.floor(minutes / 60);
+  const minute = minutes % 60;
+  const period = hour24 >= 12 ? 'PM' : 'AM';
+  const hour12 = hour24 % 12 || 12;
+
+  return `${hour12}:${String(minute).padStart(2, '0')} ${period}`;
+};
+
+const getHoursForDay = (day) => weeklyHours.find((item) => item.days.includes(day));
+
+const getOpenStatus = (date) => {
+  const day = date.getDay();
+  const currentMinutes = date.getHours() * 60 + date.getMinutes();
+  const todayHours = getHoursForDay(day);
+
+  if (
+    todayHours &&
+    currentMinutes >= todayHours.openMinutes &&
+    currentMinutes < todayHours.closeMinutes
+  ) {
+    return {
+      isOpen: true,
+      label: 'Open Now'
+    };
+  }
+
+  if (todayHours && currentMinutes < todayHours.openMinutes) {
+    return {
+      isOpen: false,
+      label: `Closed - Opens at ${formatTime(todayHours.openMinutes)}`
+    };
+  }
+
+  const tomorrow = (day + 1) % 7;
+  const nextHours = getHoursForDay(tomorrow);
+
+  return {
+    isOpen: false,
+    label: `Closed - Opens at ${formatTime(nextHours.openMinutes)}`
+  };
+};
+
+function WorkingHours({ variant = 'default' }) {
+  const [now, setNow] = useState(() => new Date());
+  const status = useMemo(() => getOpenStatus(now), [now]);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setNow(new Date());
+    }, 60000);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
+  return (
+    // <motion.aside
+    //   className={`working-hours-card working-hours-card--${variant}`}
+    //   aria-label="Femme Fit Hub working hours"
+    //   initial={{ opacity: 0, y: 18 }}
+    //   whileInView={{ opacity: 1, y: 0 }}
+    //   viewport={{ once: true, amount: 0.25 }}
+    //   transition={{ duration: 0.45, ease: 'easeOut' }}
+    // >
+    //   {/* <div className="working-hours-head">
+    //     <span className="working-hours-icon" aria-hidden="true">
+    //       <Clock3 size={20} />
+    //     </span>
+    //     <div>
+    //       <h3>Working Hours</h3>
+    //       <p className={`working-hours-status ${status.isOpen ? 'is-open' : 'is-closed'}`}>
+    //         <span aria-hidden="true" />
+    //         {status.label}
+    //       </p>
+    //     </div>
+    //   </div>
+
+    //   <dl className="working-hours-list">
+    //     {weeklyHours.map((item) => (
+    //       <div key={item.label}>
+    //         <dt>{item.label}</dt>
+    //         <dd>{item.display}</dd>
+    //       </div>
+    //     ))}
+    //   </dl> */}
+    // </motion.aside>
+
+    <></>
+  );
+}
+
+export default WorkingHours;
