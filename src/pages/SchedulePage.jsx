@@ -13,7 +13,8 @@ function SchedulePage() {
         <div className="container">
           <div className="section-kicker">Class Schedule</div>
           {/* <h1>Find a time that fits your day and keeps your momentum alive.</h1> */}
-          <h1>Because every queen deserves time for herself. Our flexible class schedules help you prioritize wellness without compromising your daily life</h1>
+          <h1>Because every queen deserves time for herself. 
+            {/* Our flexible class schedules help you prioritize wellness without compromising your daily life */}</h1>
         </div>
       </section>
       <Schedule />

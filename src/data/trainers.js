@@ -1,10 +1,14 @@
-import deepaSaranyaImage from '../assets/images/trainers/Deepa Saranya.webp';
+import EzilarasiRajanImage from '../assets/images/trainers/Ezilarasi Rajan.webp';
+import kayathriMuruganImage from '../assets/images/trainers/Kayathri Murugan.webp';
+// import deepaSaranyaImage from '../assets/images/trainers/Deepa Saranya.webp';
+// import karthigaDeviPrakashImage from '../assets/images/trainers/Karthiga Devi Prakash.webp';
+import yuvashreeSenthilkumarImage from '../assets/images/trainers/Yuvashree Senthilkumar.webp';
 
 export const trainers = [
   {
-    name: 'Deepa Saranya',
+    name: 'Ezilarasi Rajan',
     role: 'Physiotherapist',
-    image: deepaSaranyaImage,
+    image: EzilarasiRajanImage,
     specialty: 'Pain management, flexibility improvement, special child handling, and personal training support',
     experience: '8 Years',
     certifications: [
@@ -16,7 +20,7 @@ export const trainers = [
     socials: ['Instagram', 'LinkedIn']
   },
   {
-    name: 'Ezilarasi Rajan',
+    name: 'Deepa Saranya',
     role: 'Physiotherapist',
     specialty: 'Injury prevention, functional movement, recovery therapy, therapeutic exercise',
     experience: '8 Years',
@@ -30,6 +34,7 @@ export const trainers = [
   {
     name: 'Karthiga Devi Prakash',
     role: 'Manager & Dietician',
+    // image: karthigaDeviPrakashImage,
     specialty: 'Weight management, nutrition planning, lifestyle coaching, women’s wellness',
     experience: '6 Years',
     certifications: [
@@ -42,6 +47,7 @@ export const trainers = [
   {
     name: 'Kayathri Murugan',
     role: 'Physiotherapist',
+    image: kayathriMuruganImage,
     specialty: 'Pain management, posture correction, mobility improvement, rehabilitation exercises',
     experience: '2 Year',
     certifications: [
@@ -54,6 +60,7 @@ export const trainers = [
   {
     name: 'Yuvashree Senthilkumar',
     role: 'Physiotherapist',
+    image: yuvashreeSenthilkumarImage,
     specialty: 'Women’s health support, recovery programs, mobility training, flexibility enhancement',
     experience: '1 Year',
     certifications: [

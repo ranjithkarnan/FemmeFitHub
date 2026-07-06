@@ -13,7 +13,7 @@ function TrainersPage() {
         <div className="container">
           <div className="section-kicker">Certified Coaches</div>
           {/* <h1>Meet the coaches behind our member transformations.</h1> */}
-          <h1>Because every queen deserves expert guidance. Our certified team create a safe, supportive, and empowering fitness experience for every woman.</h1>
+          <h1>Our team create a safe, supportive empowering fitness experience for every woman.</h1>
           {/* <p>Friendly experts in strength, dance fitness, yoga, nutrition, and sustainable habit change.</p> */}
         </div>
       </section>
