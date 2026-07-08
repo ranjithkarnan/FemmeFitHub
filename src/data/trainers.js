@@ -1,7 +1,7 @@
 import EzilarasiRajanImage from '../assets/images/trainers/Ezilarasi Rajan.webp';
 import kayathriMuruganImage from '../assets/images/trainers/Kayathri Murugan.webp';
 // import deepaSaranyaImage from '../assets/images/trainers/Deepa Saranya.webp';
-// import karthigaDeviPrakashImage from '../assets/images/trainers/Karthiga Devi Prakash.webp';
+import karthigaDeviPrakashImage from '../assets/images/trainers/Karthiga Devi Prakash.webp';
 import yuvashreeSenthilkumarImage from '../assets/images/trainers/Yuvashree Senthilkumar.webp';
 
 export const trainers = [
@@ -34,7 +34,7 @@ export const trainers = [
   {
     name: 'Karthiga Devi Prakash',
     role: 'Manager & Dietician',
-    // image: karthigaDeviPrakashImage,
+    image: karthigaDeviPrakashImage,
     specialty: 'Weight management, nutrition planning, lifestyle coaching, women’s wellness',
     experience: '6 Years',
     certifications: [

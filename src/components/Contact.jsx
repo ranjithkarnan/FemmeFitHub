@@ -4,11 +4,14 @@ import {
   Check,
   Mail,
   MapPin,
+  Navigation,
   Phone,
   ShieldCheck,
   Sparkles,
   Star,
   Users,
+  Car,
+  Clock3,
 } from "lucide-react";
 import WorkingHours from "./WorkingHours.jsx";
 
@@ -36,6 +39,8 @@ const trustCards = [
 const studioAddress =
   "No 2/2, first floor, Sannathi street, Mari Amman Kovil St, Valasaravakkam, Tamil Nadu 600087";
 const mapLink = "https://share.google/kSjLapvUefpUvJ45R";
+const mapEmbedUrl =
+  "https://www.google.com/maps?q=Femme%20Fit%20Hub%20Door%20no%202%2F2%20first%20floor%20Sannathi%20street%20Mari%20Amman%20Kovil%20St%20Valasaravakkam%20Tamil%20Nadu%20600087&output=embed";
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -275,6 +280,55 @@ Source: Femme Fit Hub Website
                 ))}
               </div>
             </div>
+
+            <article className="find-us-card">
+              <div className="find-us-header">
+                <span className="find-us-icon" aria-hidden="true">
+                  <MapPin size={22} />
+                </span>
+                <div>
+                  <h3>Find Femme Fit Hub</h3>
+                  <p>
+                    Visit our women-only fitness studio in Valasaravakkam,
+                    Chennai.
+                  </p>
+                </div>
+              </div>
+
+              <div className="find-us-map">
+                <iframe
+                  title="Femme Fit Hub Google Maps location"
+                  src={mapEmbedUrl}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
+
+              <div className="find-us-details">
+                <span>
+                  <Star size={16} /> Google Rating
+                </span>
+                <span>
+                  <MapPin size={16} /> Valasaravakkam, Chennai - 600087
+                </span>
+                <span>
+                  <Car size={16} /> Parking Available
+                </span>
+                <span>
+                  <Clock3 size={16} /> Open Today
+                </span>
+              </div>
+
+              <div className="find-us-actions">
+                <a href={mapLink} target="_blank" rel="noreferrer" className="btn btn-primary">
+                  <Navigation size={17} /> Get Directions
+                </a>
+                <a href="tel:+918220138783" className="btn btn-soft">
+                  <Phone size={17} /> Call Now
+                </a>
+              </div>
+            </article>
           </div>
         </div>
       </div>

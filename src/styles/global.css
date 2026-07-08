@@ -7389,7 +7389,7 @@ textarea::placeholder {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
   gap: 32px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .consultation-info,
@@ -7402,7 +7402,8 @@ textarea::placeholder {
 .consultation-form,
 .faq-panel,
 .choose-trust-grid,
-.premium-map-card {
+.premium-map-card,
+.find-us-card {
   border: 1px solid rgba(244, 197, 66, 0.24);
   border-radius: 32px;
   background: rgba(255, 248, 240, 0.92);
@@ -7476,15 +7477,13 @@ textarea::placeholder {
 .working-hours-card {
   position: relative;
   overflow: hidden;
-  padding: 22px;
-  border: 1px solid rgba(244, 197, 66, 0.24);
-  border-radius: 26px;
+  padding: 20px 22px;
+  border: 1px solid rgba(244, 197, 66, 0.2);
+  border-radius: 22px;
   color: #4b3223;
-  background:
-    radial-gradient(circle at top right, rgba(244, 197, 66, 0.16), transparent 36%),
-    rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.78);
   box-shadow:
-    0 18px 44px rgba(75, 50, 35, 0.1),
+    0 14px 34px rgba(75, 50, 35, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.76);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -7497,9 +7496,12 @@ textarea::placeholder {
 .working-hours-card::before {
   content: "";
   position: absolute;
-  inset: 0 0 auto;
-  height: 4px;
-  background: linear-gradient(90deg, #f4c542, #ffd966);
+  left: 0;
+  top: 18px;
+  bottom: 18px;
+  width: 4px;
+  border-radius: 999px;
+  background: #f4c542;
   pointer-events: none;
 }
 
@@ -7507,32 +7509,12 @@ textarea::placeholder {
   transform: translateY(-5px);
   border-color: rgba(244, 197, 66, 0.42);
   box-shadow:
-    0 28px 62px rgba(75, 50, 35, 0.15),
-    0 0 28px rgba(244, 197, 66, 0.12);
-}
-
-.working-hours-head {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 18px;
-}
-
-.working-hours-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  width: 46px;
-  height: 46px;
-  border-radius: 16px;
-  color: #4b3223;
-  background: linear-gradient(135deg, #f4c542, #ffd966);
-  box-shadow: 0 12px 28px rgba(244, 197, 66, 0.24);
+    0 22px 48px rgba(75, 50, 35, 0.12),
+    0 0 22px rgba(244, 197, 66, 0.1);
 }
 
 .working-hours-card h3 {
-  margin: 0 0 7px;
+  margin: 0 0 8px;
   color: #d9a514;
   font-size: 1.12rem;
   font-weight: 950;
@@ -7542,7 +7524,7 @@ textarea::placeholder {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  margin: 0;
+  margin: 0 0 15px;
   color: #6b5b4d;
   font-size: 0.88rem;
   font-weight: 900;
@@ -7574,19 +7556,28 @@ textarea::placeholder {
 
 .working-hours-list {
   display: grid;
-  gap: 10px;
+  gap: 11px;
   margin: 0;
 }
 
 .working-hours-list div {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 12px 14px;
-  border: 1px solid rgba(111, 78, 55, 0.1);
-  border-radius: 16px;
-  background: rgba(255, 248, 240, 0.72);
+  gap: 10px;
+}
+
+.working-hours-check {
+  width: 22px;
+  height: 22px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #4b3223;
+  background: linear-gradient(135deg, #f4c542, #ffd966);
+  font-size: 0.78rem;
+  font-weight: 950;
+  box-shadow: 0 8px 18px rgba(244, 197, 66, 0.18);
 }
 
 .working-hours-list dt {
@@ -7603,22 +7594,15 @@ textarea::placeholder {
 
 .working-hours-card--footer {
   margin-top: 18px;
-  padding: 18px;
+  padding: 18px 20px;
   border-color: rgba(244, 197, 66, 0.26);
   color: #fff8f0;
-  background:
-    radial-gradient(circle at top right, rgba(244, 197, 66, 0.16), transparent 36%),
-    rgba(255, 248, 240, 0.08);
+  background: rgba(255, 248, 240, 0.08);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
 }
 
 .working-hours-card--footer h3 {
   color: #f4c542;
-}
-
-.working-hours-card--footer .working-hours-list div {
-  border-color: rgba(244, 197, 66, 0.16);
-  background: rgba(255, 248, 240, 0.08);
 }
 
 .working-hours-card--footer .working-hours-list dt,
@@ -7832,6 +7816,124 @@ textarea::placeholder {
 
 .choose-trust-grid svg {
   color: #f4c542;
+}
+
+.find-us-card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 18px;
+  padding: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(244, 197, 66, 0.14), transparent 34%),
+    rgba(255, 248, 240, 0.94);
+  animation: fadeUp 0.55s ease both;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.find-us-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(244, 197, 66, 0.42);
+  box-shadow:
+    0 32px 72px rgba(75, 50, 35, 0.16),
+    0 0 28px rgba(244, 197, 66, 0.12);
+}
+
+.find-us-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.find-us-icon {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  color: #4b3223;
+  background: linear-gradient(135deg, #f4c542, #ffd966);
+  box-shadow: 0 14px 28px rgba(244, 197, 66, 0.22);
+}
+
+.find-us-header h3 {
+  margin: 0 0 8px;
+  color: #4b3223;
+  font-size: 1.55rem;
+  font-weight: 950;
+}
+
+.find-us-header p {
+  margin: 0;
+  color: #6b5b4d;
+  line-height: 1.65;
+}
+
+.find-us-map {
+  overflow: hidden;
+  height: clamp(360px, 34vw, 420px);
+  border: 1px solid rgba(244, 197, 66, 0.24);
+  border-radius: 20px;
+  background: #f7ebdd;
+  box-shadow: 0 18px 42px rgba(75, 50, 35, 0.12);
+}
+
+.find-us-map iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+}
+
+.find-us-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.find-us-details span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 12px;
+  border: 1px solid rgba(111, 78, 55, 0.1);
+  border-radius: 16px;
+  color: #4b3223;
+  background: rgba(255, 255, 255, 0.68);
+  font-size: 0.88rem;
+  font-weight: 850;
+}
+
+.find-us-details svg {
+  flex: 0 0 auto;
+  color: #f4c542;
+}
+
+.find-us-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.find-us-actions .btn {
+  flex: 1 1 190px;
+  justify-content: center;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .challenges-section {
   position: relative;

@@ -2,7 +2,7 @@ import React from "react";
 import { Facebook, Instagram, Youtube } from "lucide-react";
 import { quickWhatsAppUrl } from "../utils/whatsapp";
 import { useContactModal } from "../context/ContactModalContext.jsx";
-import WorkingHours from "./WorkingHours.jsx";
+// import WorkingHours from "./WorkingHours.jsx";
 
 function Footer() {
   const { openContactModal } = useContactModal();
@@ -81,7 +81,7 @@ function Footer() {
           >
             WhatsApp Us
           </a>
-          <WorkingHours variant="footer" />
+          {/* <WorkingHours variant="footer" /> */}
         </div>
       </div>
 

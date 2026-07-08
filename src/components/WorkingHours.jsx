@@ -1,28 +1,20 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Clock3 } from 'lucide-react';
 
 const weeklyHours = [
   {
-    label: 'Monday - Friday',
-    days: [1, 2, 3, 4, 5],
-    openMinutes: 5 * 60,
-    closeMinutes: 22 * 60,
-    display: '5:00 AM - 10:00 PM'
-  },
-  {
-    label: 'Saturday',
-    days: [6],
-    openMinutes: 5 * 60,
-    closeMinutes: 21 * 60,
-    display: '5:00 AM - 9:00 PM'
+    label: 'Monday - Saturday',
+    days: [1, 2, 3, 4, 5, 6],
+    openMinutes: 6 * 60,
+    closeMinutes: 20 * 60 + 30,
+    display: '6:00 AM - 8:30 PM'
   },
   {
     label: 'Sunday',
     days: [0],
-    openMinutes: 6 * 60,
-    closeMinutes: 13 * 60,
-    display: '6:00 AM - 1:00 PM'
+    openMinutes: 14 * 60,
+    closeMinutes: 20 * 60,
+    display: '2:00 PM - 8:00 PM'
   }
 ];
 
@@ -82,38 +74,32 @@ function WorkingHours({ variant = 'default' }) {
   }, []);
 
   return (
-    // <motion.aside
-    //   className={`working-hours-card working-hours-card--${variant}`}
-    //   aria-label="Femme Fit Hub working hours"
-    //   initial={{ opacity: 0, y: 18 }}
-    //   whileInView={{ opacity: 1, y: 0 }}
-    //   viewport={{ once: true, amount: 0.25 }}
-    //   transition={{ duration: 0.45, ease: 'easeOut' }}
-    // >
-    //   {/* <div className="working-hours-head">
-    //     <span className="working-hours-icon" aria-hidden="true">
-    //       <Clock3 size={20} />
-    //     </span>
-    //     <div>
-    //       <h3>Working Hours</h3>
-    //       <p className={`working-hours-status ${status.isOpen ? 'is-open' : 'is-closed'}`}>
-    //         <span aria-hidden="true" />
-    //         {status.label}
-    //       </p>
-    //     </div>
-    //   </div>
+    <motion.aside
+      className={`working-hours-card working-hours-card--${variant}`}
+      aria-label="Femme Fit Hub working hours"
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.45, ease: 'easeOut' }}
+    >
+      <h3>Working Hours</h3>
+      <p className={`working-hours-status ${status.isOpen ? 'is-open' : 'is-closed'}`}>
+        <span aria-hidden="true" />
+        {status.label}
+      </p>
 
-    //   <dl className="working-hours-list">
-    //     {weeklyHours.map((item) => (
-    //       <div key={item.label}>
-    //         <dt>{item.label}</dt>
-    //         <dd>{item.display}</dd>
-    //       </div>
-    //     ))}
-    //   </dl> */}
-    // </motion.aside>
+      <dl className="working-hours-list" aria-label="Weekly opening hours">
+        {weeklyHours.map((item) => (
+          <div key={item.label}>
+            <span className="working-hours-check" aria-hidden="true">&#10003;</span>
+            <dt>{item.label}</dt>
+            <dd>{item.display}</dd>
+          </div>
+        ))}
+      </dl>
+    </motion.aside>
 
-    <></>
+    
   );
 }
 
