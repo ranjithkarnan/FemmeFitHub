@@ -300,7 +300,7 @@ Source: Femme Fit Hub Website
                   title="Femme Fit Hub Google Maps location"
                   src={mapEmbedUrl}
                   loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
+                  referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
                 />
               </div>
