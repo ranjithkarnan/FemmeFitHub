@@ -296,13 +296,19 @@ Source: Femme Fit Hub Website
               </div>
 
               <div className="find-us-map">
-                <iframe
+                {/* <iframe
                   title="Femme Fit Hub Google Maps location"
                   src={mapEmbedUrl}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen
-                />
+                /> */}
+                <iframe 
+                title="Femme Fit Hub Google Maps location"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.920951647804!2d80.16724287391386!3d13.040703487281025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5261da4b924a69%3A0xa986e29f81b1f4db!2sFEMME%20FitHub%20Ladies%20Gym!5e0!3m2!1sen!2sin!4v1783528707740!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
               </div>
 
               <div className="find-us-details">
