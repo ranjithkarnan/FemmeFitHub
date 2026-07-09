@@ -26,14 +26,14 @@ function Footer() {
             >
               <Instagram size={20} />
             </a>
-            {/* <a
-              href="https://www.facebook.com/femme.fithub"
+            <a
+              href="https://www.facebook.com/p/Femme-Fithub-61578570376708/"
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
             >
               <Facebook size={20} />
-            </a> */}
+            </a>
             {/* <a
               href="https://www.youtube.com/@femmefithub"
               target="_blank"
