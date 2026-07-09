@@ -77,23 +77,21 @@ function Contact() {
     setShowSuccessPopup(true);
 
     const whatsappMessage = `
-🌸 FITNESS CONSULTATION REQUEST
+FITNESS CONSULTATION REQUEST
 
 A new consultation request has been submitted.
 
-👤 ${formData.name}
-📞 ${formData.phone}
+Customer Name:
+${formData.name}
+
+Phone Number:
+${formData.phone}
 
 Goal:
-🎯 ${formData.goal}
+${formData.goal}
 
 Customer Message:
 "${formData.message || "No additional message provided."}"
-
-Preferred Action:
-✅ Schedule Consultation
-✅ Share Membership Plans
-✅ Free Trial Invitation
 
 Source: Femme Fit Hub Website
 `;
