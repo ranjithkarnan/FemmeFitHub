@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { CheckCircle2, MessageCircle, ShieldCheck, Sparkles, Star, Users, X } from 'lucide-react';
+import {
+  isValidIndianMobileNumber,
+  sanitizeIndianMobileNumber,
+} from '../utils/phone.js';
 
 const goalOptions = [
   'General Fitness',
@@ -50,9 +54,11 @@ function ContactModal({ isOpen, onClose }) {
   }, [isOpen, onClose, sending]);
 
   const handleChange = (event) => {
+    const { name, value } = event.target;
+
     setFormData((current) => ({
       ...current,
-      [event.target.name]: event.target.value
+      [name]: name === 'phone' ? sanitizeIndianMobileNumber(value) : value
     }));
   };
 
@@ -61,6 +67,11 @@ function ContactModal({ isOpen, onClose }) {
 
     if (!formData.name.trim() || !formData.phone.trim() || !formData.goal.trim()) {
       window.alert('Please complete all required fields.');
+      return;
+    }
+
+    if (!isValidIndianMobileNumber(formData.phone)) {
+      window.alert('Please enter a valid 10-digit Indian mobile number.');
       return;
     }
 
@@ -73,7 +84,7 @@ Customer Name:
 ${formData.name}
 
 Phone Number:
-${formData.phone}
++91 ${formData.phone}
 
 Goal:
 ${formData.goal}
@@ -248,6 +259,11 @@ Source: Femme Fit Hub Website
       placeholder="+91 98765 43210"
       value={formData.phone}
       onChange={handleChange}
+      inputMode="numeric"
+      autoComplete="tel"
+      maxLength="10"
+      pattern="[6-9][0-9]{9}"
+      title="Enter a valid 10-digit Indian mobile number"
       required
     />
   </label>

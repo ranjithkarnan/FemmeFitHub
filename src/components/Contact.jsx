@@ -14,6 +14,10 @@ import {
   Clock3,
 } from "lucide-react";
 import WorkingHours from "./WorkingHours.jsx";
+import {
+  isValidIndianMobileNumber,
+  sanitizeIndianMobileNumber,
+} from "../utils/phone.js";
 
 const consultationBenefits = [
   "Personalized Program Guidance",
@@ -54,9 +58,11 @@ function Contact() {
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const handleChange = (event) => {
+    const { name, value } = event.target;
+
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
+      [name]: name === "phone" ? sanitizeIndianMobileNumber(value) : value,
     });
   };
 
@@ -69,6 +75,11 @@ function Contact() {
       !formData.goal.trim()
     ) {
       window.alert("Please complete all required fields.");
+      return;
+    }
+
+    if (!isValidIndianMobileNumber(formData.phone)) {
+      window.alert("Please enter a valid 10-digit Indian mobile number.");
       return;
     }
 
@@ -85,7 +96,7 @@ Customer Name:
 ${formData.name}
 
 Phone Number:
-${formData.phone}
++91 ${formData.phone}
 
 Goal:
 ${formData.goal}
@@ -214,6 +225,11 @@ Source: Femme Fit Hub Website
                   placeholder="+91 8220138783"
                   value={formData.phone}
                   onChange={handleChange}
+                  inputMode="numeric"
+                  autoComplete="tel"
+                  maxLength="10"
+                  pattern="[6-9][0-9]{9}"
+                  title="Enter a valid 10-digit Indian mobile number"
                   required
                 />
               </label>
