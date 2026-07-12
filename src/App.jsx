@@ -104,7 +104,7 @@ function PublicLayout() {
       )}
       <FloatingActions />
       <BottomNav />
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
       {enableMarketingPopups && (
         <Suspense fallback={null}>
           <ChallengeNotification />
