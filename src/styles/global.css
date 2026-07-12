@@ -11180,7 +11180,7 @@ button.cta-card {
 
   .contact-modal-trust {
     border-radius: 24px 24px 0 0;
-    padding: 34px 24px 26px;
+    padding: 60px 24px 26px;
   }
 
   .contact-modal-form {
@@ -11188,7 +11188,7 @@ button.cta-card {
   }
 
   .contact-modal-close {
-    top: 12px;
+    top: 55px;
     right: 12px;
   }
 }
