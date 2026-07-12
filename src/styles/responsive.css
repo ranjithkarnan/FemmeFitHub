@@ -1662,7 +1662,7 @@
   }
 
   .find-us-actions {
-    flex-direction: column;
+    /* flex-direction: column; */
   }
 
   .find-us-actions .btn {
