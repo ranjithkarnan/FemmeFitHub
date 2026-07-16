@@ -135,8 +135,10 @@ function buildSchemas(article, category) {
   return schemas;
 }
 
-function BlogArticlePage() {
-  const { categorySlug, articleSlug } = useParams();
+function BlogArticlePage({ categorySlug: categorySlugOverride, articleSlug: articleSlugOverride }) {
+  const params = useParams();
+  const categorySlug = categorySlugOverride || params.categorySlug;
+  const articleSlug = articleSlugOverride || params.articleSlug;
   const article = getBlogArticle(categorySlug, articleSlug);
   const category = getBlogCategory(categorySlug);
   const { openContactModal } = useContactModal();
@@ -450,13 +452,19 @@ function BlogArticlePage() {
               <section className="blog-related-articles">
                 <h2>Related Articles</h2>
                 <div>
-                  {article.relatedArticles.map((related) => (
-                    <Link to={related.href} key={related.href}>
-                      <span>{related.category}</span>
-                      <strong>{related.title}</strong>
+                  {article.relatedArticles.map((related) => {
+                    const item = typeof related === 'string'
+                      ? { title: related, category: 'Femme Fit Hub Guide', href: '/blog' }
+                      : related;
+
+                    return (
+                    <Link to={item.href || '/blog'} key={item.href || item.title}>
+                      <span>{item.category || 'Femme Fit Hub Guide'}</span>
+                      <strong>{item.title}</strong>
                       <ArrowRight size={16} />
                     </Link>
-                  ))}
+                    );
+                  })}
                 </div>
               </section>
             ) : null}

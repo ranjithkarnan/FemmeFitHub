@@ -149,6 +149,8 @@ function App() {
         <Route path="/blog" element={<BlogHome />} />
         <Route path="/blog/:categorySlug" element={<BlogCategoryPage />} />
         <Route path="/blog/:categorySlug/:articleSlug" element={<BlogArticlePage />} />
+        <Route path="/workout-tips/gym-workout-plan-for-women" element={<BlogArticlePage categorySlug="workout-tips" articleSlug="gym-workout-plan-for-women" />} />
+        <Route path="/gym-workout-plan-for-women" element={<BlogArticlePage categorySlug="workout-tips" articleSlug="gym-workout-plan-for-women" />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/ladies-gym-valasaravakkam" element={<LadiesGymValasaravakkamPage />} />
         <Route path="/weight-loss-training-valasaravakkam" element={<WeightLossTrainingValasaravakkamPage />} />
