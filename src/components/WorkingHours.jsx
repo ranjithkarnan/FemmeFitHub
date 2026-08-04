@@ -14,7 +14,7 @@ const weeklyHours = [
     days: [0],
     openMinutes: 14 * 60,
     closeMinutes: 20 * 60,
-    display: '2:00 PM - 8:00 PM'
+    display: '7:00 PM - 1:00 PM'
   }
 ];
 
