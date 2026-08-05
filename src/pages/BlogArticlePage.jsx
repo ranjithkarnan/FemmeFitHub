@@ -135,7 +135,7 @@ function buildSchemas(article, category) {
         postalCode: '600087',
         addressCountry: 'IN'
       },
-      areaServed: ['Valasaravakkam', 'Chennai', 'Porur', 'Virugambakkam', 'KK Nagar']
+      areaServed: article.areaServed || ['Valasaravakkam', 'Chennai', 'Porur', 'Virugambakkam', 'KK Nagar']
     };
 
     if (article.localBusinessSchema !== 'minimal') {
@@ -174,6 +174,26 @@ function buildSchemas(article, category) {
           text: faq.answer
         }
       }))
+    });
+  }
+
+  schemas.push({
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Femme Fit Hub',
+    url: siteUrl,
+    logo: `${siteUrl}/femme-fit-logo-160.webp`,
+    telephone: '+918220138783'
+  });
+
+  if (article.image) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'ImageObject',
+      url: `${siteUrl}${article.image}`,
+      width: 1200,
+      height: 675,
+      caption: article.featuredAlt || article.title
     });
   }
 
@@ -399,8 +419,8 @@ function BlogArticlePage({ categorySlug: categorySlugOverride, articleSlug: arti
                       </thead>
                       <tbody>
                         {section.table.rows.map((row) => (
-                          <tr key={row.join('-')}>
-                            {row.map((cell) => <td key={cell}>{cell}</td>)}
+                          <tr key={`${section.table.label || section.heading}-${row.join('-')}`}>
+                            {row.map((cell, cellIndex) => <td key={`${cellIndex}-${cell}`}>{cell}</td>)}
                           </tr>
                         ))}
                       </tbody>
@@ -478,6 +498,39 @@ function BlogArticlePage({ categorySlug: categorySlugOverride, articleSlug: arti
                 <Link className="button secondary" to="/membership">View Membership Plans</Link>
                 {isPremiumArticle ? <a className="button secondary" href={quickWhatsAppUrl} target="_blank" rel="noreferrer">WhatsApp Us</a> : null}
               </div>
+              {article.localActions?.length ? (
+                <div className="blog-local-actions" aria-label="Local contact actions">
+                  {article.localActions.map((action) => {
+                    if (action.type === 'modal') {
+                      return (
+                        <button type="button" className="button primary" onClick={openContactModal} key={action.label}>
+                          {action.label}
+                        </button>
+                      );
+                    }
+
+                    if (action.type === 'link') {
+                      return (
+                        <Link className="button secondary" to={action.href} key={action.label}>
+                          {action.label}
+                        </Link>
+                      );
+                    }
+
+                    return (
+                      <a
+                        className="button secondary"
+                        href={action.href}
+                        target={action.external ? '_blank' : undefined}
+                        rel={action.external ? 'noreferrer' : undefined}
+                        key={action.label}
+                      >
+                        {action.label}
+                      </a>
+                    );
+                  })}
+                </div>
+              ) : null}
             </section>
 
             {article.faqs?.length && isPremiumArticle ? (
