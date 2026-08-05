@@ -23,6 +23,42 @@ function slugify(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
+function renderInlineContent(content) {
+  if (typeof content === 'string') return content;
+
+  if (Array.isArray(content)) {
+    return content.map((item, index) => {
+      if (typeof item === 'string') return item;
+
+      const key = `${item.text || item.href || 'link'}-${index}`;
+
+      if (item.href?.startsWith('tel:') || item.href?.startsWith('mailto:')) {
+        return (
+          <a href={item.href} key={key}>
+            {item.text}
+          </a>
+        );
+      }
+
+      if (item.type === 'external' || item.href?.startsWith('http')) {
+        return (
+          <a href={item.href} target="_blank" rel="noopener noreferrer" key={key}>
+            {item.text}
+          </a>
+        );
+      }
+
+      return (
+        <Link to={item.href} key={key}>
+          {item.text}
+        </Link>
+      );
+    });
+  }
+
+  return content?.text || '';
+}
+
 function buildSchemas(article, category) {
   const articleUrl = getArticleUrl(article);
   const schemas = [
@@ -47,7 +83,9 @@ function buildSchemas(article, category) {
         }
       },
       mainEntityOfPage: articleUrl,
-      articleSection: category?.title || article.category
+      articleSection: category?.title || article.category,
+      keywords: article.keywords,
+      inLanguage: 'en-IN'
     }
   ];
 
@@ -83,23 +121,26 @@ function buildSchemas(article, category) {
   });
 
   if (article.localGuide) {
-    schemas.push({
+    const localBusinessSchema = {
       '@context': 'https://schema.org',
       '@type': ['LocalBusiness', 'HealthClub'],
       name: 'Femme Fit Hub',
       url: siteUrl,
       telephone: '+918220138783',
-      priceRange: '$$',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Door no 2/2, first floor, Sannathi street, Mari Amman Kovil St',
+        streetAddress: 'No 2/2, First Floor, Sannathi Street, Mari Amman Kovil St',
         addressLocality: 'Valasaravakkam',
         addressRegion: 'Tamil Nadu',
         postalCode: '600087',
         addressCountry: 'IN'
       },
-      areaServed: ['Valasaravakkam', 'Chennai', 'Porur', 'Virugambakkam', 'KK Nagar'],
-      openingHoursSpecification: [
+      areaServed: ['Valasaravakkam', 'Chennai', 'Porur', 'Virugambakkam', 'KK Nagar']
+    };
+
+    if (article.localBusinessSchema !== 'minimal') {
+      localBusinessSchema.priceRange = '$$';
+      localBusinessSchema.openingHoursSpecification = [
         {
           '@type': 'OpeningHoursSpecification',
           dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
@@ -112,8 +153,12 @@ function buildSchemas(article, category) {
           opens: '14:00',
           closes: '20:00'
         }
-      ],
-      sameAs: ['https://www.instagram.com/femme_fithub/']
+      ];
+      localBusinessSchema.sameAs = ['https://www.instagram.com/femme_fithub/'];
+    }
+
+    schemas.push({
+      ...localBusinessSchema
     });
   }
 
@@ -191,6 +236,8 @@ function BlogArticlePage({ categorySlug: categorySlugOverride, articleSlug: arti
         description={article.metaDescription}
         keywords={article.keywords}
         canonical={getArticleUrl(article)}
+        image={`${siteUrl}${article.image}`}
+        type="article"
         schema={schemas}
       />
 
@@ -293,13 +340,13 @@ function BlogArticlePage({ categorySlug: categorySlugOverride, articleSlug: arti
               <section key={section.heading} id={slugify(section.heading)}>
                 <h2>{section.heading}</h2>
                 {section.body ? <p>{section.body}</p> : null}
-                {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                {section.paragraphs?.map((paragraph, index) => <p key={`${section.heading}-paragraph-${index}`}>{renderInlineContent(paragraph)}</p>)}
 
                 {section.subsections?.map((subsection) => (
                   <div className="blog-subsection" key={subsection.heading}>
                     <h3>{subsection.heading}</h3>
                     {subsection.body ? <p>{subsection.body}</p> : null}
-                    {subsection.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                    {subsection.paragraphs?.map((paragraph, index) => <p key={`${subsection.heading}-paragraph-${index}`}>{renderInlineContent(paragraph)}</p>)}
 
                     {subsection.list?.length ? (
                       <ul className="blog-rich-list">

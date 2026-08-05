@@ -11405,6 +11405,30 @@ button.cta-card {
   line-height: 1.75;
 }
 
+.blog-article-content p a,
+.blog-article-content li a {
+  color: #7a4c12;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: rgba(244, 197, 66, 0.72);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+  transition: color 0.2s ease, text-decoration-thickness 0.2s ease;
+}
+
+.blog-article-content p a:hover,
+.blog-article-content li a:hover {
+  color: #b87908;
+  text-decoration-thickness: 2.5px;
+}
+
+.blog-article-content p a:focus-visible,
+.blog-article-content li a:focus-visible {
+  outline: 2px solid #f4c542;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
 .blog-category-card span {
   display: inline-flex;
   align-items: center;

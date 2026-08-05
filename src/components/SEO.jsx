@@ -28,7 +28,7 @@ function setCanonical(url) {
   link.setAttribute('href', url);
 }
 
-function SEO({ title, description, keywords, canonical, schema }) {
+function SEO({ title, description, keywords, canonical, image, type = 'website', schema }) {
   useEffect(() => {
     if (title) {
       document.title = title;
@@ -51,6 +51,14 @@ function SEO({ title, description, keywords, canonical, schema }) {
       setMetaTag('og:url', canonical, 'property');
     }
 
+    if (image) {
+      setMetaTag('og:image', image, 'property');
+      setMetaTag('twitter:image', image);
+    }
+
+    setMetaTag('og:type', type, 'property');
+    setMetaTag('twitter:card', image ? 'summary_large_image' : 'summary');
+
     document.head.querySelectorAll('script[data-seo-schema="true"]').forEach((node) => node.remove());
     const schemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
 
@@ -65,7 +73,7 @@ function SEO({ title, description, keywords, canonical, schema }) {
     return () => {
       document.head.querySelectorAll('script[data-seo-schema="true"]').forEach((node) => node.remove());
     };
-  }, [title, description, keywords, canonical, schema]);
+  }, [title, description, keywords, canonical, image, type, schema]);
 
   return null;
 }
