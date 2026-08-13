@@ -149,6 +149,7 @@ function App() {
         <Route path="/blog" element={<BlogHome />} />
         <Route path="/blog/:categorySlug" element={<BlogCategoryPage />} />
         <Route path="/blog/:categorySlug/:articleSlug" element={<BlogArticlePage />} />
+        <Route path="/is-gym-safe-for-beginners" element={<BlogArticlePage categorySlug="workout-tips" articleSlug="is-gym-safe-for-beginners" />} />
         <Route path="/ladies-gym-membership-fees-chennai" element={<BlogArticlePage categorySlug="local-guides" articleSlug="ladies-gym-membership-fees-chennai" />} />
         <Route path="/workout-tips/gym-workout-plan-for-women" element={<BlogArticlePage categorySlug="workout-tips" articleSlug="gym-workout-plan-for-women" />} />
         <Route path="/gym-workout-plan-for-women" element={<BlogArticlePage categorySlug="workout-tips" articleSlug="gym-workout-plan-for-women" />} />
